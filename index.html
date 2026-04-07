@@ -281,27 +281,42 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
 <div class="ncard">
   <div class="num">4</div>
-  <h3 data-en="IDA vs Source-Aware" data-id="IDA vs Source-Aware">IDA vs Source-Aware</h3>
-  <p data-en="Source-Aware routing (magnitude-based) is blind to local site effects. A M4.5 earthquake can produce damaging PGA at soft-soil sites. The Source-Aware system misses 98% of damaging events. IDA responds to observed intensity at the sensor, achieving 72.3% Damaging recall." data-id="Routing Source-Aware (berbasis magnitudo) buta terhadap efek tapak lokal. Gempa M4.5 bisa menghasilkan PGA merusak di tanah lunak. Sistem Source-Aware melewatkan 98% event merusak. IDA merespons intensitas yang diamati di sensor, mencapai 72.3% Damaging recall."></p>
+  <h3 data-en="Real-World Indonesian Scenario" data-id="Skenario Nyata Indonesia">Real-World Scenario</h3>
+  <p data-en="Indonesia's geological complexity creates situations where moderate earthquakes (M4.5-5.5) produce destructive ground shaking at specific sites due to soft-soil amplification, shallow basin effects, or proximity to active faults. Examples include the 2006 M6.3 Yogyakarta earthquake, where localized site effects caused severe damage far beyond what the moderate magnitude would suggest." data-id="Kompleksitas geologi Indonesia menciptakan situasi di mana gempa moderat (M4.5-5.5) menghasilkan guncangan destruktif di lokasi tertentu akibat amplifikasi tanah lunak, efek cekungan dangkal, atau kedekatan dengan sesar aktif. Contohnya gempa M6.3 Yogyakarta 2006, di mana efek tapak lokal menyebabkan kerusakan parah jauh melebihi prediksi magnitudo."></p>
+  <div class="highlight" data-en="IDA-PTW directly responds to what the sensor ACTUALLY measures, making it inherently robust to Indonesia's complex site geology." data-id="IDA-PTW langsung merespons apa yang SEBENARNYA diukur sensor, sehingga inheren robust terhadap geologi tapak Indonesia yang kompleks."></div>
 </div>
 </div>
 
-<h3 data-en="Safety Comparison" data-id="Perbandingan Keselamatan">Safety Comparison</h3>
-<div class="vs-box">
-  <div class="vs-side good">
-    <div style="font-size:13px;font-weight:700;color:var(--green)" data-en="IDA-PTW (Proposed)" data-id="IDA-PTW (Diusulkan)">IDA-PTW</div>
-    <div style="font-size:32px;font-weight:700;color:var(--green)">72.3%</div>
-    <div style="font-size:12px;color:#555" data-en="Damaging Recall" data-id="Recall Merusak">Damaging Recall</div>
-    <div style="font-size:11px;color:#888;margin-top:4px" data-en="Critical miss: 8.9%" data-id="Kehilangan kritis: 8.9%">Critical miss: 8.9%</div>
+<h3 data-en="Three Key Contributions" data-id="Tiga Kontribusi Utama">Three Key Contributions</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:16px 0">
+  <div style="background:#e3f2fd;border-radius:8px;padding:16px;border-left:4px solid var(--blue)">
+    <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px" data-en="Contribution 1" data-id="Kontribusi 1">Contribution 1</div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="Feature Dichotomy Paradigm" data-id="Paradigma Dikotomi Fitur">Feature Dichotomy</div>
+    <p style="font-size:11px;color:#555" data-en="First systematic exploitation of P-wave IM saturation properties: &tau;<sub>c</sub> (saturating) for classification, CVAD (non-saturating) for regression. A new design principle for EEWS." data-id="Eksploitasi sistematis pertama dari sifat saturasi IM gelombang-P: &tau;<sub>c</sub> (saturating) untuk klasifikasi, CVAD (non-saturating) untuk regresi. Prinsip desain baru untuk EEWS."></p>
   </div>
-  <div class="vs-mid">VS</div>
-  <div class="vs-side bad">
-    <div style="font-size:13px;font-weight:700;color:var(--red)" data-en="Source-Aware (Baseline)" data-id="Source-Aware (Baseline)">Source-Aware</div>
-    <div style="font-size:32px;font-weight:700;color:var(--red)">1.3%</div>
-    <div style="font-size:12px;color:#555" data-en="Damaging Recall" data-id="Recall Merusak">Damaging Recall</div>
-    <div style="font-size:11px;color:#888;margin-top:4px" data-en="Critical miss: ~98%" data-id="Kehilangan kritis: ~98%">Critical miss: ~98%</div>
+  <div style="background:#e8f5e9;border-radius:8px;padding:16px;border-left:4px solid var(--green)">
+    <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px" data-en="Contribution 2" data-id="Kontribusi 2">Contribution 2</div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="Distance-Aware Adaptive PTW" data-id="PTW Adaptif Sadar-Jarak">Adaptive PTW</div>
+    <p style="font-size:11px;color:#555" data-en="Intensity &times; Distance lookup table with golden time constraint. Dynamically selects optimal PTW (3-8 s) per trace while guaranteeing warning feasibility." data-id="Tabel lookup Intensitas &times; Jarak dengan batasan golden time. Secara dinamis memilih PTW optimal (3-8 s) per trace sambil menjamin kelayakan peringatan."></p>
+  </div>
+  <div style="background:#fff3e0;border-radius:8px;padding:16px;border-left:4px solid var(--orange)">
+    <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:6px" data-en="Contribution 3" data-id="Kontribusi 3">Contribution 3</div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="103-Period Spectral Prediction" data-id="Prediksi Spektral 103 Periode">103 Periods Sa(T)</div>
+    <p style="font-size:11px;color:#555" data-en="First single-station system predicting Sa(T) at 103 periods (T = 0.1-5.0 s). Previous best: ~20 periods using multi-station networks. Enables structure-specific hazard assessment." data-id="Sistem single-station pertama yang memprediksi Sa(T) pada 103 periode (T = 0.1-5.0 s). Terbaik sebelumnya: ~20 periode menggunakan jaringan multi-stasiun. Memungkinkan penilaian bahaya spesifik-struktur."></p>
   </div>
 </div>
+
+<h3 data-en="Positioning vs Existing Methods" data-id="Posisi terhadap Metode yang Ada">Positioning vs Existing Methods</h3>
+<p style="font-size:13px;color:#666;margin-bottom:12px" data-en="This is the only EEWS study that simultaneously satisfies all seven requirements below." data-id="Ini satu-satunya studi EEWS yang secara simultan memenuhi ketujuh persyaratan di bawah."></p>
+<table style="font-size:11px">
+  <tr><th data-en="Study" data-id="Studi">Study</th><th>Sa(T)</th><th>&gt;20 T</th><th data-en="Single Stn" data-id="1 Stasiun">1-Stn</th><th data-en="No Catalog" data-id="Tanpa Katalog">No Cat.</th><th data-en="Adaptive" data-id="Adaptif">Adapt.</th><th data-en="Safety" data-id="Keselamatan">Safety</th><th data-en="Event-CV" data-id="Event-CV">Ev-CV</th></tr>
+  <tr><td>Wu &amp; Kanamori (2005)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+  <tr><td>Zollo et al. (2010)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&check;</td><td>&ndash;</td></tr>
+  <tr><td>Lara et al. (2023)</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+  <tr><td>Iaccarino et al. (2024)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+  <tr class="hl"><td><b data-en="This study" data-id="Studi ini">This study</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td></tr>
+</table>
+<p style="font-size:11px;color:#666;margin-top:6px" data-en="Sa(T) = predicts spectral acceleration | >20 T = more than 20 periods | 1-Stn = single station | No Cat. = no catalog info needed | Adapt. = adaptive PTW | Safety = reports damaging recall | Ev-CV = event-grouped cross-validation" data-id="Sa(T) = memprediksi percepatan spektral | >20 T = lebih dari 20 periode | 1-Stn = single station | Tanpa Kat. = tanpa info katalog | Adaptif = PTW adaptif | Keselamatan = melaporkan recall merusak | Ev-CV = cross-validation berdasar event"></p>
 </section>
 
 <!-- ═══ RESULTS TABLE ═══ -->
