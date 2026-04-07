@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Adaptive PTW-EEWS | Manuscript Review</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
 <style>
 :root{--blue:#1A5B8C;--blue2:#2E75B6;--green:#2e7d32;--orange:#e65100;--red:#c62828;--light:#f0f4f8;--border:#d0d7de;--card-shadow:0 2px 8px rgba(0,0,0,0.08)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -89,6 +90,21 @@ tr.hl{background:#e3f2fd;font-weight:600}
 footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-size:11px;color:#999;border-top:1px solid var(--border)}
 @media(max-width:640px){.pipeline{flex-direction:column;align-items:stretch}.arrow{transform:rotate(90deg);justify-content:center}.metrics{grid-template-columns:1fr 1fr}.vs-box{grid-template-columns:1fr}.vs-mid{display:none}}
 .hidden{display:none!important}
+/* Manuscript rendered styles */
+#manuscript-content h1{font-size:18px;color:var(--blue);border-bottom:2px solid var(--blue);padding-bottom:6px;margin:24px 0 12px}
+#manuscript-content h2{font-size:16px;color:var(--blue);border-bottom:1px solid var(--border);padding-bottom:4px;margin:20px 0 10px}
+#manuscript-content h3{font-size:14px;color:#333;margin:16px 0 8px}
+#manuscript-content h4{font-size:13px;color:#555;margin:12px 0 6px}
+#manuscript-content p{text-align:justify;margin:8px 0}
+#manuscript-content table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+#manuscript-content th{background:var(--blue);color:#fff;padding:6px 8px;text-align:center;font-size:11px}
+#manuscript-content td{padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-size:11px}
+#manuscript-content tr:nth-child(even){background:#f8f9fa}
+#manuscript-content blockquote{border-left:3px solid var(--blue);background:var(--light);padding:8px 14px;margin:10px 0;font-size:12px;color:#555}
+#manuscript-content img{max-width:100%;border-radius:4px;margin:8px 0}
+#manuscript-content hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+#manuscript-content ul,#manuscript-content ol{padding-left:20px;margin:6px 0}
+#manuscript-content code{background:#f0f0f0;padding:1px 4px;border-radius:3px;font-size:11px}
 </style>
 </head>
 <body>
@@ -106,6 +122,7 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <a href="#charts" data-en="Interactive Charts" data-id="Grafik Interaktif">Interactive Charts</a>
   <a href="#safety" data-en="Safety" data-id="Keselamatan">Safety</a>
   <a href="#figures" data-en="Figures" data-id="Gambar">Figures</a>
+  <a href="#manuscript" data-en="Manuscript" data-id="Manuskrip">Manuscript</a>
   <a href="#download" data-en="Download" data-id="Unduh">Download</a>
 </div></nav>
 
@@ -486,6 +503,15 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 </div>
 </section>
 
+<!-- ═══ MANUSCRIPT ═══ -->
+<section id="manuscript">
+<h2 data-en="Full Manuscript" data-id="Manuskrip Lengkap">Manuscript</h2>
+<p style="font-size:13px;color:#666;margin-bottom:12px" data-en="Complete manuscript rendered from the same source file available for download. Scroll to read or use Ctrl+F to search." data-id="Manuskrip lengkap di-render dari file sumber yang sama dengan yang tersedia untuk diunduh. Scroll untuk membaca atau gunakan Ctrl+F untuk mencari."></p>
+<div id="manuscript-content" style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:24px 32px;max-height:80vh;overflow-y:auto;font-size:13px;line-height:1.8">
+  <p style="color:#999;text-align:center">Loading manuscript...</p>
+</div>
+</section>
+
 <!-- ═══ DOWNLOAD ═══ -->
 <section id="download">
 <h2 data-en="Download Materials" data-id="Unduh Materi">Download</h2>
@@ -619,6 +645,23 @@ new Chart(document.getElementById('vs30chart'),{
     }
   }
 });
+
+// ── Load and render manuscript ──
+fetch('data/MANUSCRIPT_Frontiers_EarthSci_Draft_20260405.md')
+  .then(r=>r.text())
+  .then(md=>{
+    const el=document.getElementById('manuscript-content');
+    // Render markdown to HTML using marked.js
+    el.innerHTML=marked.parse(md);
+    // Fix image paths to point to figures/
+    el.querySelectorAll('img').forEach(img=>{
+      const src=img.getAttribute('src');
+      if(src&&src.startsWith('figures/'))img.src=src;
+    });
+  })
+  .catch(err=>{
+    document.getElementById('manuscript-content').innerHTML='<p style="color:red">Failed to load manuscript: '+err.message+'</p>';
+  });
 </script>
 </body>
 </html>
