@@ -389,9 +389,27 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
     <tr><td style="text-align:left">MAE</td><td>205 km</td></tr>
     <tr><td data-en="Top Feature" data-id="Fitur Utama" style="text-align:left">Top Feature</td><td>predominant_freq (19%)</td></tr>
   </table>
-  <div style="background:#fff8e1;border-radius:6px;padding:8px;margin-top:10px;font-size:10px;border-left:3px solid var(--orange)">
-    <b data-en="Despite low R&sup2;:" data-id="Meskipun R&sup2; rendah:">Key insight:</b>
-    <span data-en="Pipeline is extremely robust to distance errors. Oracle vs predicted: &Delta;R&sup2; = 0.0002. Distance serves only as routing signal, not prediction input." data-id="Pipeline sangat robust terhadap error jarak. Oracle vs prediksi: &Delta;R&sup2; = 0.0002. Jarak hanya sebagai sinyal routing, bukan input prediksi."></span>
+  <div style="background:#fff8e1;border-radius:6px;padding:10px 12px;margin-top:10px;font-size:11px;border-left:3px solid var(--orange)">
+    <b data-en="Why R&sup2; = 0.099 is acceptable:" data-id="Mengapa R&sup2; = 0.099 bisa diterima:">Why acceptable:</b>
+    <div style="margin-top:6px" data-en="Distance estimator is a <b>routing signal</b>, not a prediction model. It only needs to answer &ldquo;near or far?&rdquo; &mdash; not &ldquo;exactly how far?&rdquo;" data-id="Distance estimator adalah <b>sinyal routing</b>, bukan model prediksi. Ia hanya perlu menjawab &ldquo;dekat atau jauh?&rdquo; &mdash; bukan &ldquo;berapa persisnya?&rdquo;"></div>
+  </div>
+
+  <div style="background:#e3f2fd;border-radius:6px;padding:10px 12px;margin-top:8px;font-size:11px">
+    <b data-en="Empirical proof:" data-id="Bukti empiris:">Proof:</b>
+    <div style="font-family:monospace;font-size:10px;margin-top:4px">
+      Oracle (perfect distance): R&sup2; = 0.7311<br>
+      Predicted (R&sup2;=0.099): &nbsp;&nbsp;&nbsp;R&sup2; = 0.7309<br>
+      <span style="color:var(--green);font-weight:700">&Delta;R&sup2; = 0.0002 (negligible)</span>
+    </div>
+  </div>
+
+  <div style="background:#f3e5f5;border-radius:6px;padding:10px 12px;margin-top:8px;font-size:11px">
+    <b data-en="Three reasons why:" data-id="Tiga alasan mengapa:">3 reasons:</b>
+    <div style="margin-top:6px">
+      <div style="margin-bottom:4px" data-en="<b>1. Discrete bins:</b> Lookup table has only 6 distance bins. Error of 200 km often stays in the same bin &rarr; same PTW selected." data-id="<b>1. Bin diskret:</b> Tabel lookup hanya punya 6 bin jarak. Error 200 km seringkali masih di bin yang sama &rarr; PTW terpilih sama."></div>
+      <div style="margin-bottom:4px" data-en="<b>2. Intensity dominates:</b> 99.9% of traces get PTW 3&ndash;4 s based on intensity class alone. Distance only matters for 0.1% (Damaging near-field)." data-id="<b>2. Intensitas mendominasi:</b> 99.9% trace mendapat PTW 3&ndash;4 s berdasarkan kelas intensitas saja. Jarak hanya relevan untuk 0.1% (Damaging near-field)."></div>
+      <div data-en="<b>3. Self-correcting:</b> If misrouted to PTW 4 s instead of 3 s, the Stage 2 model at PTW=4 s is trained for that window. Penalty is only &Delta;R&sup2; &asymp; 0.005 between adjacent PTWs." data-id="<b>3. Koreksi-diri:</b> Jika salah route ke PTW 4 s alih-alih 3 s, model Stage 2 di PTW=4 s sudah dilatih untuk jendela tersebut. Penalti hanya &Delta;R&sup2; &asymp; 0.005 antar-PTW tetangga."></div>
+    </div>
   </div>
 </div>
 
