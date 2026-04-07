@@ -119,6 +119,7 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <a href="#pipeline" data-en="Pipeline" data-id="Pipeline">Pipeline</a>
   <a href="#why" data-en="Why This Matters" data-id="Mengapa Penting">Why This Matters</a>
   <a href="#results" data-en="Results" data-id="Hasil">Results</a>
+  <a href="#evidence" data-en="Evidence" data-id="Bukti">Evidence</a>
   <a href="#charts" data-en="Interactive Charts" data-id="Grafik Interaktif">Interactive Charts</a>
   <a href="#safety" data-en="Safety" data-id="Keselamatan">Safety</a>
   <a href="#figures" data-en="Figures" data-id="Gambar">Figures</a>
@@ -350,6 +351,110 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <tr class="hl"><td><b>IDA Operational</b></td><td><b>0.7309</b></td><td><b>0.5181</b></td><td><b>-0.0149</b></td></tr>
 </table>
 <p style="font-size:12px;color:#666;margin-top:8px" data-en="IDA achieves R&sup2; = 0.731 while prioritizing operational safety. The ~2.7% gap vs Fixed-8s is a deliberate accuracy-safety tradeoff." data-id="IDA mencapai R&sup2; = 0.731 sambil memprioritaskan keselamatan operasional. Selisih ~2.7% vs Fixed-8s adalah tradeoff akurasi-keselamatan yang disengaja."></p>
+</section>
+
+<!-- ═══ STAGE-BY-STAGE EVIDENCE ═══ -->
+<section id="evidence">
+<h2 data-en="Stage-by-Stage Pipeline Evidence" data-id="Bukti Pipeline Per-Tahap">Pipeline Evidence</h2>
+<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="Validated metrics for each pipeline stage, using 5-fold event-grouped cross-validation on 34,033 traces." data-id="Metrik tervalidasi untuk setiap tahap pipeline, menggunakan 5-fold cross-validation berdasar event pada 34.033 trace."></p>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:16px 0">
+
+<!-- Stage 1 -->
+<div style="background:#fff;border:2px solid var(--blue);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
+  <div style="font-size:11px;color:#fff;background:var(--blue);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 1</div>
+  <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px" data-en="Intensity Gate Classifier" data-id="Klasifikasi Gerbang Intensitas">Intensity Gate</div>
+  <div style="font-size:12px;margin-bottom:10px" data-en="XGBoost classifier, 42 P-wave features at PTW = 2 s" data-id="Klasifikasi XGBoost, 42 fitur P-wave pada PTW = 2 s"></div>
+  <table style="font-size:11px;margin:0">
+    <tr><td data-en="Overall Accuracy" data-id="Akurasi Keseluruhan" style="text-align:left">Accuracy</td><td style="font-weight:700;color:var(--blue)">93.01%</td></tr>
+    <tr><td data-en="Damaging Recall" data-id="Recall Merusak" style="text-align:left">Damaging Recall</td><td style="font-weight:700;color:var(--green)">72.3%</td></tr>
+    <tr><td data-en="Critical Miss Rate" data-id="Laju Kehilangan Kritis" style="text-align:left">Critical Miss</td><td>8.9%</td></tr>
+    <tr><td data-en="Top Feature" data-id="Fitur Utama" style="text-align:left">Top Feature</td><td>&tau;<sub>c</sub> (51%)</td></tr>
+  </table>
+  <div style="margin-top:10px;font-size:10px;color:#666" data-en="Confusion Matrix (Weak / Felt / Damaging):" data-id="Matriks Konfusi (Weak / Felt / Damaging):">CM:</div>
+  <div style="font-family:monospace;font-size:10px;background:#f8f9fa;padding:6px;border-radius:4px;margin-top:4px">
+    W&rarr; 30540 &nbsp;1439 &nbsp;&nbsp;&nbsp;22<br>
+    F&rarr; &nbsp;&nbsp;883 &nbsp;1041 &nbsp;&nbsp;&nbsp;&nbsp;7<br>
+    D&rarr; &nbsp;&nbsp;&nbsp;&nbsp;9 &nbsp;&nbsp;&nbsp;19 &nbsp;&nbsp;&nbsp;73
+  </div>
+</div>
+
+<!-- Stage 1.5 -->
+<div style="background:#fff;border:2px solid var(--orange);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
+  <div style="font-size:11px;color:#fff;background:var(--orange);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 1.5</div>
+  <div style="font-size:14px;font-weight:700;color:var(--orange);margin-bottom:8px" data-en="Epicentral Distance Estimator" data-id="Estimasi Jarak Episentral">Distance Estimator</div>
+  <div style="font-size:12px;margin-bottom:10px" data-en="XGBoost regressor, 30 Zhang et al. (2024) features at PTW = 2 s" data-id="Regresor XGBoost, 30 fitur Zhang et al. (2024) pada PTW = 2 s"></div>
+  <table style="font-size:11px;margin:0">
+    <tr><td style="text-align:left">R&sup2;</td><td>0.099</td></tr>
+    <tr><td style="text-align:left">MAE</td><td>205 km</td></tr>
+    <tr><td data-en="Top Feature" data-id="Fitur Utama" style="text-align:left">Top Feature</td><td>predominant_freq (19%)</td></tr>
+  </table>
+  <div style="background:#fff8e1;border-radius:6px;padding:8px;margin-top:10px;font-size:10px;border-left:3px solid var(--orange)">
+    <b data-en="Despite low R&sup2;:" data-id="Meskipun R&sup2; rendah:">Key insight:</b>
+    <span data-en="Pipeline is extremely robust to distance errors. Oracle vs predicted: &Delta;R&sup2; = 0.0002. Distance serves only as routing signal, not prediction input." data-id="Pipeline sangat robust terhadap error jarak. Oracle vs prediksi: &Delta;R&sup2; = 0.0002. Jarak hanya sebagai sinyal routing, bukan input prediksi."></span>
+  </div>
+</div>
+
+<!-- PTW Routing -->
+<div style="background:#fff;border:2px solid #7b1fa2;border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
+  <div style="font-size:11px;color:#fff;background:#7b1fa2;display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px" data-en="Routing" data-id="Routing">Routing</div>
+  <div style="font-size:14px;font-weight:700;color:#7b1fa2;margin-bottom:8px" data-en="Intensity &times; Distance PTW Selection" data-id="Seleksi PTW Intensitas &times; Jarak">PTW Selection</div>
+  <div style="font-size:12px;margin-bottom:10px" data-en="6&times;6 lookup table + golden time constraint" data-id="Tabel lookup 6&times;6 + batasan golden time"></div>
+  <table style="font-size:11px;margin:0">
+    <tr><td style="text-align:left" data-en="Golden Time Compliance" data-id="Kepatuhan Golden Time">Golden Time</td><td style="font-weight:700;color:var(--green)">&gt;99%</td></tr>
+    <tr><td style="text-align:left" data-en="PTW 3-4s traces" data-id="Trace PTW 3-4s">PTW 3-4s</td><td>99.9%</td></tr>
+    <tr><td style="text-align:left" data-en="Oracle vs Predicted" data-id="Oracle vs Prediksi">&Delta;R&sup2;</td><td style="font-weight:700">0.0002</td></tr>
+  </table>
+  <div style="font-size:10px;color:#666;margin-top:10px" data-en="Operational PTW Distribution:" data-id="Distribusi PTW Operasional:">Distribution:</div>
+  <div style="font-family:monospace;font-size:10px;background:#f8f9fa;padding:6px;border-radius:4px;margin-top:4px">
+    3s: 24,020 (70.6%)<br>
+    4s: &nbsp;9,974 (29.3%)<br>
+    6s: &nbsp;&nbsp;&nbsp;&nbsp;26 &nbsp;(0.1%)<br>
+    8s: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 &nbsp;(0.0%)
+  </div>
+</div>
+
+<!-- Stage 2 -->
+<div style="background:#fff;border:2px solid var(--green);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
+  <div style="font-size:11px;color:#fff;background:var(--green);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 2</div>
+  <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:8px" data-en="Sa(T) Spectral Regressors" data-id="Regresor Spektral Sa(T)">Sa(T) Regressors</div>
+  <div style="font-size:12px;margin-bottom:10px" data-en="515 XGBoost models (103 periods &times; 5 PTWs)" data-id="515 model XGBoost (103 periode &times; 5 PTW)"></div>
+  <table style="font-size:11px;margin:0">
+    <tr><td style="text-align:left" data-en="Models Trained" data-id="Model Terlatih">Models</td><td>515 / 515 (0 failed)</td></tr>
+    <tr><td style="text-align:left">R&sup2; mean (OOF)</td><td style="font-weight:700">0.580</td></tr>
+    <tr><td style="text-align:left">R&sup2; range</td><td>0.481 &ndash; 0.644</td></tr>
+    <tr><td data-en="Top Feature" data-id="Fitur Utama" style="text-align:left">Top Feature</td><td>CVAD (89.5%)</td></tr>
+    <tr><td style="text-align:left" data-en="Validation" data-id="Validasi">CV</td><td>5-fold GroupKFold</td></tr>
+  </table>
+</div>
+
+<!-- E2E -->
+<div style="background:#fff;border:2px solid var(--red);border-radius:10px;padding:18px;box-shadow:var(--card-shadow);grid-column:1/-1">
+  <div style="font-size:11px;color:#fff;background:var(--red);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">End-to-End</div>
+  <div style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px" data-en="Full Pipeline: Stage 1 &rarr; 1.5 &rarr; Routing &rarr; Stage 2" data-id="Pipeline Lengkap: Stage 1 &rarr; 1.5 &rarr; Routing &rarr; Stage 2">Full Pipeline</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#666" data-en="IDA Operational R&sup2;" data-id="R&sup2; IDA Operasional">IDA R&sup2;</div>
+      <div style="font-size:24px;font-weight:700;color:var(--blue)">0.731</div>
+    </div>
+    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#666">RMSE</div>
+      <div style="font-size:24px;font-weight:700;color:var(--orange)">0.518</div>
+      <div style="font-size:9px;color:#999">log&sub;10 m/s&sup2;</div>
+    </div>
+    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#666" data-en="Damaging Recall" data-id="Recall Merusak">Recall</div>
+      <div style="font-size:24px;font-weight:700;color:var(--green)">72.3%</div>
+    </div>
+    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#666" data-en="Oracle &Delta;R&sup2;" data-id="Oracle &Delta;R&sup2;">Oracle &Delta;</div>
+      <div style="font-size:24px;font-weight:700;color:var(--green)">0.0002</div>
+      <div style="font-size:9px;color:#999" data-en="self-correcting" data-id="koreksi-diri">robust</div>
+    </div>
+  </div>
+</div>
+
+</div>
 </section>
 
 <!-- ═══ INTERACTIVE CHARTS ═══ -->
