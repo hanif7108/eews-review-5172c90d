@@ -171,6 +171,87 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 <div class="stage-detail" id="sd2"><h4 data-en="Stage 1.5: Epicentral Distance Estimator" data-id="Stage 1.5: Estimasi Jarak Episentral">Stage 1.5: Distance</h4><p data-en="XGBoost regressor using 30 Zhang et al. (2024) features at PTW = 2 s. Estimates epicentral distance for golden time calculation. Despite modest accuracy (R&sup2; &asymp; 0.10), the pipeline is extremely robust to distance errors (&Delta;R&sup2; = 0.0002 between predicted and perfect distance)." data-id="Regresor XGBoost menggunakan 30 fitur Zhang et al. (2024) pada PTW = 2 s. Mengestimasi jarak episentral untuk perhitungan golden time. Meskipun akurasi sedang (R&sup2; &asymp; 0.10), pipeline sangat robust terhadap error jarak (&Delta;R&sup2; = 0.0002 antara jarak prediksi dan sempurna)."></p></div>
 <div class="stage-detail" id="sd3"><h4 data-en="PTW Routing: Intensity x Distance Lookup" data-id="Routing PTW: Lookup Intensitas x Jarak">PTW Routing</h4><p data-en="The predicted intensity class and distance index a 6x6 lookup table that selects the optimal PTW (2-8 s). The golden time constraint ensures PTW never exceeds the S-wave arrival budget:" data-id="Kelas intensitas dan jarak yang diprediksi mengindeks tabel lookup 6x6 yang memilih PTW optimal (2-8 s). Batasan golden time memastikan PTW tidak melebihi anggaran kedatangan gelombang-S:"></p><p style="text-align:center;margin:8px 0;font-family:serif;font-style:italic">PTW<sub>selected</sub> &le; t<sub>golden</sub>(D&#770;) - t<sub>warn</sub></p><p data-en="where t_golden = D(1/V_S - 1/V_P) and t_warn = 3 s. Default routing: Weak &rarr; 3 s, Felt &rarr; 4 s, Damaging &rarr; 6 s." data-id="di mana t_golden = D(1/V_S - 1/V_P) dan t_warn = 3 s. Routing default: Weak &rarr; 3 s, Felt &rarr; 4 s, Damaging &rarr; 6 s."></p></div>
 <div class="stage-detail" id="sd4"><h4 data-en="Stage 2: Spectral Acceleration Regressors" data-id="Stage 2: Regresor Percepatan Spektral">Stage 2: Sa(T)</h4><p data-en="515 individual XGBoost regressors (103 periods x 5 PTWs) predict log&sub;10 Sa(T). CVAD dominates with 89.5% feature importance &mdash; its monotonic, non-saturating scaling provides continuous discrimination across the full Sa(T) dynamic range. Optimized via 100-trial Optuna Bayesian search." data-id="515 regresor XGBoost individual (103 periode x 5 PTW) memprediksi log&sub;10 Sa(T). CVAD mendominasi dengan 89.5% feature importance &mdash; skalanya yang monotonik dan non-saturating memberikan diskriminasi kontinu di seluruh rentang dinamis Sa(T). Dioptimasi melalui 100-trial Optuna Bayesian search."></p></div>
+
+<!-- ═══ IDA vs SOURCE-AWARE ═══ -->
+<h3 style="margin-top:32px" data-en="Core Innovation: IDA vs Source-Aware Routing" data-id="Inovasi Utama: Routing IDA vs Source-Aware">Core Innovation: IDA vs Source-Aware</h3>
+<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="The fundamental difference between the two approaches lies in WHAT determines the observation window." data-id="Perbedaan mendasar antara kedua pendekatan terletak pada APA yang menentukan jendela observasi."></p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:16px 0">
+  <div style="background:#fff5f5;border:2px solid #ef9a9a;border-radius:10px;padding:20px">
+    <div style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:10px" data-en="&#10060; Source-Aware (Old Approach)" data-id="&#10060; Source-Aware (Pendekatan Lama)">&#10060; Source-Aware</div>
+    <div style="background:#fff;border-radius:8px;padding:12px;font-size:12px;margin-bottom:12px;border:1px solid #ffcdd2">
+      <div style="text-align:center;margin-bottom:8px">
+        <span style="background:#ffebee;padding:4px 10px;border-radius:12px;font-size:11px" data-en="Earthquake occurs" data-id="Gempa terjadi">Earthquake</span>
+        <span style="color:#999;margin:0 4px">&rarr;</span>
+        <span style="background:#ffebee;padding:4px 10px;border-radius:12px;font-size:11px" data-en="Estimate MAGNITUDE" data-id="Estimasi MAGNITUDO">Est. Magnitude</span>
+        <span style="color:#999;margin:0 4px">&rarr;</span>
+        <span style="background:#ffcdd2;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600" data-en="Assign PTW" data-id="Tentukan PTW">PTW</span>
+      </div>
+      <div style="font-size:11px;color:#555">
+        <div>small (M&lt;5) &rarr; PTW 3s</div>
+        <div>moderate (M5-6) &rarr; PTW 4s</div>
+        <div>large (M&gt;6) &rarr; PTW 6s</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#555" data-en="Routes based on <b>source energy</b> (magnitude). A M4.5 earthquake is ALWAYS treated as &quot;small&quot; regardless of local ground shaking. Blind to site amplification effects." data-id="Routing berdasarkan <b>energi sumber</b> (magnitudo). Gempa M4.5 SELALU dianggap &quot;kecil&quot; tanpa memperhitungkan guncangan lokal. Buta terhadap efek amplifikasi tapak."></p>
+    <div style="background:#ffcdd2;border-radius:6px;padding:8px 12px;margin-top:10px;font-size:12px;text-align:center">
+      <div style="font-size:11px;color:#c62828" data-en="Damaging Recall" data-id="Recall Merusak">Damaging Recall</div>
+      <div style="font-size:28px;font-weight:700;color:#c62828">1.3%</div>
+      <div style="font-size:10px;color:#999" data-en="98% damaging events MISSED" data-id="98% event merusak TERLEWAT">98% missed</div>
+    </div>
+  </div>
+
+  <div style="background:#f1f8e9;border:2px solid #a5d6a7;border-radius:10px;padding:20px">
+    <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:10px" data-en="&#9989; IDA-PTW (This Study)" data-id="&#9989; IDA-PTW (Studi Ini)">&#9989; IDA-PTW</div>
+    <div style="background:#fff;border-radius:8px;padding:12px;font-size:12px;margin-bottom:12px;border:1px solid #c8e6c9">
+      <div style="text-align:center;margin-bottom:8px">
+        <span style="background:#e8f5e9;padding:4px 10px;border-radius:12px;font-size:11px" data-en="Earthquake occurs" data-id="Gempa terjadi">Earthquake</span>
+        <span style="color:#999;margin:0 4px">&rarr;</span>
+        <span style="background:#e8f5e9;padding:4px 10px;border-radius:12px;font-size:11px" data-en="Measure INTENSITY at sensor" data-id="Ukur INTENSITAS di sensor">Obs. Intensity</span>
+        <span style="color:#999;margin:0 4px">&rarr;</span>
+        <span style="background:#c8e6c9;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600" data-en="Assign PTW" data-id="Tentukan PTW">PTW</span>
+      </div>
+      <div style="font-size:11px;color:#555">
+        <div>Weak (PGA &lt; 3 Gal) &rarr; PTW 3s</div>
+        <div>Felt (3-62 Gal) &rarr; PTW 4s</div>
+        <div>Damaging (&ge;62 Gal) &rarr; PTW 6s</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#555" data-en="Routes based on <b>observed shaking at the sensor</b>. A M4.5 earthquake on soft soil producing PGA 80 Gal is correctly classified as <b>Damaging</b> and given a longer PTW for accurate prediction." data-id="Routing berdasarkan <b>guncangan yang diamati di sensor</b>. Gempa M4.5 di tanah lunak yang menghasilkan PGA 80 Gal diklasifikasikan dengan benar sebagai <b>Damaging</b> dan diberi PTW lebih panjang untuk prediksi akurat."></p>
+    <div style="background:#c8e6c9;border-radius:6px;padding:8px 12px;margin-top:10px;font-size:12px;text-align:center">
+      <div style="font-size:11px;color:#2e7d32" data-en="Damaging Recall" data-id="Recall Merusak">Damaging Recall</div>
+      <div style="font-size:28px;font-weight:700;color:#2e7d32">72.3%</div>
+      <div style="font-size:10px;color:#666" data-en="55x improvement over Source-Aware" data-id="Peningkatan 55x dari Source-Aware">55x improvement</div>
+    </div>
+  </div>
+</div>
+
+<div style="background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:16px;margin:16px 0">
+  <h4 style="color:var(--orange);font-size:13px;margin-bottom:8px" data-en="&#128161; Analogy: Why does this matter?" data-id="&#128161; Analogi: Mengapa ini penting?">&#128161; Analogy</h4>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:12px">
+    <div>
+      <div style="font-weight:600;color:var(--red);margin-bottom:4px" data-en="Source-Aware is like..." data-id="Source-Aware seperti...">Source-Aware =</div>
+      <p data-en="Looking at the <b>size of the fire on a distant mountain</b> to decide if YOUR house needs a fire truck. A small fire far away might not seem dangerous &mdash; but if the wind carries embers to your wooden roof, your house burns." data-id="Melihat <b>besarnya api di gunung jauh</b> untuk memutuskan apakah rumah ANDA perlu mobil pemadam. Api kecil di kejauhan mungkin tidak terlihat berbahaya &mdash; tapi jika angin membawa bara ke atap kayu Anda, rumah terbakar."></p>
+    </div>
+    <div>
+      <div style="font-weight:600;color:var(--green);margin-bottom:4px" data-en="IDA-PTW is like..." data-id="IDA-PTW seperti...">IDA-PTW =</div>
+      <p data-en="Having a <b>smoke detector IN your house</b>. It doesn't care how big the fire is on the mountain &mdash; it responds to the smoke <b>actually reaching you</b>. That's why IDA catches 72.3% of damaging events that Source-Aware misses." data-id="Memiliki <b>detektor asap DI DALAM rumah</b>. Tidak peduli seberapa besar api di gunung &mdash; ia merespons asap yang <b>benar-benar sampai ke Anda</b>. Karena itu IDA mendeteksi 72.3% event merusak yang dilewatkan Source-Aware."></p>
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--light);border-radius:8px;padding:16px;margin:16px 0">
+  <h4 style="color:var(--blue);font-size:13px;margin-bottom:8px" data-en="&#9878; The Accuracy-Safety Tradeoff" data-id="&#9878; Tradeoff Akurasi-Keselamatan">&#9878; Accuracy-Safety Tradeoff</h4>
+  <table style="font-size:12px">
+    <tr><th data-en="Metric" data-id="Metrik">Metric</th><th data-en="Source-Aware Fixed-8s" data-id="Source-Aware Fixed-8s">SA Fixed-8s</th><th data-en="IDA Operational" data-id="IDA Operasional">IDA Oper.</th><th data-en="Interpretation" data-id="Interpretasi">Interpretation</th></tr>
+    <tr><td>R&sup2;</td><td><b>0.758</b></td><td>0.731</td><td data-en="IDA sacrifices 2.7% accuracy" data-id="IDA mengorbankan 2.7% akurasi"></td></tr>
+    <tr class="hl"><td data-en="Damaging Recall" data-id="Recall Merusak">Damaging Recall</td><td style="color:var(--red)">1.3%</td><td style="color:var(--green)"><b>72.3%</b></td><td data-en="IDA gains 55x safety" data-id="IDA mendapat keselamatan 55x"></td></tr>
+    <tr><td data-en="Golden Time Compliant" data-id="Patuh Golden Time">Golden Time</td><td style="color:var(--red)" data-en="No (violates near-field)" data-id="Tidak (melanggar near-field)">No</td><td style="color:var(--green)" data-en="Yes (99.9%)" data-id="Ya (99.9%)"><b>Yes</b></td><td data-en="8s PTW exceeds golden time for D &lt; 40 km" data-id="PTW 8s melebihi golden time untuk D &lt; 40 km"></td></tr>
+    <tr><td data-en="Autonomous" data-id="Otonom">Autonomous</td><td data-en="Needs catalog magnitude" data-id="Perlu magnitudo katalog">Needs catalog</td><td data-en="Fully autonomous (3s P-wave only)" data-id="Sepenuhnya otonom (hanya 3s gelombang-P)"><b>Autonomous</b></td><td data-en="No network dependency" data-id="Tanpa ketergantungan jaringan"></td></tr>
+  </table>
+  <p style="font-size:11px;color:#666;margin-top:8px" data-en="For EEWS, detecting damaging events is far more important than marginally higher prediction accuracy. A system that predicts Sa(T) with R&sup2;=0.76 but misses 98% of dangerous earthquakes provides a false sense of safety." data-id="Untuk EEWS, mendeteksi event merusak jauh lebih penting daripada akurasi prediksi yang sedikit lebih tinggi. Sistem yang memprediksi Sa(T) dengan R&sup2;=0.76 tapi melewatkan 98% gempa berbahaya memberikan rasa aman yang palsu."></p>
+</div>
+
 </section>
 
 <!-- ═══ WHY THIS MATTERS ═══ -->
