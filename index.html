@@ -683,7 +683,31 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
     <p style="font-size:13px" data-en="R&sup2; measures how well the model predicts <b>exact distance values</b>. But the distance estimator is not designed for that &mdash; it is a <b>routing signal</b> that only needs to place traces into the correct distance bin for PTW selection." data-id="R&sup2; mengukur seberapa baik model memprediksi <b>nilai jarak yang tepat</b>. Tapi distance estimator tidak dirancang untuk itu &mdash; ia adalah <b>sinyal routing</b> yang hanya perlu menempatkan trace ke bin jarak yang benar untuk seleksi PTW."></p>
   </div>
 
-  <h3 data-en="The Right Metrics" data-id="Metrik yang Tepat">Right Metrics</h3>
+  <h3 data-en="Routing Fidelity: Definition" data-id="Fidelitas Routing: Definisi">Routing Fidelity</h3>
+  <div style="background:var(--light);border-radius:8px;padding:14px;margin:0 0 16px;text-align:center">
+    <p style="font-size:12px;color:#666;margin-bottom:8px" data-en="Measures how much the distance estimator's errors affect the final pipeline output:" data-id="Mengukur seberapa besar error distance estimator mempengaruhi output akhir pipeline:"></p>
+    <div style="font-family:serif;font-size:15px;font-style:italic;margin:8px 0">
+      Routing Fidelity = 1 &minus; |R&sup2;<sub>oracle</sub> &minus; R&sup2;<sub>predicted</sub>| / R&sup2;<sub>oracle</sub>
+    </div>
+    <div style="font-family:monospace;font-size:13px;margin:10px 0;background:#fff;padding:8px;border-radius:6px;display:inline-block">
+      = 1 &minus; |0.7311 &minus; 0.7309| / 0.7311 = <b style="color:var(--green)">99.97%</b>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:11px">
+      <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid var(--border)">
+        <div style="color:#666" data-en="R&sup2; oracle" data-id="R&sup2; oracle">R&sup2; oracle</div>
+        <div style="font-weight:700">0.7311</div>
+        <div style="font-size:10px;color:#999" data-en="E2E with perfect catalog distance" data-id="E2E dengan jarak katalog sempurna"></div>
+      </div>
+      <div style="background:#fff;border-radius:6px;padding:8px;border:1px solid var(--border)">
+        <div style="color:#666" data-en="R&sup2; predicted" data-id="R&sup2; predicted">R&sup2; predicted</div>
+        <div style="font-weight:700">0.7309</div>
+        <div style="font-size:10px;color:#999" data-en="E2E with distance estimator output" data-id="E2E dengan output distance estimator"></div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:#666;margin-top:10px;font-style:italic" data-en="NOT a metric of the distance estimator itself &mdash; it measures the IMPACT of distance errors on the final Sa(T) prediction." data-id="BUKAN metrik distance estimator itu sendiri &mdash; ini mengukur DAMPAK error jarak terhadap prediksi Sa(T) akhir."></p>
+  </div>
+
+  <h3 data-en="Summary of Metrics" data-id="Ringkasan Metrik">Metrics</h3>
   <table>
     <tr><th data-en="Metric" data-id="Metrik">Metric</th><th data-en="Value" data-id="Nilai">Value</th><th data-en="What it measures" data-id="Apa yang diukur">Measures</th></tr>
     <tr style="background:#e8f5e9"><td style="text-align:left;font-weight:700" data-en="Routing Fidelity" data-id="Fidelitas Routing">Routing Fidelity</td><td style="font-weight:700;color:var(--green)">99.97%</td><td style="text-align:left;font-size:11px" data-en="E2E performance with predicted vs perfect distance" data-id="Performa E2E dengan jarak prediksi vs sempurna"></td></tr>
