@@ -415,7 +415,7 @@ function showStage(n){
 }
 
 // ── Language toggle ──
-let lang='en';
+let lang='id'; // start as 'id' so first call sets to 'en'
 function toggleLang(){
   lang=lang==='en'?'id':'en';
   document.querySelectorAll('[data-en]').forEach(el=>{
@@ -424,6 +424,8 @@ function toggleLang(){
   });
   document.querySelector('.lang-toggle').textContent=lang==='en'?'ID / EN':'EN / ID';
 }
+// Initialize English on page load
+toggleLang();
 
 // ── Nav active state ──
 const sections=document.querySelectorAll('section');
