@@ -468,7 +468,13 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
     </div>
   </div>
 
-  <div style="background:#fff;border-radius:6px;padding:10px 14px;border-left:3px solid var(--orange);font-size:11px">
+  <h4 style="color:var(--green);margin:16px 0 8px;font-size:13px" data-en="R&sup2; Comparison by Spectral Band" data-id="Perbandingan R&sup2; per Band Spektral">By Band</h4>
+  <div class="chart-container" style="height:250px"><canvas id="bandChart"></canvas></div>
+
+  <h4 style="color:var(--green);margin:16px 0 8px;font-size:13px" data-en="R&sup2; at Key Structural Periods" data-id="R&sup2; pada Periode Struktural Kunci">Key Periods</h4>
+  <div class="chart-container" style="height:300px"><canvas id="barChart"></canvas></div>
+
+  <div style="background:#fff;border-radius:6px;padding:10px 14px;border-left:3px solid var(--orange);font-size:11px;margin-top:12px">
     <b data-en="Interpretation:" data-id="Interpretasi:">Interpretation:</b>
     <span data-en="The universal improvement confirms site effects as the primary cause of short-period R&sup2; drop. Current results use a mix of measured V<sub>S30</sub> (30% of stations) and USGS global estimates (70%). With full measured V<sub>S30</sub> coverage from HVSR or borehole surveys at all BMKG stations, the improvement is expected to be substantially larger." data-id="Peningkatan universal mengkonfirmasi efek tapak sebagai penyebab utama rendahnya R&sup2; periode pendek. Hasil saat ini menggunakan campuran V<sub>S30</sub> terukur (30% stasiun) dan estimasi global USGS (70%). Dengan cakupan V<sub>S30</sub> terukur penuh dari survei HVSR atau borehole di semua stasiun BMKG, peningkatan diharapkan jauh lebih besar."></span>
   </div>
@@ -642,6 +648,71 @@ new Chart(document.getElementById('vs30chart'),{
     scales:{
       x:{title:{display:true,text:'Structural Period T (s)',font:{size:12}},ticks:{maxTicksLimit:12,font:{size:10}}},
       y:{title:{display:true,text:'R\u00B2 (Per-Model OOF)',font:{size:12}},min:0.47,max:0.68,ticks:{font:{size:10}}}
+    }
+  }
+});
+
+// ── Band comparison bar chart ──
+new Chart(document.getElementById('bandChart'),{
+  type:'bar',
+  data:{
+    labels:['Short\n(T\u22640.6s)','Mid\n(T=0.6-2s)','Long\n(T>2s)','All\nPeriods'],
+    datasets:[
+      {label:'Without V\u209B\u2083\u2080',data:[0.4926,0.5406,0.6028,0.5798],backgroundColor:'rgba(26,91,140,0.7)',borderColor:'#1A5B8C',borderWidth:1},
+      {label:'With V\u209B\u2083\u2080',data:[0.5110,0.5650,0.6406,0.6096],backgroundColor:'rgba(46,125,50,0.7)',borderColor:'#2e7d32',borderWidth:1}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{position:'top',labels:{font:{size:11}}},
+      tooltip:{callbacks:{
+        afterLabel:function(ctx){
+          if(ctx.datasetIndex===1){
+            var d=[0.0184,0.0244,0.0378,0.0298];
+            var p=[3.7,4.5,6.3,5.1];
+            return '\u0394R\u00B2 = +'+d[ctx.dataIndex].toFixed(4)+' (+'+p[ctx.dataIndex]+'%)';
+          }
+        }
+      }}
+    },
+    scales:{
+      y:{title:{display:true,text:'R\u00B2 (OOF)',font:{size:11}},min:0.45,max:0.68,ticks:{font:{size:10}}},
+      x:{ticks:{font:{size:10}}}
+    }
+  }
+});
+
+// ── Key periods bar chart ──
+const kpLabels=['PGA','T=0.1','T=0.2','T=0.3','T=0.4','T=0.5','T=0.7','T=1.0','T=1.5','T=2.0','T=3.0','T=4.0','T=5.0'];
+const kpBase=[0.516,0.4913,0.4808,0.4829,0.4907,0.4962,0.5079,0.5273,0.5546,0.5729,0.5971,0.6125,0.6233];
+const kpVs30=[0.5332,0.5092,0.4983,0.5016,0.5088,0.5159,0.5295,0.5497,0.5812,0.6023,0.6326,0.6542,0.6654];
+
+new Chart(document.getElementById('barChart'),{
+  type:'bar',
+  data:{
+    labels:kpLabels,
+    datasets:[
+      {label:'Without V\u209B\u2083\u2080',data:kpBase,backgroundColor:'rgba(26,91,140,0.6)',borderColor:'#1A5B8C',borderWidth:1},
+      {label:'With V\u209B\u2083\u2080',data:kpVs30,backgroundColor:'rgba(46,125,50,0.6)',borderColor:'#2e7d32',borderWidth:1}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{position:'top',labels:{font:{size:11}}},
+      tooltip:{callbacks:{
+        afterLabel:function(ctx){
+          if(ctx.datasetIndex===1){
+            var d=kpVs30[ctx.dataIndex]-kpBase[ctx.dataIndex];
+            return '\u0394R\u00B2 = +'+d.toFixed(4)+' (+'+(d/kpBase[ctx.dataIndex]*100).toFixed(1)+'%)';
+          }
+        }
+      }}
+    },
+    scales:{
+      y:{title:{display:true,text:'R\u00B2 (OOF)',font:{size:11}},min:0.45,max:0.7,ticks:{font:{size:10}}},
+      x:{ticks:{font:{size:9},maxRotation:45}}
     }
   }
 });
