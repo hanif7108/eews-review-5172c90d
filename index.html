@@ -346,6 +346,61 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <div class="mc"><div class="v">0.646</div><div class="l">R&sup2; mean</div></div>
   <div class="mc"><div class="v">0.663</div><div class="l">R&sup2; median</div></div>
 </div>
+
+<h3 style="margin-top:28px" data-en="Why Does R&sup2; Drop at Short Periods (T = 0.3&ndash;0.6 s)?" data-id="Mengapa R&sup2; Turun di Periode Pendek (T = 0.3&ndash;0.6 s)?">Why R&sup2; drops at T=0.3-0.6s</h3>
+
+<div style="display:grid;grid-template-columns:auto 1fr;gap:0;margin:16px 0">
+
+  <div style="background:var(--blue);color:#fff;border-radius:10px 0 0 0;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;min-width:40px">1</div>
+  <div style="background:#e3f2fd;padding:14px 18px;border-radius:0 10px 0 0;border-bottom:1px solid #fff">
+    <div style="font-weight:700;font-size:13px;color:var(--blue)" data-en="Site Effects Without V<sub>S30</sub>" data-id="Efek Tapak Tanpa V<sub>S30</sub>">Site Effects</div>
+    <p style="font-size:12px;margin-top:4px" data-en="Short-period Sa is controlled by local geology (V<sub>S30</sub>, basin resonance, impedance contrasts) which varies dramatically between stations. Two stations 5 km apart can produce Sa(0.3s) differing by 5&ndash;10&times; for the same earthquake. <b>These parameters are not in our 42-feature input set</b> &mdash; this is the single largest source of prediction uncertainty." data-id="Sa periode pendek dikendalikan oleh geologi lokal (V<sub>S30</sub>, resonansi cekungan, kontras impedansi) yang bervariasi drastis antar-stasiun. Dua stasiun berjarak 5 km bisa menghasilkan Sa(0.3s) berbeda 5&ndash;10&times; untuk gempa yang sama. <b>Parameter ini tidak ada dalam 42 fitur input kami</b> &mdash; ini sumber terbesar ketidakpastian prediksi."></p>
+  </div>
+
+  <div style="background:var(--blue);color:#fff;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">2</div>
+  <div style="background:#e8f5e9;padding:14px 18px;border-bottom:1px solid #fff">
+    <div style="font-weight:700;font-size:13px;color:var(--green)" data-en="High-Frequency Path Attenuation" data-id="Atenuasi Jalur Frekuensi Tinggi">Path Attenuation</div>
+    <p style="font-size:12px;margin-top:4px" data-en="Seismic waves at f &gt; 2 Hz (governing short-period Sa) undergo strong anelastic attenuation (Q) that varies along propagation paths through the heterogeneous Sunda subduction crust. At median distance 384 km, much high-frequency energy is absorbed before reaching the station." data-id="Gelombang seismik pada f &gt; 2 Hz (mengendalikan Sa periode pendek) mengalami atenuasi anelastik (Q) kuat yang bervariasi sepanjang jalur perambatan di kerak subduksi Sunda yang heterogen. Pada median jarak 384 km, banyak energi frekuensi tinggi terserap sebelum sampai ke stasiun."></p>
+  </div>
+
+  <div style="background:var(--blue);color:#fff;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">3</div>
+  <div style="background:#fff3e0;padding:14px 18px;border-bottom:1px solid #fff">
+    <div style="font-weight:700;font-size:13px;color:var(--orange)" data-en="P-wave Window Limitation" data-id="Keterbatasan Jendela Gelombang-P">P-wave Window</div>
+    <p style="font-size:12px;margin-top:4px" data-en="The initial 3-second P-wave window captures low-frequency content related to seismic moment (Kanamori, 2005), which correlates with long-period Sa (T &gt; 1 s). High-frequency rupture details (stress drop, directivity) influencing short-period Sa have not yet manifested in this early window." data-id="Jendela 3 detik awal gelombang-P menangkap konten frekuensi rendah terkait momen seismik (Kanamori, 2005), yang berkorelasi dengan Sa periode panjang (T &gt; 1 s). Detail ruptur frekuensi tinggi (stress drop, directivity) yang mempengaruhi Sa periode pendek belum termanifestasi dalam jendela awal ini."></p>
+  </div>
+
+  <div style="background:var(--blue);color:#fff;border-radius:0 0 0 10px;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">4</div>
+  <div style="background:#fce4ec;padding:14px 18px;border-radius:0 0 10px 0">
+    <div style="font-weight:700;font-size:13px;color:var(--red)" data-en="Intra-Band Spectral Variability" data-id="Variabilitas Spektral Intra-Band">Intra-Band Variability</div>
+    <p style="font-size:12px;margin-top:4px" data-en="Energy distribution within the seismic focus band (2&ndash;10 Hz = T 0.1&ndash;0.5 s) varies greatly &mdash; earthquakes with similar source parameters can peak at different frequencies due to stochastic rupture. This variability is <b>amplified by site response</b>: soft-soil stations with dominant period T<sub>dom</sub> &asymp; 0.3 s selectively amplify Sa at that period, while rock stations do not. Without V<sub>S30</sub> or T<sub>dom</sub> as features, this combined source-site variability is irreducible noise." data-id="Distribusi energi dalam band fokus gempa (2&ndash;10 Hz = T 0.1&ndash;0.5 s) sangat bervariasi &mdash; gempa dengan parameter sumber mirip bisa memuncak di frekuensi berbeda akibat sifat stokastik ruptur. Variabilitas ini <b>diperbesar oleh respons tapak</b>: stasiun tanah lunak dengan periode dominan T<sub>dom</sub> &asymp; 0.3 s mengamplifikasi Sa pada periode tersebut secara selektif, sementara stasiun batuan tidak. Tanpa V<sub>S30</sub> atau T<sub>dom</sub> sebagai fitur, variabilitas gabungan sumber-tapak ini menjadi noise yang tak tereduksi."></p>
+  </div>
+
+</div>
+
+<div style="background:var(--light);border-radius:8px;padding:16px;margin:12px 0;display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center">
+  <div style="text-align:center">
+    <div style="font-size:11px;color:#666" data-en="Short Period (T = 0.3s)" data-id="Periode Pendek (T = 0.3s)">Short Period</div>
+    <div style="font-size:10px;color:#999">f = 2&ndash;10 Hz</div>
+    <div style="font-size:28px;font-weight:700;color:var(--red)">0.544</div>
+    <div style="font-size:10px;color:#999" data-en="Site + path + source variability" data-id="Variabilitas tapak + jalur + sumber">High variability</div>
+  </div>
+  <div style="text-align:center">
+    <div style="font-size:24px;color:#ccc">&harr;</div>
+    <div style="font-size:11px;font-weight:700;color:var(--blue)" data-en="23% R&sup2; gap" data-id="Gap R&sup2; 23%">23% gap</div>
+  </div>
+  <div style="text-align:center">
+    <div style="font-size:11px;color:#666" data-en="Long Period (T = 5.0s)" data-id="Periode Panjang (T = 5.0s)">Long Period</div>
+    <div style="font-size:10px;color:#999">f = 0.2 Hz</div>
+    <div style="font-size:28px;font-weight:700;color:var(--green)">0.709</div>
+    <div style="font-size:10px;color:#999" data-en="Seismic moment (well-captured)" data-id="Momen seismik (tertangkap baik)">Low variability</div>
+  </div>
+</div>
+
+<div style="background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:14px;margin:12px 0">
+  <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:6px" data-en="&#128269; Future Improvement" data-id="&#128269; Perbaikan Masa Depan">Future Work</div>
+  <p style="font-size:12px" data-en="Adding global V<sub>S30</sub> estimates (Allen &amp; Wald, 2009) and site dominant period T<sub>dom</sub> as additional features would convert much of the currently irreducible site-response variability into explainable variance, significantly improving short-period R&sup2;. These parameters are available from slope-based global models without requiring field surveys." data-id="Penambahan estimasi V<sub>S30</sub> global (Allen &amp; Wald, 2009) dan periode dominan tapak T<sub>dom</sub> sebagai fitur tambahan akan mengubah sebagian besar variabilitas respons tapak yang saat ini tak tereduksi menjadi variansi yang bisa dijelaskan, secara signifikan meningkatkan R&sup2; periode pendek. Parameter ini tersedia dari model global berbasis kemiringan tanpa perlu survei lapangan."></p>
+</div>
+
 </section>
 
 <!-- ═══ SAFETY ═══ -->
