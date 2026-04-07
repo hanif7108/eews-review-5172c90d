@@ -266,7 +266,7 @@ Since Stage 2 accuracy is monotonically linked to window duration, this "conserv
 
 ### 3.5 Period-Dependent Performance
 
-R² across the 103 spectral periods ranges from 0.544 (short-period Sa) to 0.709 (T = 5.0 s), with a mean of 0.646 and median of 0.663 (Figure 8). The monotonic increase in R² with period length reflects the physical coupling between P-wave parameters and Sa(T): long-period spectral amplitudes (T > 3 s) are primarily governed by seismic moment — well-captured by the 42 P-wave IMs — while short-period amplitudes (T < 0.5 s) are modulated by local site effects and high-frequency path attenuation that our single-station feature set does not explicitly encode.
+R² across the 103 spectral periods ranges from 0.544 (short-period Sa, T ≈ 0.3 s) to 0.709 (T = 5.0 s), with a mean of 0.646 and median of 0.663 (Figure 8). The monotonic increase in R² with period length reflects the physical coupling between P-wave parameters and Sa(T), and the drop at short periods (T = 0.3–0.6 s, R² ≈ 0.54) is attributable to three compounding factors. First, short-period Sa is predominantly controlled by local site conditions — V_S30, shallow basin resonance, and near-surface impedance contrasts (Seyhan and Stewart, 2014; Borcherdt, 1994) — which vary substantially between stations but are not represented in our 42-feature P-wave input set. The absence of site characterization parameters constitutes the primary source of aleatory variability at these periods. Second, high-frequency seismic energy (f > 2 Hz) that governs short-period Sa undergoes strong anelastic attenuation along propagation paths through the heterogeneous Sunda subduction crust, with Q values that vary along different ray paths, further increasing prediction uncertainty at short periods. Third, the initial 3-second P-wave window fundamentally captures low-frequency content related to seismic moment (Kanamori, 2005; Lancieri and Zollo, 2008), which correlates strongly with long-period Sa (T > 1 s) but provides limited information about high-frequency rupture details (stress drop, directivity) that influence short-period spectral amplitudes. The resulting R² gap of ~0.16 (23%) between short and long periods is consistent with the higher aleatory sigma reported at short periods in NGA-West2 GMPEs (Abrahamson et al., 2014). Conversely, long-period spectral amplitudes (T > 3 s, R² ≈ 0.70) are primarily governed by seismic moment — well-captured by the 42 P-wave IMs — explaining the monotonically improving performance with increasing period.
 
 ![Figure 8. Per-period Prediction Accuracy for the IDA-PTW Pipeline. R² and RMSE across 103 periods for the Java-Sumatra filtered dataset.](figures/fig08.png)
 
@@ -373,7 +373,7 @@ Several limitations warrant discussion:
 
 **Regional specificity.** All models are trained on Sunda subduction zone data. Transferability to different tectonic regimes (e.g., the Philippine Sea Plate boundary, transform faults) requires domain adaptation. The Feature Dichotomy paradigm itself, however, is physics-based and should generalize across tectonic settings.
 
-**Site effects.** The absence of site characterization parameters (V_S30, Z_2.5) primarily affects short-period Sa predictions (T < 0.5 s, R² ≈ 0.62). Incorporating even approximate V_S30 estimates — available from global models such as those of Allen and Wald (2009) — could substantially improve short-period performance.
+**Site effects.** The absence of site characterization parameters (V_S30, Z_2.5) is the dominant factor limiting short-period Sa predictions (T = 0.3–0.6 s, R² ≈ 0.54), as demonstrated by the 23% R² gap between short and long periods (Section 3.5). Incorporating even approximate V_S30 estimates — available from slope-based global models (Allen and Wald, 2009) without requiring field surveys — would convert a substantial portion of the currently irreducible site-response variability into explainable variance, significantly improving short-period accuracy. Future work should also consider the site-specific high-frequency attenuation parameter kappa (Seyhan and Stewart, 2014), which further modulates spectral amplitudes at T < 0.5 s.
 
 **Deep learning comparison.** This study uses gradient-boosted trees (XGBoost) exclusively. Convolutional neural networks operating directly on raw waveforms (Mousavi et al., 2020) could potentially extract additional features not captured by our hand-crafted 42-feature set, particularly transient waveform characteristics relevant to distance estimation.
 
@@ -445,6 +445,8 @@ Allen, R. M., and Melgar, D. (2019). Earthquake early warning: advances, scienti
 Allen, T. I., and Wald, D. J. (2009). On the use of high-resolution topographic data as a proxy for seismic site conditions (VS30). *Bulletin of the Seismological Society of America*, 99(2A), 935–943.
 
 Bommer, J. J., and Alarcon, J. E. (2006). The prediction and use of peak ground velocity. *Journal of Earthquake Engineering*, 10(1), 1–31.
+
+Borcherdt, R. D. (1994). Estimates of site-dependent response spectra for design (methodology and justification). *Earthquake Spectra*, 10(4), 617–653. doi: 10.1193/1.1585791
 
 Bracale, M., Colombelli, S., Elia, L., Karakostas, V., Zollo, A. (2021). Design, Implementation and Testing of a Network-Based Earthquake Early Warning System in Greece. *Frontiers in Earth Science*, 9. doi: 10.3389/feart.2021.667160
 
@@ -523,6 +525,8 @@ Porras, J., Massin, F., Arroyo-Solórzano, M., Arroyo, I., Linkimer, L., Böse, 
 Reed, J. W., and Kassawara, R. P. (1990). A criterion for determining exceedance of the operating basis earthquake. *Nuclear Engineering and Design*, 123(2–3), 387–396.
 
 Schlesinger, A., Kukovica, J., Rosenberger, A., Heesemann, M., Pirenne, B., Robinson, J., Morley, M. (2021). An Earthquake Early Warning System for Southwestern British Columbia. *Frontiers in Earth Science*, 9. doi: 10.3389/feart.2021.684084
+
+Seyhan, E., and Stewart, J. P. (2014). Semi-empirical nonlinear site amplification from NGA-West2 data and simulations. *Earthquake Spectra*, 30(3), 1241–1256. doi: 10.1193/063013EQS181M
 
 Simons, W. J. F., Socquet, A., Vigny, C., et al. (2007). A decade of GPS in Southeast Asia: Resolving Sundaland motion and boundaries. *Journal of Geophysical Research*, 112, B06420.
 
