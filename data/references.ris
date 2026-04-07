@@ -1,0 +1,769 @@
+TY  - JOUR
+AU  - Abrahamson, Norman A.
+AU  - Silva, Walter J.
+AU  - Kamai, Ronnie
+TI  - Summary of the ASK14 ground motion relation for active crustal regions
+T2  - Earthquake Spectra
+VL  - 30
+IS  - 3
+SP  - 1025
+EP  - 1055
+PY  - 2014
+DO  - 10.1193/070913EQS198M
+ER  -
+
+TY  - JOUR
+AU  - Ahn, Jisu
+AU  - Cho, Sugan
+AU  - Hwang, Eunhye
+AU  - Baek, Woncheol
+TI  - Assessing network-based earthquake early warning systems in low-seismicity areas
+T2  - Frontiers in Earth Science
+VL  - 11
+PY  - 2023
+DO  - 10.3389/feart.2023.1268064
+ER  -
+
+TY  - JOUR
+AU  - Ahn, Jisu
+AU  - Park, Eunyoung
+AU  - Kim, Byounghyun
+AU  - Hwang, Eunhye
+AU  - Hong, Seonghyung
+TI  - Stable operation process of earthquake early warning system based on machine learning: trial test and management perspective
+T2  - Frontiers in Earth Science
+VL  - 11
+PY  - 2023
+DO  - 10.3389/feart.2023.1157742
+ER  -
+
+TY  - CONF
+AU  - Akiba, Takuya
+AU  - Sano, Shotaro
+AU  - Yanase, Toshihiko
+AU  - Ohta, Takeru
+AU  - Koyama, Masanori
+TI  - Optuna: A next-generation hyperparameter optimization framework
+T2  - Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining
+SP  - 2623
+EP  - 2631
+PY  - 2019
+ER  -
+
+TY  - JOUR
+AU  - Allen, Richard M.
+AU  - Melgar, Diego
+TI  - Earthquake early warning: advances, scientific challenges, and societal needs
+T2  - Annual Review of Earth and Planetary Sciences
+VL  - 47
+SP  - 361
+EP  - 388
+PY  - 2019
+DO  - 10.1146/annurev-earth-053018-060457
+ER  -
+
+TY  - JOUR
+AU  - Allen, Trevor I.
+AU  - Wald, David J.
+TI  - On the use of high-resolution topographic data as a proxy for seismic site conditions (VS30)
+T2  - Bulletin of the Seismological Society of America
+VL  - 99
+IS  - 2A
+SP  - 935
+EP  - 943
+PY  - 2009
+DO  - 10.1785/0120080309
+ER  -
+
+TY  - JOUR
+AU  - Bommer, Julian J.
+AU  - Alarcon, Jose E.
+TI  - The prediction and use of peak ground velocity
+T2  - Journal of Earthquake Engineering
+VL  - 10
+IS  - 1
+SP  - 1
+EP  - 31
+PY  - 2006
+DO  - 10.1080/13632460609350586
+ER  -
+
+TY  - JOUR
+AU  - Bracale, Marco
+AU  - Colombelli, Simona
+AU  - Elia, Luca
+AU  - Karakostas, Vasileios
+AU  - Zollo, Aldo
+TI  - Design, Implementation and Testing of a Network-Based Earthquake Early Warning System in Greece
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.667160
+ER  -
+
+TY  - JOUR
+AU  - Brown, Holly M.
+AU  - Allen, Richard M.
+AU  - Grasso, Vince F.
+TI  - Testing ElarmS in Japan
+T2  - Seismological Research Letters
+VL  - 80
+IS  - 5
+SP  - 727
+EP  - 739
+PY  - 2009
+DO  - 10.1785/gssrl.80.5.727
+ER  -
+
+TY  - JOUR
+AU  - Boese, Maren
+AU  - Hauksson, Egill
+AU  - Solanki, Kalpesh
+AU  - Kanamori, Hiroo
+AU  - Heaton, Thomas H.
+TI  - Real-time testing of the on-site warning algorithm in southern California and its performance during the July 29, 2008 Mw5.4 Chino Hills earthquake
+T2  - Bulletin of the Seismological Society of America
+VL  - 99
+IS  - 2A
+SP  - 497
+EP  - 517
+PY  - 2009
+DO  - 10.1785/0120080109
+ER  -
+
+TY  - JOUR
+AU  - Carranza, M.
+AU  - Mattesini, M.
+AU  - Buforn, E.
+AU  - Zollo, A.
+AU  - Torrego, I.
+TI  - Four Years of Earthquake Early Warning in Southern Iberia: 2016-2019
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.696191
+ER  -
+
+TY  - CONF
+AU  - Chen, Tianqi
+AU  - Guestrin, Carlos
+TI  - XGBoost: A scalable tree boosting system
+T2  - Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining
+SP  - 785
+EP  - 794
+PY  - 2016
+DO  - 10.1145/2939672.2939785
+ER  -
+
+TY  - JOUR
+AU  - Colombelli, Simona
+AU  - Caruso, Andrea
+AU  - Zollo, Aldo
+AU  - Festa, Gaetano
+AU  - Kanamori, Hiroo
+TI  - A P wave-based, on-site method for earthquake early warning
+T2  - Geophysical Research Letters
+VL  - 42
+IS  - 5
+SP  - 1390
+EP  - 1398
+PY  - 2015
+DO  - 10.1002/2014GL063002
+ER  -
+
+TY  - JOUR
+AU  - Cremen, Gemma
+AU  - Galasso, Carmine
+TI  - Earthquake early warning: Recent advances and perspectives
+T2  - Earth-Science Reviews
+VL  - 205
+SP  - 103184
+PY  - 2020
+DO  - 10.1016/j.earscirev.2020.103184
+ER  -
+
+TY  - JOUR
+AU  - Dai, Huiyu
+AU  - Zhou, Yingmin
+AU  - Liu, Haibin
+AU  - Li, Shan
+AU  - Wei, Yongqiang
+AU  - Song, Jingting
+TI  - XGBoost-based prediction of on-site acceleration response spectra with multi-feature inputs from P-wave arrivals
+T2  - Soil Dynamics and Earthquake Engineering
+VL  - 178
+SP  - 108490
+PY  - 2024
+DO  - 10.1016/j.soildyn.2024.108490
+ER  -
+
+TY  - JOUR
+AU  - Dhakal, Yushiro
+AU  - Kunugi, Takashi
+TI  - An Evaluation of Strong-Motion Parameters at the S-net Ocean-Bottom Seismograph Sites Near the Kanto Basin for Earthquake Early Warning
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.699439
+ER  -
+
+TY  - JOUR
+AU  - Festa, Gaetano
+AU  - Zollo, Aldo
+AU  - Lancieri, Maria
+TI  - Earthquake magnitude estimation from early radiated energy
+T2  - Geophysical Research Letters
+VL  - 35
+IS  - 22
+SP  - L22307
+PY  - 2008
+DO  - 10.1029/2008GL035576
+ER  -
+
+TY  - JOUR
+AU  - Finazzi, Francesco
+TI  - The Earthquake Network Project: A Platform for Earthquake Early Warning, Rapid Impact Assessment, and Search and Rescue
+T2  - Frontiers in Earth Science
+VL  - 8
+PY  - 2020
+DO  - 10.3389/feart.2020.00243
+ER  -
+
+TY  - BOOK
+AU  - Hastie, Trevor
+AU  - Tibshirani, Robert
+AU  - Friedman, Jerome
+TI  - The Elements of Statistical Learning
+ET  - 2nd
+PB  - Springer
+PY  - 2009
+DO  - 10.1007/978-0-387-84858-7
+ER  -
+
+TY  - JOUR
+AU  - Hoshiba, Mitsuyuki
+TI  - Real-Time Prediction of Impending Ground Shaking: Review of Wavefield-Based (Ground-Motion-Based) Method for Earthquake Early Warning
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.722784
+ER  -
+
+TY  - JOUR
+AU  - Hsu, Tzu-Ying
+AU  - Huang, Che-Wei
+TI  - Onsite Early Prediction of PGA Using CNN With Multi-Scale and Multi-Domain P-Waves as Input
+T2  - Frontiers in Earth Science
+VL  - 9
+SP  - 626908
+PY  - 2021
+DO  - 10.3389/feart.2021.626908
+ER  -
+
+TY  - JOUR
+AU  - Hsu, Tzuying
+AU  - Pratomo, Aries
+TI  - Early Peak Ground Acceleration Prediction for On-Site Earthquake Early Warning Using LSTM Neural Network
+T2  - Frontiers in Earth Science
+VL  - 10
+PY  - 2022
+DO  - 10.3389/feart.2022.911947
+ER  -
+
+TY  - JOUR
+AU  - Iaccarino, Antonio Giovanni
+AU  - Picozzi, Matteo
+AU  - Bindi, Dino
+AU  - Spallarossa, Daniele
+TI  - Onsite Earthquake Early Warning: Predictive Models for Acceleration Response Spectra Considering Site Effects
+T2  - Bulletin of the Seismological Society of America
+VL  - 110
+IS  - 3
+SP  - 1289
+EP  - 1304
+PY  - 2020
+DO  - 10.1785/0120190272
+ER  -
+
+TY  - JOUR
+AU  - Iaccarino, Antonio
+AU  - Gueguen, Philippe
+AU  - Picozzi, Matteo
+AU  - Ghimire, Subash
+TI  - Earthquake Early Warning System for Structural Drift Prediction Using Machine Learning and Linear Regressors
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.666444
+ER  -
+
+TY  - JOUR
+AU  - Iaccarino, Antonio Giovanni
+AU  - Cristofaro, Aloisia
+AU  - Picozzi, Matteo
+AU  - Spallarossa, Daniele
+AU  - Scafidi, Davide
+TI  - Real-time prediction of epicentral distance and PGA from P-wave features using gradient boosting regression for on-site earthquake early warning applications
+T2  - Geophysical Journal International
+VL  - 236
+IS  - 1
+SP  - 675
+EP  - 687
+PY  - 2024
+DO  - 10.1093/gji/ggad443
+ER  -
+
+TY  - JOUR
+AU  - Kanamori, Hiroo
+TI  - Real-time seismology and earthquake damage mitigation
+T2  - Annual Review of Earth and Planetary Sciences
+VL  - 33
+SP  - 195
+EP  - 214
+PY  - 2005
+DO  - 10.1146/annurev.earth.33.092203.122626
+ER  -
+
+TY  - JOUR
+AU  - Kodera, Yuki
+AU  - Hayashimoto, Naoki
+AU  - Tamaribuchi, Koji
+AU  - Noguchi, Kenji
+AU  - Moriwaki, Koji
+AU  - Takahashi, Ryo
+AU  - Morimoto, Maho
+AU  - Okamoto, Koji
+AU  - Hoshiba, Mitsuyuki
+TI  - Developments of the Nationwide Earthquake Early Warning System in Japan After the 2011 Mw9.0 Tohoku-Oki Earthquake
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.726045
+ER  -
+
+TY  - JOUR
+AU  - Kopp, Heidrun
+AU  - Flueh, Ernst R.
+AU  - Petersen, Carl J.
+AU  - Weinrebe, Wilhelm
+AU  - Wittwer, Andreas
+TI  - The Java margin revisited: Evidence for subduction erosion off Java
+T2  - Earth and Planetary Science Letters
+VL  - 242
+IS  - 1-2
+SP  - 130
+EP  - 142
+PY  - 2008
+DO  - 10.1016/j.epsl.2005.11.036
+ER  -
+
+TY  - JOUR
+AU  - Ladina, Chiara
+AU  - Marzorati, Simone
+AU  - Amato, Alessandro
+AU  - Cattaneo, Marco
+TI  - Feasibility Study of an Earthquake Early Warning System in Eastern Central Italy
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.685751
+ER  -
+
+TY  - JOUR
+AU  - Lancieri, Maria
+AU  - Zollo, Aldo
+TI  - A Bayesian approach to the real-time estimation of magnitude from the early P and S wave displacement peaks
+T2  - Journal of Geophysical Research
+VL  - 113
+SP  - B12302
+PY  - 2008
+DO  - 10.1029/2007JB005386
+ER  -
+
+TY  - JOUR
+AU  - Lara, Pablo
+AU  - Bletery, Quentin
+AU  - Ampuero, Jean-Paul
+AU  - Inza, Adolfo
+AU  - Tavera, Hernando
+TI  - Earthquake ground motion estimation from P-waves with machine learning
+T2  - Nature Communications
+VL  - 14
+SP  - 3082
+PY  - 2023
+DO  - 10.1038/s41467-023-38674-w
+ER  -
+
+TY  - JOUR
+AU  - Liu, Yang
+AU  - Zhao, Qiang
+AU  - Wang, Yun
+TI  - Peak ground acceleration prediction for on-site earthquake early warning with deep learning and transfer learning
+T2  - Scientific Reports
+VL  - 14
+SP  - 5039
+PY  - 2024
+DO  - 10.1038/s41598-024-56004-6
+ER  -
+
+TY  - JOUR
+AU  - Li, Jingran
+AU  - Boese, Maren
+AU  - Feng, Yanyu
+AU  - Yang, Congcong
+TI  - Real-Time Characterization of Finite Rupture and Its Implication for Earthquake Early Warning: Application of FinDer to Existing and Planned Stations in Southwest China
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.699560
+ER  -
+
+TY  - JOUR
+AU  - Massin, Frederick
+AU  - Clinton, John
+AU  - Boese, Maren
+TI  - Status of Earthquake Early Warning in Switzerland
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.707654
+ER  -
+
+TY  - JOUR
+AU  - Minson, Sarah E.
+AU  - Meier, Men-Andrin
+AU  - Baltay, Annemarie S.
+AU  - Hanks, Thomas C.
+AU  - Cochran, Elizabeth S.
+TI  - The limits of earthquake early warning: Timeliness of ground motion estimates
+T2  - Science Advances
+VL  - 4
+IS  - 3
+SP  - eaaq0504
+PY  - 2018
+DO  - 10.1126/sciadv.aaq0504
+ER  -
+
+TY  - JOUR
+AU  - Minson, Sarah
+AU  - Cochran, Elizabeth
+AU  - Wu, Stephen
+AU  - Noda, Shunroku
+TI  - A Framework for Evaluating Earthquake Early Warning for an Infrastructure Network: An Idealized Case Study of a Northern California Rail System
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.620467
+ER  -
+
+TY  - JOUR
+AU  - Mousavi, S. Mostafa
+AU  - Ellsworth, William L.
+AU  - Zhu, Weiqiang
+AU  - Chuber, Lindsay Y.
+AU  - Beroza, Gregory C.
+TI  - Earthquake transformer - an attentive deep-learning model for simultaneous earthquake detection and phase picking
+T2  - Nature Communications
+VL  - 11
+IS  - 1
+SP  - 3952
+PY  - 2020
+DO  - 10.1038/s41467-020-17591-w
+ER  -
+
+TY  - JOUR
+AU  - Munchmeyer, Jannes
+AU  - Bindi, Dino
+AU  - Leser, Ulf
+AU  - Tilmann, Frederik
+TI  - The transformer earthquake alerting model: A new versatile approach to earthquake early warning
+T2  - Geophysical Journal International
+VL  - 225
+IS  - 1
+SP  - 646
+EP  - 656
+PY  - 2021
+DO  - 10.1093/gji/ggaa609
+ER  -
+
+TY  - CONF
+AU  - Nakamura, Yutaka
+TI  - On the urgent earthquake detection and alarm system (UrEDAS)
+T2  - Proceedings of the 9th World Conference on Earthquake Engineering
+CY  - Tokyo
+VL  - VII
+SP  - 673
+EP  - 678
+PY  - 1988
+ER  -
+
+TY  - JOUR
+AU  - Natawidjaja, Danny Hilman
+AU  - Sieh, Kerry
+AU  - Chlieh, Mohamed
+TI  - Source parameters of the great Sumatran megathrust earthquakes of 1797 and 1833
+T2  - Journal of Geophysical Research
+VL  - 111
+SP  - B06403
+PY  - 2006
+DO  - 10.1029/2005JB004025
+ER  -
+
+TY  - JOUR
+AU  - Nof, Ran
+AU  - Lior, Itzhak
+AU  - Kurzon, Ittai
+TI  - Earthquake Early Warning System in Israel - Towards an Operational Stage
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.684421
+ER  -
+
+TY  - JOUR
+AU  - Parolai, Stefano
+AU  - Boxberger, Tobias
+AU  - Pilz, Marco
+AU  - Fleming, Kevin
+AU  - Haas, Michael
+AU  - Pittore, Massimiliano
+AU  - Petrovic, Bojana
+AU  - Moldobekov, Bolot
+AU  - Zubovich, Alexander
+AU  - Lauterjung, Joern
+TI  - Assessing Earthquake Early Warning Using Sparse Networks in Developing Countries: Case Study of the Kyrgyz Republic
+T2  - Frontiers in Earth Science
+VL  - 5
+PY  - 2017
+DO  - 10.3389/feart.2017.00074
+ER  -
+
+TY  - JOUR
+AU  - Peng, Haishan
+AU  - Wu, Zhongliang
+AU  - Wu, Yih-Min
+AU  - Yu, Shaoshan
+AU  - Zhang, Guomin
+AU  - Huang, Wenlin
+TI  - Progress of Earthquake Early Warning in China and Its Application in the 2019 Mw 5.8 Changning Earthquake, Sichuan
+T2  - Frontiers in Earth Science
+VL  - 9
+SP  - 699560
+PY  - 2021
+DO  - 10.3389/feart.2021.699560
+ER  -
+
+TY  - JOUR
+AU  - Porras, Jonathan
+AU  - Massin, Frederick
+AU  - Arroyo-Solorzano, Mario
+AU  - Arroyo, Ivonne
+AU  - Linkimer, Lepolt
+AU  - Boese, Maren
+AU  - Clinton, John
+TI  - Preliminary Results of an Earthquake Early Warning System in Costa Rica
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.700843
+ER  -
+
+TY  - JOUR
+AU  - Reed, Jack W.
+AU  - Kassawara, Robert P.
+TI  - A criterion for determining exceedance of the operating basis earthquake
+T2  - Nuclear Engineering and Design
+VL  - 123
+IS  - 2-3
+SP  - 387
+EP  - 396
+PY  - 1990
+DO  - 10.1016/0029-5493(90)90259-Z
+ER  -
+
+TY  - JOUR
+AU  - Schlesinger, Andrea
+AU  - Kukovica, Jason
+AU  - Rosenberger, Alison
+AU  - Heesemann, Martin
+AU  - Pirenne, Benoit
+AU  - Robinson, John
+AU  - Morley, Michael
+TI  - An Earthquake Early Warning System for Southwestern British Columbia
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.684084
+ER  -
+
+TY  - JOUR
+AU  - Simons, Wim J. F.
+AU  - Socquet, Anne
+AU  - Vigny, Christophe
+TI  - A decade of GPS in Southeast Asia: Resolving Sundaland motion and boundaries
+T2  - Journal of Geophysical Research
+VL  - 112
+SP  - B06420
+PY  - 2007
+DO  - 10.1029/2005JB003868
+ER  -
+
+TY  - JOUR
+AU  - Tsuno, Seiji
+TI  - Applicability of On-Site P-Wave Earthquake Early Warning to Seismic Data Observed During the 2011 Off the Pacific Coast of Tohoku Earthquake, Japan
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.681199
+ER  -
+
+TY  - JOUR
+AU  - Velazquez, Oscar
+AU  - Pescaroli, Gianluca
+AU  - Kaner, Julia
+TI  - A Review of Earthquake Early Warning Systems: Progress, Challenges, and Implications for Cities
+T2  - Frontiers in Built Environment
+VL  - 6
+PY  - 2020
+DO  - 10.3389/fbuil.2020.00124
+ER  -
+
+TY  - JOUR
+AU  - Wang, Ao
+AU  - Li, Shan
+TI  - Prediction of peak ground acceleration in earthquake early warning using a long short-term memory neural network
+T2  - Geophysical Journal International
+VL  - 234
+IS  - 1
+SP  - 12
+EP  - 24
+PY  - 2023
+DO  - 10.1093/gji/ggad067
+ER  -
+
+TY  - JOUR
+AU  - Wang, Zhe
+AU  - Zhao, Boming
+TI  - Applicability of Accurate Ground Motion Estimation Using Initial P Wave for Earthquake Early Warning
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.718216
+ER  -
+
+TY  - JOUR
+AU  - Woollam, Jack
+AU  - Munchmeyer, Jannes
+AU  - Tilmann, Frederik
+TI  - SeisBench - A toolbox for machine learning in seismology
+T2  - Seismological Research Letters
+VL  - 93
+IS  - 3
+SP  - 1695
+EP  - 1709
+PY  - 2022
+DO  - 10.1785/0220210324
+ER  -
+
+TY  - JOUR
+AU  - Wu, Yih-Min
+AU  - Kanamori, Hiroo
+TI  - Rapid assessment of damage potential of earthquakes in Taiwan from the beginning of P waves
+T2  - Bulletin of the Seismological Society of America
+VL  - 95
+IS  - 3
+SP  - 1181
+EP  - 1185
+PY  - 2005
+DO  - 10.1785/0120040193
+ER  -
+
+TY  - JOUR
+AU  - Wu, Yih-Min
+AU  - Kanamori, Hiroo
+TI  - Experiment on an onsite early warning method for the Taiwan early warning system
+T2  - Bulletin of the Seismological Society of America
+VL  - 95
+IS  - 1
+SP  - 347
+EP  - 353
+PY  - 2005
+DO  - 10.1785/0120040097
+ER  -
+
+TY  - JOUR
+AU  - Yamada, Masumi
+AU  - Mori, Jim
+TI  - Using tau_c to estimate magnitude for earthquake early warning and effects of near-field terms
+T2  - Journal of Geophysical Research
+VL  - 114
+SP  - B05301
+PY  - 2009
+DO  - 10.1029/2008JB006080
+ER  -
+
+TY  - JOUR
+AU  - Zhang, Jiaqi
+AU  - Zhu, Weiqiang
+AU  - Ross, Zachary E.
+TI  - Machine learning-based rapid epicentral distance estimation from a single station
+T2  - Bulletin of the Seismological Society of America
+VL  - 114
+IS  - 3
+SP  - 1507
+EP  - 1522
+PY  - 2024
+DO  - 10.1785/0120230216
+ER  -
+
+TY  - JOUR
+AU  - Zhu, Jingbao
+AU  - Li, Shan
+AU  - Song, Jingting
+AU  - Wang, Yu
+TI  - Magnitude Estimation for Earthquake Early Warning Using a Deep Convolutional Neural Network
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.653226
+ER  -
+
+TY  - JOUR
+AU  - Zhu, Weiqiang
+AU  - Mousavi, S. Mostafa
+AU  - Beroza, Gregory C.
+TI  - Phase neural operator for multi-station picking of seismic arrivals
+T2  - Geophysical Research Letters
+VL  - 50
+IS  - 1
+SP  - e2022GL101045
+PY  - 2023
+DO  - 10.1029/2022GL101045
+ER  -
+
+TY  - JOUR
+AU  - Zollo, Aldo
+AU  - Amoroso, Ortensia
+AU  - Lancieri, Maria
+AU  - Wu, Yih-Min
+AU  - Kanamori, Hiroo
+TI  - A threshold-based earthquake early warning using dense accelerometer networks
+T2  - Geophysical Journal International
+VL  - 183
+IS  - 2
+SP  - 963
+EP  - 974
+PY  - 2010
+DO  - 10.1111/j.1365-246X.2010.04765.x
+ER  -
+
+TY  - JOUR
+AU  - Zuccolo, Elisa
+AU  - Cremen, Gemma
+AU  - Galasso, Carmine
+TI  - Comparing the Performance of Regional Earthquake Early Warning Algorithms in Europe
+T2  - Frontiers in Earth Science
+VL  - 9
+PY  - 2021
+DO  - 10.3389/feart.2021.686272
+ER  -
