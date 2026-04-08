@@ -161,12 +161,12 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <div class="keywords"><b>Keywords:</b> earthquake early warning, spectral acceleration, adaptive time window, XGBoost, feature dichotomy, Sunda subduction zone</div>
 </div>
 <div class="metrics">
-  <div class="mc"><div class="v">0.731</div><div class="l" data-en="Composite R&sup2; (IDA)" data-id="R&sup2; Komposit (IDA)">Composite R&sup2;</div></div>
-  <div class="mc"><div class="v">93.0%</div><div class="l" data-en="Stage 1 Accuracy" data-id="Akurasi Stage 1">Stage 1 Accuracy</div></div>
-  <div class="mc"><div class="v">72.3%</div><div class="l" data-en="Damaging Recall" data-id="Recall Merusak">Damaging Recall</div></div>
-  <div class="mc"><div class="v">103</div><div class="l" data-en="Spectral Periods" data-id="Periode Spektral">Spectral Periods</div></div>
-  <div class="mc"><div class="v">34,033</div><div class="l" data-en="Traces (329 events)" data-id="Trace (329 event)">Traces</div></div>
-  <div class="mc"><div class="v">515</div><div class="l" data-en="XGBoost Models" data-id="Model XGBoost">XGBoost Models</div></div>
+  <div class="mc" style="cursor:pointer" onclick="showMetricInfo(0)"><div class="v">0.731</div><div class="l" data-en="Composite R&sup2; (IDA)" data-id="R&sup2; Komposit (IDA)">Composite R&sup2;</div><div style="font-size:9px;color:#aaa;margin-top:2px">&#9432; click</div></div>
+  <div class="mc" style="cursor:pointer" onclick="showMetricInfo(1)"><div class="v">93.0%</div><div class="l" data-en="Stage 1 Accuracy" data-id="Akurasi Stage 1">Stage 1 Accuracy</div><div style="font-size:9px;color:#aaa;margin-top:2px">&#9432; click</div></div>
+  <div class="mc" style="cursor:pointer" onclick="showMetricInfo(2)"><div class="v">72.3%</div><div class="l" data-en="Damaging Recall" data-id="Recall Merusak">Damaging Recall</div><div style="font-size:9px;color:#aaa;margin-top:2px">&#9432; click</div></div>
+  <div class="mc" style="cursor:pointer" onclick="showMetricInfo(3)"><div class="v">103</div><div class="l" data-en="Spectral Periods" data-id="Periode Spektral">Spectral Periods</div><div style="font-size:9px;color:#aaa;margin-top:2px">&#9432; click</div></div>
+  <div class="mc" style="cursor:pointer" onclick="showMetricInfo(4)"><div class="v">34,033</div><div class="l" data-en="Traces (329 events)" data-id="Trace (329 event)">Traces</div><div style="font-size:9px;color:#aaa;margin-top:2px">&#9432; click</div></div>
+  <div class="mc" style="cursor:pointer" onclick="showMetricInfo(5)"><div class="v">515</div><div class="l" data-en="XGBoost Models" data-id="Model XGBoost">XGBoost Models</div><div style="font-size:9px;color:#aaa;margin-top:2px">&#9432; click</div></div>
 </div>
 </section>
 
@@ -672,6 +672,14 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
 <div class="modal" id="modal" onclick="closeModal()"><span class="close">&times;</span><img id="mimg" src=""></div>
 
+<!-- Metric Info Popup -->
+<div class="r2-popup-overlay" id="metricPopup" onclick="if(event.target===this)this.classList.remove('show')">
+<div class="r2-popup" style="max-width:550px">
+  <button class="close-btn" onclick="document.getElementById('metricPopup').classList.remove('show')">&times;</button>
+  <div id="metricPopupContent"></div>
+</div>
+</div>
+
 <!-- R² = 0.099 Explanation Popup -->
 <div class="r2-popup-overlay" id="r2popup" onclick="if(event.target===this)this.classList.remove('show')">
 <div class="r2-popup">
@@ -994,6 +1002,54 @@ new Chart(document.getElementById('barChart'),{
     }
   }
 });
+
+// ── Metric info popups ──
+var metricData = [
+  {
+    title_en:'Composite R\u00B2 = 0.731',
+    title_id:'R\u00B2 Komposit = 0.731',
+    body_en:'<p><b>What it measures:</b> Overall prediction accuracy of the full pipeline (Stage 1 \u2192 1.5 \u2192 Routing \u2192 Stage 2) across all 103 spectral periods simultaneously.</p><p><b>How computed:</b> All Sa(T) predictions at 103 periods are pooled into a single R\u00B2 calculation, following the composite evaluation framework used in Ground Motion Model comparisons (Abrahamson et al., 2014).</p><p><b>Source:</b> <code>ida_ptw_filtered_results.json \u2192 end_to_end.ida_ptw_predicted</code></p><table><tr><th>Strategy</th><th>R\u00B2</th></tr><tr><td>IDA Operational</td><td><b>0.7309</b></td></tr><tr><td>IDA Oracle</td><td>0.7311</td></tr><tr><td>Fixed PTW=8s</td><td>0.7584</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">The \u223C2.7% gap vs Fixed-8s is a deliberate accuracy-safety tradeoff: IDA prioritizes warning timeliness and Damaging recall over marginal R\u00B2 gains.</p>',
+    body_id:'<p><b>Apa yang diukur:</b> Akurasi prediksi keseluruhan pipeline penuh (Stage 1 \u2192 1.5 \u2192 Routing \u2192 Stage 2) di seluruh 103 periode spektral secara simultan.</p><p><b>Cara dihitung:</b> Semua prediksi Sa(T) pada 103 periode dikumpulkan dalam satu perhitungan R\u00B2, mengikuti kerangka evaluasi komposit yang digunakan dalam perbandingan Model Ground Motion (Abrahamson et al., 2014).</p><p><b>Sumber:</b> <code>ida_ptw_filtered_results.json \u2192 end_to_end.ida_ptw_predicted</code></p><table><tr><th>Strategi</th><th>R\u00B2</th></tr><tr><td>IDA Operasional</td><td><b>0.7309</b></td></tr><tr><td>IDA Oracle</td><td>0.7311</td></tr><tr><td>Fixed PTW=8s</td><td>0.7584</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">Selisih \u223C2.7% vs Fixed-8s adalah tradeoff akurasi-keselamatan yang disengaja: IDA memprioritaskan ketepatan waktu peringatan dan Damaging recall di atas peningkatan R\u00B2 marginal.</p>'
+  },
+  {
+    title_en:'Stage 1 Accuracy = 93.0%',
+    title_id:'Akurasi Stage 1 = 93.0%',
+    body_en:'<p><b>What it measures:</b> Out-of-fold classification accuracy of the Intensity Gate classifier (Stage 1) across 5-fold event-grouped cross-validation.</p><p><b>How it works:</b> Stage 1 classifies each trace into Weak, Felt, or Damaging based on 42 P-wave features extracted at PTW = 2 s. The dominant feature is \u03C4<sub>c</sub> (predominant period, 51% importance).</p><p><b>Class distribution:</b></p><table><tr><th>Class</th><th>Traces</th><th>%</th></tr><tr><td>Weak (PGA &lt; 3.0 Gal)</td><td>32,001</td><td>94.0%</td></tr><tr><td>Felt (3.0\u201362.0 Gal)</td><td>1,931</td><td>5.7%</td></tr><tr><td>Damaging (\u226562.0 Gal)</td><td>101</td><td>0.3%</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">93% accuracy with severe class imbalance (0.3% Damaging) is a strong result. The intensity classification alone already provides effective PTW routing (R\u00B2 = 0.7436 without distance).</p>',
+    body_id:'<p><b>Apa yang diukur:</b> Akurasi klasifikasi out-of-fold dari Intensity Gate (Stage 1) pada 5-fold cross-validation berdasar event.</p><p><b>Cara kerja:</b> Stage 1 mengklasifikasi setiap trace menjadi Weak, Felt, atau Damaging berdasarkan 42 fitur P-wave pada PTW = 2 s. Fitur dominan adalah \u03C4<sub>c</sub> (periode predominan, 51% importance).</p><p><b>Distribusi kelas:</b></p><table><tr><th>Kelas</th><th>Trace</th><th>%</th></tr><tr><td>Weak (PGA &lt; 3.0 Gal)</td><td>32,001</td><td>94.0%</td></tr><tr><td>Felt (3.0\u201362.0 Gal)</td><td>1,931</td><td>5.7%</td></tr><tr><td>Damaging (\u226562.0 Gal)</td><td>101</td><td>0.3%</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">Akurasi 93% dengan ketidakseimbangan kelas ekstrem (0.3% Damaging) adalah hasil yang kuat. Klasifikasi intensitas saja sudah memberikan routing PTW efektif (R\u00B2 = 0.7436 tanpa jarak).</p>'
+  },
+  {
+    title_en:'Damaging Recall = 72.3%',
+    title_id:'Recall Merusak = 72.3%',
+    body_en:'<p><b>What it measures:</b> Percentage of truly Damaging events (PGA \u2265 62.0 Gal) that the Intensity Gate correctly identifies and routes to extended PTW.</p><p><b>Why it matters for EEWS:</b> A system that misses Damaging events provides a false sense of safety. Source-Aware (magnitude-based) routing achieves only 1.3% Damaging recall \u2014 missing 98% of dangerous events.</p><table><tr><th>Strategy</th><th>Damaging Recall</th><th>Critical Miss</th></tr><tr style="background:#e8f5e9"><td><b>IDA-PTW</b></td><td><b>72.3%</b></td><td><b>8.9%</b></td></tr><tr style="background:#ffebee"><td>Source-Aware</td><td>1.3%</td><td>\u223C98%</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">IDA achieves 55\u00D7 improvement in Damaging recall because it responds to observed intensity at the sensor, making it inherently robust to local site effects that magnitude-based systems cannot detect.</p>',
+    body_id:'<p><b>Apa yang diukur:</b> Persentase event Damaging sesungguhnya (PGA \u2265 62.0 Gal) yang berhasil diidentifikasi Intensity Gate dan diarahkan ke PTW diperpanjang.</p><p><b>Mengapa penting untuk EEWS:</b> Sistem yang melewatkan event Damaging memberikan rasa aman palsu. Routing Source-Aware (berbasis magnitudo) hanya mencapai 1.3% Damaging recall \u2014 melewatkan 98% event berbahaya.</p><table><tr><th>Strategi</th><th>Recall Merusak</th><th>Kehilangan Kritis</th></tr><tr style="background:#e8f5e9"><td><b>IDA-PTW</b></td><td><b>72.3%</b></td><td><b>8.9%</b></td></tr><tr style="background:#ffebee"><td>Source-Aware</td><td>1.3%</td><td>\u223C98%</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">IDA mencapai peningkatan 55\u00D7 dalam Damaging recall karena merespons intensitas yang diamati di sensor, sehingga inheren robust terhadap efek tapak lokal yang tidak bisa dideteksi sistem berbasis magnitudo.</p>'
+  },
+  {
+    title_en:'103 Spectral Periods',
+    title_id:'103 Periode Spektral',
+    body_en:'<p><b>What it means:</b> The pipeline predicts spectral acceleration Sa(T) at 103 structural periods ranging from T = 0.1 s to T = 5.0 s, plus PGA.</p><p><b>Why it matters:</b> Different structures respond to different periods:</p><table><tr><th>Period Range</th><th>Structures</th></tr><tr><td>T = 0.1\u20130.5 s</td><td>Low-rise buildings (1\u20135 floors)</td></tr><tr><td>T = 0.5\u20132.0 s</td><td>Mid-rise buildings, bridges</td></tr><tr><td>T = 2.0\u20135.0 s</td><td>High-rise buildings, long-span bridges</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">Previous best: \u223C20 periods using multi-station networks (Lara et al., 2023). This study provides 5\u201310\u00D7 more spectral coverage from a single station, enabling structure-specific hazard assessment following SNI 1726:2019.</p>',
+    body_id:'<p><b>Artinya:</b> Pipeline memprediksi percepatan spektral Sa(T) pada 103 periode struktural dari T = 0.1 s hingga T = 5.0 s, ditambah PGA.</p><p><b>Mengapa penting:</b> Struktur berbeda merespons periode berbeda:</p><table><tr><th>Rentang Periode</th><th>Struktur</th></tr><tr><td>T = 0.1\u20130.5 s</td><td>Bangunan rendah (1\u20135 lantai)</td></tr><tr><td>T = 0.5\u20132.0 s</td><td>Bangunan menengah, jembatan</td></tr><tr><td>T = 2.0\u20135.0 s</td><td>Bangunan tinggi, jembatan bentang panjang</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">Terbaik sebelumnya: \u223C20 periode menggunakan jaringan multi-stasiun (Lara et al., 2023). Studi ini menyediakan cakupan spektral 5\u201310\u00D7 lebih banyak dari single station, memungkinkan penilaian bahaya spesifik-struktur sesuai SNI 1726:2019.</p>'
+  },
+  {
+    title_en:'34,033 Traces (329 Events)',
+    title_id:'34.033 Trace (329 Event)',
+    body_en:'<p><b>Dataset:</b> Sunda v2 (Geomean), IDA-filtered for the Java-Sumatra study area (95\u00B0\u2013115\u00B0E, 11\u00B0S\u20136\u00B0N).</p><table><tr><th>Parameter</th><th>Value</th></tr><tr><td>Traces</td><td>34,033</td></tr><tr><td>Earthquakes</td><td>329</td></tr><tr><td>Stations (BMKG)</td><td>388</td></tr><tr><td>Magnitude range</td><td>M 4.0\u20136.9</td></tr><tr><td>Distance range</td><td>2\u20131,438 km (median 384 km)</td></tr><tr><td>Data source</td><td>BMKG accelerograph network (IA)</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">The predominantly far-field dataset (94.1% at D &gt; 100 km) reflects the operational reality of offshore Sunda subduction zone seismicity recorded by BMKG\u2019s land-based accelerograph network.</p>',
+    body_id:'<p><b>Dataset:</b> Sunda v2 (Geomean), IDA-filtered untuk wilayah studi Jawa-Sumatra (95\u00B0\u2013115\u00B0BT, 11\u00B0LS\u20136\u00B0LU).</p><table><tr><th>Parameter</th><th>Nilai</th></tr><tr><td>Trace</td><td>34.033</td></tr><tr><td>Gempa</td><td>329</td></tr><tr><td>Stasiun (BMKG)</td><td>388</td></tr><tr><td>Rentang magnitudo</td><td>M 4.0\u20136.9</td></tr><tr><td>Rentang jarak</td><td>2\u20131.438 km (median 384 km)</td></tr><tr><td>Sumber data</td><td>Jaringan akselerograf BMKG (IA)</td></tr></table><p style="font-size:11px;color:#666;margin-top:8px">Dataset yang didominasi far-field (94.1% pada D &gt; 100 km) mencerminkan realitas operasional seismisitas zona subduksi Sunda yang bersifat offshore, direkam oleh jaringan akselerograf darat BMKG.</p>'
+  },
+  {
+    title_en:'515 XGBoost Models',
+    title_id:'515 Model XGBoost',
+    body_en:'<p><b>Composition:</b> 103 spectral periods \u00D7 5 PTW windows (2, 3, 4, 6, 8 s) = 515 individual XGBoost regressors, plus 1 Stage 1 classifier and 1 distance estimator = <b>517 total models</b>.</p><p><b>Each model:</b></p><ul><li>Trained on 42 P-wave features (12 IMs + 30 Zhang distance features)</li><li>Validated with 5-fold GroupKFold (event-grouped, no data leakage)</li><li>Median-iteration selection for production model</li><li>Hyperparameters: Optuna-tuned (100 trials)</li></ul><table><tr><th>Metric</th><th>Value</th></tr><tr><td>Models trained</td><td>515/515 (0 failed)</td></tr><tr><td>R\u00B2 mean (OOF)</td><td>0.580</td></tr><tr><td>R\u00B2 range</td><td>0.481\u20130.644</td></tr><tr><td>Top feature</td><td>CVAD (89.5% importance)</td></tr></table>',
+    body_id:'<p><b>Komposisi:</b> 103 periode spektral \u00D7 5 jendela PTW (2, 3, 4, 6, 8 s) = 515 regresor XGBoost individual, ditambah 1 classifier Stage 1 dan 1 distance estimator = <b>517 model total</b>.</p><p><b>Setiap model:</b></p><ul><li>Dilatih pada 42 fitur P-wave (12 IM + 30 fitur jarak Zhang)</li><li>Divalidasi dengan 5-fold GroupKFold (berdasar event, tanpa kebocoran data)</li><li>Seleksi iterasi-median untuk model produksi</li><li>Hyperparameter: Optuna-tuned (100 trial)</li></ul><table><tr><th>Metrik</th><th>Nilai</th></tr><tr><td>Model terlatih</td><td>515/515 (0 gagal)</td></tr><tr><td>R\u00B2 mean (OOF)</td><td>0.580</td></tr><tr><td>R\u00B2 range</td><td>0.481\u20130.644</td></tr><tr><td>Fitur utama</td><td>CVAD (89.5% importance)</td></tr></table>'
+  }
+];
+
+function showMetricInfo(idx){
+  var d=metricData[idx];
+  var t=lang==='id'?d.title_id:d.title_en;
+  var b=lang==='id'?d.body_id:d.body_en;
+  document.getElementById('metricPopupContent').innerHTML='<h2 style="color:var(--blue);font-size:17px;margin-bottom:12px">'+t+'</h2>'+b;
+  document.getElementById('metricPopup').classList.add('show');
+}
 
 // ── Load and render manuscript ──
 fetch('data/MANUSCRIPT_Frontiers_EarthSci_Draft_20260405.md')
