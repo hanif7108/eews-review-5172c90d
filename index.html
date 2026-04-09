@@ -135,6 +135,7 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <a href="#evidence" data-en="Evidence" data-id="Bukti">Evidence</a>
   <a href="#charts" data-en="Interactive Charts" data-id="Grafik Interaktif">Interactive Charts</a>
   <a href="#safety" data-en="Safety" data-id="Keselamatan">Safety</a>
+  <a href="#comp-metrics" data-en="Comp. Metrics" data-id="Metrik Komprehensif">Comp. Metrics</a>
   <a href="#figures" data-en="Figures" data-id="Gambar">Figures</a>
   <a href="#manuscript" data-en="Manuscript" data-id="Manuskrip">Manuscript</a>
   <a href="#download" data-en="Download" data-id="Unduh">Download</a>
@@ -620,6 +621,36 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <tr><td>Source-Aware</td><td>1.3%</td><td>~98%</td></tr>
 </table>
 <p style="font-size:13px;margin-top:12px" data-en="IDA-PTW achieves a 55x improvement in Damaging recall. This is because intensity-driven routing responds to observed ground motion at the sensor site, making it inherently robust to local site amplification effects that magnitude-based systems cannot detect." data-id="IDA-PTW mencapai peningkatan 55x dalam Damaging recall. Ini karena routing berbasis intensitas merespons ground motion yang diamati di lokasi sensor, sehingga secara inheren robust terhadap efek amplifikasi tapak lokal yang tidak bisa dideteksi sistem berbasis magnitudo."></p>
+</section>
+
+<!-- ═══ COMPREHENSIVE PERFORMANCE METRICS (Dai et al. 2024) ═══ -->
+<section id="comp-metrics">
+<h2 data-en="Comprehensive Performance Evaluation (Dai et al. 2024)" data-id="Evaluasi Performa Komprehensif (Dai et al. 2024)">Comprehensive Metrics</h2>
+<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="Extended evaluation following Dai et al. (2024) methodology: &tau;/&phi; decomposition, within-factor accuracy, magnitude&ndash;period heatmap, residual analysis, and distance-dependent bias." data-id="Evaluasi lanjutan mengikuti metodologi Dai et al. (2024): dekomposisi &tau;/&phi;, akurasi within-factor, heatmap magnitudo&ndash;periode, analisis residual, dan bias tergantung-jarak."></p>
+
+<table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px">
+  <tr style="background:var(--blue);color:#fff"><th style="padding:8px;text-align:left" data-en="Metric" data-id="Metrik">Metric</th><th style="padding:8px" data-en="Value" data-id="Nilai">Value</th><th style="padding:8px;text-align:left" data-en="Detail" data-id="Detail">Detail</th></tr>
+  <tr><td style="padding:6px 8px;border-bottom:1px solid #eee"><b data-en="Mean R&sup2;" data-id="Rata-rata R&sup2;">Mean R&sup2;</b></td><td style="padding:6px 8px;border-bottom:1px solid #eee;text-align:center">0.427</td><td style="padding:6px 8px;border-bottom:1px solid #eee;color:#666" data-en="Increases ~0.30 (short T) to ~0.49 (long T)" data-id="Meningkat ~0.30 (T pendek) ke ~0.49 (T panjang)"></td></tr>
+  <tr style="background:#f8fafc"><td style="padding:6px 8px;border-bottom:1px solid #eee"><b>&sigma;<sub>total</sub></b></td><td style="padding:6px 8px;border-bottom:1px solid #eee;text-align:center">0.752</td><td style="padding:6px 8px;border-bottom:1px solid #eee;color:#666">&tau; = 0.460, &phi; = 0.594 (&phi; ~ 70%)</td></tr>
+  <tr><td style="padding:6px 8px;border-bottom:1px solid #eee"><b data-en="Within &plusmn;1.0 log" data-id="Dalam &plusmn;1.0 log">Within &plusmn;1.0</b></td><td style="padding:6px 8px;border-bottom:1px solid #eee;text-align:center">83.3%</td><td style="padding:6px 8px;border-bottom:1px solid #eee;color:#666">&plusmn;0.5: 54.4%, &plusmn;0.3: 30.8%</td></tr>
+  <tr style="background:#f8fafc"><td style="padding:6px 8px;border-bottom:1px solid #eee"><b data-en="M &ge; 6.5 Bias" data-id="Bias M &ge; 6.5">M &ge; 6.5</b></td><td style="padding:6px 8px;border-bottom:1px solid #eee;text-align:center;color:#e74c3c">Severe</td><td style="padding:6px 8px;border-bottom:1px solid #eee;color:#666" data-en="R&sup2; negative for M7+ (saturation)" data-id="R&sup2; negatif untuk M7+ (saturasi)"></td></tr>
+  <tr><td style="padding:6px 8px"><b data-en="Near-field (&lt;30 km)" data-id="Jarak dekat (&lt;30 km)">Near-field</b></td><td style="padding:6px 8px;text-align:center;color:#e74c3c">&minus;1.5 to &minus;2.0</td><td style="padding:6px 8px;color:#666" data-en="Underprediction due to near-field complexity" data-id="Underprediksi akibat kompleksitas near-field"></td></tr>
+</table>
+
+<h3 style="font-size:14px;margin:20px 0 12px" data-en="Performance Evaluation Figures" data-id="Gambar Evaluasi Performa">Evaluation Figures</h3>
+<div class="fig-grid">
+  <div class="fig-card"><img src="figures/fig10_tau_phi_sigma.png" onclick="openModal(this)"><div class="cap"><b>Fig 10.</b> <span data-en="Inter/intra-event variability (&tau;, &phi;, &sigma;) vs period — Al Atik et al. (2010) decomposition. &phi; dominates ~70% of total variance." data-id="Variabilitas inter/intra-event (&tau;, &phi;, &sigma;) vs periode — dekomposisi Al Atik et al. (2010). &phi; mendominasi ~70% varians total."></span></div></div>
+  <div class="fig-card"><img src="figures/fig11_r2_rmse_bias.png" onclick="openModal(this)"><div class="cap"><b>Fig 11.</b> <span data-en="R&sup2;, RMSE &amp; mean bias vs spectral period. R&sup2; improves from ~0.30 (short T) to ~0.49 (long T)." data-id="R&sup2;, RMSE &amp; mean bias vs periode spektral. R&sup2; meningkat dari ~0.30 (T pendek) ke ~0.49 (T panjang)."></span></div></div>
+  <div class="fig-card"><img src="figures/fig12_within_factor.png" onclick="openModal(this)"><div class="cap"><b>Fig 12.</b> <span data-en="Within-factor accuracy (&plusmn;0.3, &plusmn;0.5, &plusmn;1.0 log&#8321;&#8320;). 83.3% within &plusmn;1.0 across all periods." data-id="Akurasi within-factor (&plusmn;0.3, &plusmn;0.5, &plusmn;1.0 log&#8321;&#8320;). 83.3% dalam &plusmn;1.0 di semua periode."></span></div></div>
+  <div class="fig-card"><img src="figures/fig13_mag_heatmap.png" onclick="openModal(this)"><div class="cap"><b>Fig 13.</b> <span data-en="Magnitude&ndash;period R&sup2; heatmap. Severe degradation for M &ge; 6.5 reveals saturation limitation." data-id="Heatmap R&sup2; magnitudo&ndash;periode. Degradasi parah untuk M &ge; 6.5 mengungkap limitasi saturasi."></span></div></div>
+  <div class="fig-card"><img src="figures/fig14_obs_vs_pred_qq.png" onclick="openModal(this)"><div class="cap"><b>Fig 14.</b> <span data-en="Observed vs predicted scatter + Q-Q residual normality plot. Near-normal distribution validates log-normal assumption." data-id="Scatter observasi vs prediksi + Q-Q plot normalitas residual. Distribusi mendekati normal memvalidasi asumsi log-normal."></span></div></div>
+  <div class="fig-card"><img src="figures/fig15_distance_bias.png" onclick="openModal(this)"><div class="cap"><b>Fig 15.</b> <span data-en="Distance-dependent bias: severe underprediction at &lt;30 km, well-calibrated beyond 100 km." data-id="Bias tergantung-jarak: underprediksi parah pada &lt;30 km, terkalibrasi baik di atas 100 km."></span></div></div>
+</div>
+
+<div style="background:#f0f7ff;border:1px solid #d0e3f7;border-radius:8px;padding:14px;margin-top:16px;font-size:12px">
+  <b style="color:var(--blue)" data-en="Methodology:" data-id="Metodologi:">Methodology:</b>
+  <span data-en="Dai, C. et al. (2024). Extended evaluation includes: &tau;/&phi; decomposition (Al Atik et al., 2010), within-factor accuracy, magnitude-period R&sup2; heatmap, Q-Q normality analysis, and distance-dependent bias. Computed on 3.89M predictions across 103 periods from 5-fold GroupKFold CV." data-id="Dai, C. et al. (2024). Evaluasi lanjutan meliputi: dekomposisi &tau;/&phi; (Al Atik et al., 2010), akurasi within-factor, heatmap R&sup2; magnitudo-periode, analisis normalitas Q-Q, dan bias tergantung-jarak. Dihitung pada 3.89 juta prediksi di 103 periode dari 5-fold GroupKFold CV."></span>
+</div>
 </section>
 
 <!-- ═══ FIGURES ═══ -->
