@@ -103,6 +103,24 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 .r2-popup table{font-size:12px}
 .r2-clickable{cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;transition:color 0.2s}
 .r2-clickable:hover{color:var(--orange)!important}
+/* Figure narration popup */
+.fig-narr-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:200;justify-content:center;align-items:center;padding:20px;overflow-y:auto}
+.fig-narr-overlay.show{display:flex}
+.fig-narr-popup{background:#fff;border-radius:12px;max-width:1000px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,0.3);position:relative;animation:popIn 0.3s ease}
+.fig-narr-popup .close-btn{position:absolute;top:12px;right:16px;font-size:28px;color:#999;cursor:pointer;background:none;border:none;line-height:1;z-index:10}
+.fig-narr-popup .close-btn:hover{color:#333}
+.fig-narr-content{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:28px 32px;align-items:start}
+.fig-narr-img{text-align:center}
+.fig-narr-img img{max-width:100%;max-height:500px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.fig-narr-text{padding-right:12px}
+.fig-narr-text h2{border:none;margin:0 0 12px;font-size:17px;color:var(--blue)}
+.fig-narr-text p{font-size:13px;line-height:1.7;margin:10px 0;text-align:justify;color:#555}
+@media(max-width:768px){
+  .fig-narr-content{grid-template-columns:1fr;gap:16px;padding:20px 16px}
+  .fig-narr-img{margin-bottom:0}
+  .fig-narr-text{padding-right:0}
+  .fig-narr-popup{max-height:95vh}
+}
 /* Manuscript rendered styles */
 #manuscript-content h1{font-size:18px;color:var(--blue);border-bottom:2px solid var(--blue);padding-bottom:6px;margin:24px 0 12px}
 #manuscript-content h2{font-size:16px;color:var(--blue);border-bottom:1px solid var(--border);padding-bottom:4px;margin:20px 0 10px}
@@ -639,12 +657,12 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
 <h3 style="font-size:14px;margin:20px 0 12px" data-en="Performance Evaluation Figures" data-id="Gambar Evaluasi Performa">Evaluation Figures</h3>
 <div class="fig-grid">
-  <div class="fig-card"><img src="figures/fig10_tau_phi_sigma.png" onclick="openModal(this)"><div class="cap"><b>Fig 10.</b> <span data-en="Inter/intra-event variability (&tau;, &phi;, &sigma;) vs period — Al Atik et al. (2010) decomposition. &phi; dominates ~70% of total variance." data-id="Variabilitas inter/intra-event (&tau;, &phi;, &sigma;) vs periode — dekomposisi Al Atik et al. (2010). &phi; mendominasi ~70% varians total."></span></div></div>
-  <div class="fig-card"><img src="figures/fig11_r2_rmse_bias.png" onclick="openModal(this)"><div class="cap"><b>Fig 11.</b> <span data-en="R&sup2;, RMSE &amp; mean bias vs spectral period. R&sup2; improves from ~0.30 (short T) to ~0.49 (long T)." data-id="R&sup2;, RMSE &amp; mean bias vs periode spektral. R&sup2; meningkat dari ~0.30 (T pendek) ke ~0.49 (T panjang)."></span></div></div>
-  <div class="fig-card"><img src="figures/fig12_within_factor.png" onclick="openModal(this)"><div class="cap"><b>Fig 12.</b> <span data-en="Within-factor accuracy (&plusmn;0.3, &plusmn;0.5, &plusmn;1.0 log&#8321;&#8320;). 83.3% within &plusmn;1.0 across all periods." data-id="Akurasi within-factor (&plusmn;0.3, &plusmn;0.5, &plusmn;1.0 log&#8321;&#8320;). 83.3% dalam &plusmn;1.0 di semua periode."></span></div></div>
-  <div class="fig-card"><img src="figures/fig13_mag_heatmap.png" onclick="openModal(this)"><div class="cap"><b>Fig 13.</b> <span data-en="Magnitude&ndash;period R&sup2; heatmap. Severe degradation for M &ge; 6.5 reveals saturation limitation." data-id="Heatmap R&sup2; magnitudo&ndash;periode. Degradasi parah untuk M &ge; 6.5 mengungkap limitasi saturasi."></span></div></div>
-  <div class="fig-card"><img src="figures/fig14_obs_vs_pred_qq.png" onclick="openModal(this)"><div class="cap"><b>Fig 14.</b> <span data-en="Observed vs predicted scatter + Q-Q residual normality plot. Near-normal distribution validates log-normal assumption." data-id="Scatter observasi vs prediksi + Q-Q plot normalitas residual. Distribusi mendekati normal memvalidasi asumsi log-normal."></span></div></div>
-  <div class="fig-card"><img src="figures/fig15_distance_bias.png" onclick="openModal(this)"><div class="cap"><b>Fig 15.</b> <span data-en="Distance-dependent bias: severe underprediction at &lt;30 km, well-calibrated beyond 100 km." data-id="Bias tergantung-jarak: underprediksi parah pada &lt;30 km, terkalibrasi baik di atas 100 km."></span></div></div>
+  <div class="fig-card"><img src="figures/fig10_tau_phi_sigma.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 10.</b> <span data-en="Inter/intra-event variability (&tau;, &phi;, &sigma;) vs period — Al Atik et al. (2010) decomposition. &phi; dominates ~70% of total variance." data-id="Variabilitas inter/intra-event (&tau;, &phi;, &sigma;) vs periode — dekomposisi Al Atik et al. (2010). &phi; mendominasi ~70% varians total."></span></div></div>
+  <div class="fig-card"><img src="figures/fig11_r2_rmse_bias.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 11.</b> <span data-en="R&sup2;, RMSE &amp; mean bias vs spectral period. R&sup2; improves from ~0.30 (short T) to ~0.49 (long T)." data-id="R&sup2;, RMSE &amp; mean bias vs periode spektral. R&sup2; meningkat dari ~0.30 (T pendek) ke ~0.49 (T panjang)."></span></div></div>
+  <div class="fig-card"><img src="figures/fig12_within_factor.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 12.</b> <span data-en="Within-factor accuracy (&plusmn;0.3, &plusmn;0.5, &plusmn;1.0 log&#8321;&#8320;). 83.3% within &plusmn;1.0 across all periods." data-id="Akurasi within-factor (&plusmn;0.3, &plusmn;0.5, &plusmn;1.0 log&#8321;&#8320;). 83.3% dalam &plusmn;1.0 di semua periode."></span></div></div>
+  <div class="fig-card"><img src="figures/fig13_mag_heatmap.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 13.</b> <span data-en="Magnitude&ndash;period R&sup2; heatmap. Severe degradation for M &ge; 6.5 reveals saturation limitation." data-id="Heatmap R&sup2; magnitudo&ndash;periode. Degradasi parah untuk M &ge; 6.5 mengungkap limitasi saturasi."></span></div></div>
+  <div class="fig-card"><img src="figures/fig14_obs_vs_pred_qq.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 14.</b> <span data-en="Observed vs predicted scatter + Q-Q residual normality plot. Near-normal distribution validates log-normal assumption." data-id="Scatter observasi vs prediksi + Q-Q plot normalitas residual. Distribusi mendekati normal memvalidasi asumsi log-normal."></span></div></div>
+  <div class="fig-card"><img src="figures/fig15_distance_bias.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 15.</b> <span data-en="Distance-dependent bias: severe underprediction at &lt;30 km, well-calibrated beyond 100 km." data-id="Bias tergantung-jarak: underprediksi parah pada &lt;30 km, terkalibrasi baik di atas 100 km."></span></div></div>
 </div>
 
 <div style="background:#f0f7ff;border:1px solid #d0e3f7;border-radius:8px;padding:14px;margin-top:16px;font-size:12px">
@@ -657,15 +675,15 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 <section id="figures">
 <h2 data-en="Publication Figures" data-id="Gambar Publikasi">Figures</h2>
 <div class="fig-grid">
-  <div class="fig-card"><img src="figures/fig01.png" onclick="openModal(this)"><div class="cap"><b>Fig 1.</b> <span data-en="Study area seismicity map" data-id="Peta seismisitas wilayah studi"></span></div></div>
-  <div class="fig-card"><img src="figures/fig02.png" onclick="openModal(this)"><div class="cap"><b>Fig 2.</b> <span data-en="Dataset overview" data-id="Ringkasan dataset"></span></div></div>
-  <div class="fig-card"><img src="figures/fig03.png" onclick="openModal(this)"><div class="cap"><b>Fig 3.</b> <span data-en="Dual-Stage framework" data-id="Framework Dual-Stage"></span></div></div>
-  <div class="fig-card"><img src="figures/fig04.png" onclick="openModal(this)"><div class="cap"><b>Fig 4.</b> <span data-en="Feature Dichotomy" data-id="Dikotomi Fitur"></span></div></div>
-  <div class="fig-card"><img src="figures/fig05.png" onclick="openModal(this)"><div class="cap"><b>Fig 5.</b> <span data-en="OOF R&sup2; distribution" data-id="Distribusi R&sup2; OOF"></span></div></div>
-  <div class="fig-card"><img src="figures/fig06.png" onclick="openModal(this)"><div class="cap"><b>Fig 6.</b> <span data-en="E2E comparison" data-id="Perbandingan E2E"></span></div></div>
-  <div class="fig-card"><img src="figures/fig07.png" onclick="openModal(this)"><div class="cap"><b>Fig 7.</b> <span data-en="Routing distribution" data-id="Distribusi routing"></span></div></div>
-  <div class="fig-card"><img src="figures/fig08.png" onclick="openModal(this)"><div class="cap"><b>Fig 8.</b> <span data-en="Per-period accuracy" data-id="Akurasi per-periode"></span></div></div>
-  <div class="fig-card"><img src="figures/fig09.png" onclick="openModal(this)"><div class="cap"><b>Fig 9.</b> <span data-en="Golden time constraint" data-id="Batasan golden time"></span></div></div>
+  <div class="fig-card"><img src="figures/fig01.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 1.</b> <span data-en="Study area seismicity map" data-id="Peta seismisitas wilayah studi"></span></div></div>
+  <div class="fig-card"><img src="figures/fig02.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 2.</b> <span data-en="Dataset overview" data-id="Ringkasan dataset"></span></div></div>
+  <div class="fig-card"><img src="figures/fig03.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 3.</b> <span data-en="Dual-Stage framework" data-id="Framework Dual-Stage"></span></div></div>
+  <div class="fig-card"><img src="figures/fig04.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 4.</b> <span data-en="Feature Dichotomy" data-id="Dikotomi Fitur"></span></div></div>
+  <div class="fig-card"><img src="figures/fig05.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 5.</b> <span data-en="OOF R&sup2; distribution" data-id="Distribusi R&sup2; OOF"></span></div></div>
+  <div class="fig-card"><img src="figures/fig06.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 6.</b> <span data-en="E2E comparison" data-id="Perbandingan E2E"></span></div></div>
+  <div class="fig-card"><img src="figures/fig07.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 7.</b> <span data-en="Routing distribution" data-id="Distribusi routing"></span></div></div>
+  <div class="fig-card"><img src="figures/fig08.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 8.</b> <span data-en="Per-period accuracy" data-id="Akurasi per-periode"></span></div></div>
+  <div class="fig-card"><img src="figures/fig09.png" onclick="openFigNarr(this)"><div class="cap"><b>Fig 9.</b> <span data-en="Golden time constraint" data-id="Batasan golden time"></span></div></div>
 </div>
 </section>
 
@@ -708,6 +726,17 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 <div class="r2-popup" style="max-width:550px">
   <button class="close-btn" onclick="document.getElementById('metricPopup').classList.remove('show')">&times;</button>
   <div id="metricPopupContent"></div>
+</div>
+</div>
+
+<!-- Figure Narration Popup -->
+<div class="fig-narr-overlay" id="figNarrOverlay" onclick="if(event.target===this)closeFigNarr()">
+<div class="fig-narr-popup">
+  <button class="close-btn" onclick="closeFigNarr()">&times;</button>
+  <div class="fig-narr-content">
+    <div class="fig-narr-img"><img id="figNarrImg" src=""></div>
+    <div class="fig-narr-text" id="figNarrText"></div>
+  </div>
 </div>
 </div>
 
@@ -895,6 +924,158 @@ window.addEventListener('scroll',()=>{
   sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});
   navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
 });
+
+// ── Figure Narrations ──
+const figNarrations = [
+  {
+    id: 'fig01',
+    title_en: 'Study Area Seismicity Map',
+    title_id: 'Peta Seismisitas Wilayah Studi',
+    narr_en: '<p>This map displays the Sunda subduction zone study area with approximately 388 BMKG accelerograph stations (shown as triangles) and 329 earthquake epicenters (shown as circles, sized proportionally by magnitude ranging from M4.0 to M6.9). The Indo-Australian plate subducts beneath the Eurasian plate at this major plate boundary. Station coverage spans from Sumatra to Papua, with the highest density concentrated along Java and Sumatra, which are the most seismically active regions. This comprehensive spatial distribution ensures that the developed model can be generalized reliably across diverse tectonic environments and station locations within the region.</p>',
+    narr_id: '<p>Peta ini menampilkan wilayah studi zona subduksi Sunda dengan sekitar 388 stasiun akselerograf BMKG (ditunjukkan sebagai segitiga) dan 329 episenter gempa (ditunjukkan sebagai lingkaran, ukuran proporsional terhadap magnitudo berkisar M4.0 hingga M6.9). Lempeng Indo-Australia menunjam di bawah Lempeng Eurasia pada batas lempeng utama ini. Cakupan stasiun membentang dari Sumatra hingga Papua, dengan densitas tertinggi terkonsentrasi di Jawa dan Sumatra, yang merupakan wilayah paling seismis aktif. Distribusi spasial yang komprehensif ini memastikan bahwa model yang dikembangkan dapat digeneralisasi dengan andal di berbagai lingkungan tektonik dan lokasi stasiun dalam wilayah ini.</p>'
+  },
+  {
+    id: 'fig02',
+    title_en: 'Dataset Overview',
+    title_id: 'Ringkasan Dataset',
+    narr_en: '<p>This figure presents the comprehensive composition of the dataset used in this study: 34,033 seismic traces collected from 329 earthquakes recorded across 388 BMKG accelerograph stations. The figure includes detailed distributions of magnitudes, epicentral distances, and depths to characterize the dataset. The predominantly far-field nature of the dataset is notable, with 94.1% of all recordings occurring at distances greater than 100 kilometers from the epicenter. This distribution reflects the operational reality of the offshore Sunda subduction zone seismicity being recorded by BMKG\'s land-based accelerograph network, which creates a naturally distributed dataset ideal for developing and testing early warning algorithms.</p>',
+    narr_id: '<p>Gambar ini menyajikan komposisi komprehensif dari dataset yang digunakan dalam penelitian ini: 34.033 trace seismik yang dikumpulkan dari 329 gempa bumi yang direkam di seluruh 388 stasiun akselerograf BMKG. Gambar mencakup distribusi detail magnitudo, jarak episentral, dan kedalaman untuk mengkarakterisasi dataset. Sifat predominantly far-field dari dataset sangat menonjol, dengan 94,1% dari semua rekaman terjadi pada jarak lebih besar dari 100 kilometer dari episenter. Distribusi ini mencerminkan realitas operasional seismisitas zona subduksi Sunda yang bersifat offshore direkam oleh jaringan akselerograf darat BMKG, yang menciptakan dataset yang terdistribusi secara alami ideal untuk mengembangkan dan menguji algoritma peringatan dini.</p>'
+  },
+  {
+    id: 'fig03',
+    title_en: 'Dual-Stage Framework Architecture',
+    title_id: 'Arsitektur Framework Dual-Stage',
+    narr_en: '<p>This schematic illustrates the complete two-stage pipeline architecture that forms the core of the proposed EEWS system. The pipeline begins with P-wave detection, proceeds through Stage 1 (Intensity Gate at PTW = 2 seconds) which classifies seismic intensity, then advances to Stage 1.5 (Distance estimation) to refine the classification, followed by PTW Routing that determines the optimal observation window. Finally, Stage 2 uses 515 XGBoost models to predict spectral acceleration Sa(T) across all 103 spectral periods. The key innovation shown here is the intensity-driven adaptive windowing approach, which determines the optimal PTW dynamically without requiring explicit earthquake source parameters like magnitude or depth—instead relying purely on observed ground motion characteristics at the sensor.</p>',
+    narr_id: '<p>Diagram ini mengilustrasikan arsitektur pipeline dua-stage lengkap yang membentuk inti dari sistem EEWS yang diusulkan. Pipeline dimulai dengan deteksi gelombang P, berlanjut melalui Stage 1 (Intensity Gate pada PTW = 2 detik) yang mengklasifikasi intensitas seismik, kemudian maju ke Stage 1.5 (perkiraan jarak) untuk menyempurnakan klasifikasi, diikuti oleh PTW Routing yang menentukan jendela observasi optimal. Terakhir, Stage 2 menggunakan 515 model XGBoost untuk memprediksi percepatan spektral Sa(T) di seluruh 103 periode spektral. Inovasi kunci yang ditunjukkan di sini adalah pendekatan windowing adaptif berdasarkan intensitas, yang menentukan PTW optimal secara dinamis tanpa memerlukan parameter sumber gempa eksplisit seperti magnitudo atau kedalaman—sebaliknya mengandalkan murni karakteristik ground motion yang diamati di sensor.</p>'
+  },
+  {
+    id: 'fig04',
+    title_en: 'Feature Dichotomy',
+    title_id: 'Dikotomi Fitur',
+    narr_en: '<p>This analysis displays the importance distribution of 42 P-wave features used in the model, revealing a critical dichotomy between two feature types: Intensity Measures (12 features) and Zhang Distance features (30 features). The figure clearly demonstrates that CVAD (Cumulative Velocity Amplitude Displacement) dominates with 89.5% of importance for Stage 2 Sa(T) prediction, indicating its exceptionally strong predictive power for ground motion estimation. In contrast, the predominant period (τc) emerges as the crucial feature for Stage 1 intensity classification, accounting for 51% of importance in that stage. This feature dichotomy reveals which seismological signal characteristics carry the most predictive power for different aspects of the early warning system and provides insights for feature engineering in future model improvements.</p>',
+    narr_id: '<p>Analisis ini menampilkan distribusi kepentingan dari 42 fitur gelombang-P yang digunakan dalam model, mengungkap dikotomi kritis antara dua jenis fitur: Intensity Measures (12 fitur) dan fitur Zhang Distance (30 fitur). Gambar dengan jelas menunjukkan bahwa CVAD (Cumulative Velocity Amplitude Displacement) mendominasi dengan 89,5% kepentingan untuk prediksi Sa(T) Stage 2, menunjukkan kekuatan prediktifnya yang luar biasa kuat untuk estimasi ground motion. Sebaliknya, periode predominan (τc) muncul sebagai fitur krusial untuk klasifikasi intensitas Stage 1, menyumbang 51% kepentingan dalam tahap itu. Dikotomi fitur ini mengungkap karakteristik sinyal seismologi mana yang membawa kekuatan prediktif terbesar untuk aspek berbeda dari sistem peringatan dini dan memberikan wawasan untuk feature engineering dalam peningkatan model di masa depan.</p>'
+  },
+  {
+    id: 'fig05',
+    title_en: 'OOF R² Distribution',
+    title_id: 'Distribusi R² OOF',
+    narr_en: '<p>This figure shows the out-of-fold R² distribution across all 515 XGBoost models (representing 103 spectral periods multiplied by 5 different PTW windows). The R² values range from a minimum of 0.481 to a maximum of 0.644, with a clear improvement trend at longer structural periods, which is physically consistent with seismic wave propagation theory. The validation was performed using 5-fold GroupKFold cross-validation, where groups are defined by earthquake event source ID, ensuring that no data from the same earthquake leaks between training and validation sets. This conservative validation approach provides reliable generalization estimates and demonstrates that the model performance is not artificially inflated by data leakage.</p>',
+    narr_id: '<p>Gambar ini menunjukkan distribusi R² out-of-fold di seluruh 515 model XGBoost (mewakili 103 periode spektral dikalikan 5 jendela PTW berbeda). Nilai R² berkisar dari minimum 0.481 hingga maksimum 0.644, dengan tren peningkatan yang jelas pada periode struktural yang lebih panjang, yang secara fisik konsisten dengan teori propagasi gelombang seismik. Validasi dilakukan menggunakan 5-fold GroupKFold cross-validation, di mana grup didefinisikan oleh ID sumber kejadian gempa, memastikan bahwa tidak ada data dari gempa yang sama bocor antara set pelatihan dan validasi. Pendekatan validasi konservatif ini memberikan estimasi generalisasi yang andal dan menunjukkan bahwa performa model tidak secara artifisial meningkat oleh kebocoran data.</p>'
+  },
+  {
+    id: 'fig06',
+    title_en: 'E2E Comparison',
+    title_id: 'Perbandingan E2E',
+    narr_en: '<p>This end-to-end comparison demonstrates the performance of the proposed Intensity-Driven Adaptive (IDA) PTW strategy against several fixed PTW strategies (2s, 3s, 4s, 6s, and 8s). The IDA adaptive approach achieves an excellent composite R² of 0.731, which is only 2.7% below the best fixed strategy (Fixed-8s with R² of 0.758). This small gap is not a limitation but rather represents an intentional and well-justified accuracy-safety tradeoff: the IDA strategy prioritizes warning timeliness (faster alerts) and Damaging event recall (correctly identifying dangerous earthquakes) over marginal R² improvements achievable only by waiting for longer observation windows. The results show that IDA provides near-optimal accuracy while maintaining critical real-world constraints.</p>',
+    narr_id: '<p>Perbandingan end-to-end ini mendemonstrasikan performa strategi PTW Intensity-Driven Adaptive (IDA) yang diusulkan terhadap beberapa strategi PTW tetap (2s, 3s, 4s, 6s, dan 8s). Pendekatan adaptif IDA mencapai R² komposit yang sangat baik sebesar 0.731, hanya 2,7% di bawah strategi tetap terbaik (Fixed-8s dengan R² 0.758). Selisih kecil ini bukan keterbatasan melainkan mewakili tradeoff akurasi-keselamatan yang disengaja dan terjustifikasi dengan baik: strategi IDA memprioritaskan ketepatan waktu peringatan (alert lebih cepat) dan recall peristiwa Damaging (mengidentifikasi dengan benar gempa bumi berbahaya) di atas peningkatan R² marginal yang hanya dapat dicapai dengan menunggu jendela observasi lebih panjang. Hasil menunjukkan bahwa IDA menyediakan akurasi near-optimal sambil mempertahankan kendala real-world yang kritis.</p>'
+  },
+  {
+    id: 'fig07',
+    title_en: 'Routing Distribution',
+    title_id: 'Distribusi Routing',
+    narr_en: '<p>This visualization demonstrates how the IDA pipeline routes seismic traces to different PTW windows based on the estimated intensity classification. The vast majority of traces (more than 90%) are classified as Weak intensity and receive the fastest PTW of 2 seconds, enabling rapid alert dissemination. Traces classified as Felt intensity receive progressively longer PTW windows to capture more of the seismic waveform and improve prediction accuracy. The smallest fraction of traces, classified as Damaging intensity, receive the longest PTW windows available. This distribution demonstrates the efficiency and intelligence of intensity-based adaptive routing—by allocating computational resources and observation time proportionally to the hazard level, the system optimizes the critical accuracy-timeliness tradeoff inherent in earthquake early warning.</p>',
+    narr_id: '<p>Visualisasi ini mendemonstrasikan bagaimana pipeline IDA mengarahkan trace seismik ke jendela PTW berbeda berdasarkan klasifikasi intensitas yang diestimasi. Mayoritas besar trace (lebih dari 90%) diklasifikasikan sebagai intensitas Weak dan menerima PTW tercepat 2 detik, memungkinkan disseminasi alert yang cepat. Trace yang diklasifikasikan sebagai intensitas Felt menerima jendela PTW yang secara progresif lebih panjang untuk menangkap lebih banyak gelombang seismik dan meningkatkan akurasi prediksi. Fraksi terkecil dari trace, diklasifikasikan sebagai intensitas Damaging, menerima jendela PTW terpanjang yang tersedia. Distribusi ini mendemonstrasikan efisiensi dan intelijen dari routing adaptif berbasis intensitas—dengan mengalokasikan sumber daya komputasi dan waktu observasi secara proporsional terhadap tingkat bahaya, sistem mengoptimalkan tradeoff akurasi-ketepatan waktu kritis yang inheren dalam early warning gempa bumi.</p>'
+  },
+  {
+    id: 'fig08',
+    title_en: 'Per-Period Accuracy',
+    title_id: 'Akurasi Per-Periode',
+    narr_en: '<p>This comprehensive graph displays the R² performance of the E2E pipeline across all 103 spectral periods (ranging from T = 0.05 to T = 5.0 seconds). A clear and physically meaningful pattern emerges: R² increases from approximately 0.55 at short periods to approximately 0.71 at long periods, following expectations from seismic wave physics. This improvement trend reflects the fact that low-frequency content—which dominates longer structural periods and causes damage to high-rise buildings and long-span bridges—is better captured and reconstructed in early P-wave signal arrivals. The consistent and monotonic improvement with period is highly consistent with findings from the global EEWS literature and validates the physical basis of the modeling approach.</p>',
+    narr_id: '<p>Grafik komprehensif ini menampilkan performa R² pipeline E2E di seluruh 103 periode spektral (berkisar dari T = 0.05 hingga T = 5.0 detik). Pola yang jelas dan bermakna secara fisik muncul: R² meningkat dari sekitar 0.55 pada periode pendek menjadi sekitar 0.71 pada periode panjang, mengikuti ekspektasi dari fisika gelombang seismik. Tren peningkatan ini mencerminkan fakta bahwa konten frekuensi rendah—yang mendominasi periode struktural lebih panjang dan menyebabkan kerusakan pada bangunan tinggi dan jembatan bentang panjang—lebih baik ditangkap dan direkonstruksi dalam sinyal kedatangan gelombang P awal. Peningkatan konsisten dan monoton dengan periode sangat konsisten dengan temuan dari literatur EEWS global dan memvalidasi dasar fisik dari pendekatan pemodelan.</p>'
+  },
+  {
+    id: 'fig09',
+    title_en: 'Golden Time Constraint',
+    title_id: 'Batasan Golden Time',
+    narr_en: '<p>This analysis demonstrates the golden time compliance of the IDA system—a critical metric in earthquake early warning. The golden time is the maximum time window available from P-wave arrival to S-wave arrival at any given station. The IDA system must respect this constraint to ensure that warnings issued based on the predicted Sa(T) are physically valid and achievable. This figure shows how the system balances two competing objectives: warning speed (minimizing time to issue an alert) against prediction accuracy (benefiting from longer observation windows). The system maintains exceptional golden time compliance (over 90.5%) while optimizing per-trace PTW selection, demonstrating that operational feasibility and high accuracy can be achieved simultaneously in practice.</p>',
+    narr_id: '<p>Analisis ini mendemonstrasikan kepatuhan golden time dari sistem IDA—metrik kritis dalam peringatan dini gempa bumi. Golden time adalah jendela waktu maksimum yang tersedia dari kedatangan gelombang P hingga kedatangan gelombang S di stasiun mana pun. Sistem IDA harus menghormati kendala ini untuk memastikan bahwa peringatan yang dikeluarkan berdasarkan prediksi Sa(T) secara fisik valid dan dapat dicapai. Gambar ini menunjukkan bagaimana sistem menyeimbangkan dua objektif yang bersaing: kecepatan peringatan (meminimalkan waktu untuk mengeluarkan alert) terhadap akurasi prediksi (mendapat manfaat dari jendela observasi lebih panjang). Sistem mempertahankan kepatuhan golden time yang luar biasa (lebih dari 90,5%) sambil mengoptimalkan seleksi PTW per-trace, mendemonstrasikan bahwa kelayakan operasional dan akurasi tinggi dapat dicapai secara bersamaan dalam praktik.</p>'
+  },
+  {
+    id: 'fig10_tau_phi_sigma',
+    title_en: 'τ/φ/σ Variability Decomposition',
+    title_id: 'Dekomposisi Variabilitas τ/φ/σ',
+    narr_en: '<p>This figure displays the fundamental decomposition of total aleatory variability (σ) into its two principal components following the widely-adopted Al Atik et al. (2010) framework: inter-event variability (τ), representing source-to-source variation from different earthquakes, and intra-event variability (φ), representing station-to-station and path-dependent variation for the same earthquake. The results show a total standard deviation σ_total of approximately 0.752 in log₁₀ units. The intra-event component φ dominates, accounting for approximately 70% of the total variance. This finding is critically important because it indicates that site-to-site and path variability contribute substantially more uncertainty than source-to-source variation. Consequently, future efforts to reduce prediction uncertainty should prioritize the acquisition of Vs30 (shear wave velocity) data enrichment, which would most effectively reduce the intra-event component and lead to the largest overall improvements in prediction accuracy.</p>',
+    narr_id: '<p>Gambar ini menampilkan dekomposisi fundamental dari total variabilitas aleatorik (σ) menjadi dua komponen prinsipal mengikuti kerangka kerja Al Atik et al. (2010) yang luas diadopsi: variabilitas inter-event (τ), merepresentasikan variasi sumber-ke-sumber dari gempa bumi berbeda, dan variabilitas intra-event (φ), merepresentasikan variasi tapak-ke-tapak dan path-dependent untuk gempa bumi yang sama. Hasil menunjukkan deviasi standar total σ_total sekitar 0.752 dalam unit log₁₀. Komponen intra-event φ mendominasi, menyumbang sekitar 70% dari total varians. Temuan ini sangat penting karena menunjukkan bahwa variabilitas tapak-ke-tapak dan path berkontribusi jauh lebih banyak ketidakpastian daripada variasi sumber-ke-sumber. Akibatnya, upaya masa depan untuk mengurangi ketidakpastian prediksi harus memprioritaskan akuisisi pengayaan data Vs30 (kecepatan gelombang geser), yang akan paling efektif mengurangi komponen intra-event dan menghasilkan peningkatan terbesar dalam akurasi prediksi keseluruhan.</p>'
+  },
+  {
+    id: 'fig11_r2_rmse_bias',
+    title_en: 'R², RMSE & Bias vs Period',
+    title_id: 'R², RMSE & Bias vs Periode',
+    narr_en: '<p>This three-panel visualization presents the period-dependent accuracy metrics of the model: R² (coefficient of determination), RMSE (root mean square error in log₁₀ units), and mean bias. The R² panel shows improvement from approximately 0.30 at short structural periods to approximately 0.49 at long periods. Correspondingly, the RMSE panel shows the inverse relationship—RMSE decreases monotonically from longer observation periods benefit from better low-frequency content capture. The mean bias panel reveals that predictions remain remarkably unbiased across the entire period range, with mean bias staying close to zero (within ±0.05 log₁₀ units), indicating no systematic tendency to consistently over- or under-predict ground motion. This period-dependent improvement follows physical expectations and validates the model\'s applicability across the entire range of earthquake engineering-relevant structural periods.</p>',
+    narr_id: '<p>Visualisasi tiga-panel ini menyajikan metrik akurasi model yang bergantung-periode: R² (koefisien determinasi), RMSE (root mean square error dalam unit log₁₀), dan mean bias. Panel R² menunjukkan peningkatan dari sekitar 0.30 pada periode struktural pendek menjadi sekitar 0.49 pada periode panjang. Sesuai dengan itu, panel RMSE menunjukkan hubungan invers—RMSE menurun secara monoton ketika periode observasi yang lebih panjang mendapat manfaat dari penangkapan konten frekuensi rendah yang lebih baik. Panel mean bias mengungkapkan bahwa prediksi tetap luar biasa unbiased di seluruh rentang periode, dengan mean bias tetap dekat dengan nol (dalam ±0.05 unit log₁₀), menunjukkan tidak ada kecenderungan sistematis untuk secara konsisten over- atau under-predict ground motion. Peningkatan bergantung-periode ini mengikuti ekspektasi fisik dan memvalidasi aplikabilitas model di seluruh rentang periode struktural yang relevan dengan rekayasa gempa.</p>'
+  },
+  {
+    id: 'fig12_within_factor',
+    title_en: 'Within-Factor Accuracy',
+    title_id: 'Akurasi Within-Factor',
+    narr_en: '<p>This bar chart presents the percentage of predictions falling within progressively wider error margins: ±0.3, ±0.5, and ±1.0 in log₁₀ units. The results show that 30.8% of predictions fall within the tightest margin of ±0.3 log₁₀, indicating near-perfect predictions. A much larger fraction, 54.4%, fall within the more practical ±0.5 log₁₀ margin. The vast majority—83.3%—fall within ±1.0 log₁₀, which corresponds to roughly a factor of 10 uncertainty in actual acceleration values (e.g., if observed value is 100 cm/s², predictions range from 10 to 1000 cm/s²). Accuracy is notably higher at longer periods (T > 1.0 s), which is particularly important for earthquake early warning because longer-period spectral acceleration correlates strongly with structural damage in medium and high-rise buildings, the most important targets for emergency response.</p>',
+    narr_id: '<p>Bagan batang ini menyajikan persentase prediksi yang jatuh dalam margin kesalahan yang secara progresif lebih luas: ±0.3, ±0.5, dan ±1.0 dalam unit log₁₀. Hasil menunjukkan bahwa 30,8% prediksi jatuh dalam margin terketat ±0.3 log₁₀, menunjukkan prediksi near-perfect. Fraksi yang jauh lebih besar, 54,4%, jatuh dalam margin ±0.5 log₁₀ yang lebih praktis. Mayoritas luas—83,3%—jatuh dalam ±1.0 log₁₀, yang sesuai dengan ketidakpastian faktor-10 dalam nilai akselerasi aktual (misalnya, jika nilai observasi adalah 100 cm/s², prediksi berkisar dari 10 hingga 1000 cm/s²). Akurasi secara khusus lebih tinggi pada periode lebih panjang (T > 1.0 s), yang sangat penting untuk peringatan dini gempa bumi karena percepatan spektral periode panjang berkorelasi kuat dengan kerusakan struktural pada bangunan menengah dan tinggi, target paling penting untuk respons darurat.</p>'
+  },
+  {
+    id: 'fig13_mag_heatmap',
+    title_en: 'Magnitude-Period R² Heatmap',
+    title_id: 'Heatmap R² Magnitudo-Periode',
+    narr_en: '<p>This heatmap reveals the distribution of R² performance across different magnitude-period combinations and exposes a fundamental limitation of single-station early warning systems: the saturation phenomenon. The model performs excellently for moderate earthquakes (M4.0-6.0), where R² consistently exceeds 0.5 across all structural periods. However, performance degrades severely for larger earthquakes (M ≥ 6.5), with R² values turning negative for M7+, indicating that predictions are worse than simply using the mean value. This is not a modeling failure but rather a fundamental limitation of the physics: early P-wave features at a single station cannot fully represent the total energy release of very large earthquakes. This finding is crucial for practitioners and motivates future research directions including saturation-aware bias corrections and multi-station data fusion, which could mitigate this limitation.</p>',
+    narr_id: '<p>Heatmap ini mengungkap distribusi performa R² di berbagai kombinasi magnitudo-periode dan mengekspos keterbatasan fundamental dari sistem early warning single-station: fenomena saturasi. Model berkinerja sangat baik untuk gempa bumi sedang (M4.0-6.0), di mana R² secara konsisten melebihi 0.5 di seluruh periode struktural. Namun, performa menurun drastis untuk gempa bumi lebih besar (M ≥ 6.5), dengan nilai R² menjadi negatif untuk M7+, menunjukkan bahwa prediksi lebih buruk daripada hanya menggunakan nilai mean. Ini bukan kegagalan pemodelan melainkan keterbatasan fundamental dari fisika: fitur gelombang P awal di single station tidak bisa sepenuhnya merepresentasikan pelepasan energi total dari gempa bumi sangat besar. Temuan ini sangat penting bagi praktisi dan memotivasi arah penelitian masa depan termasuk koreksi bias saturation-aware dan fusi multi-stasiun, yang bisa meringankan keterbatasan ini.</p>'
+  },
+  {
+    id: 'fig14_obs_vs_pred_qq',
+    title_en: 'Observed vs Predicted + Q-Q Plot',
+    title_id: 'Obs vs Pred + Plot Q-Q',
+    narr_en: '<p>This figure contains two complementary diagnostic plots. The left panel presents an observed versus predicted scatter plot for spectral acceleration across all 103 periods, with points generally clustering around the 1:1 reference line, indicating unbiased predictions. However, a characteristic underprediction at extreme high values is visible (representing large earthquakes and near-field stations), which is consistent with the saturation limitation identified in Figure 13. The right panel shows a Q-Q plot of the residuals, comparing their quantiles against a theoretical normal distribution. The residuals approximate a normal distribution with characteristic heavy tails, validating the log-normal statistical framework that is standard in engineering seismology and earthquake hazard modeling. The slight heavy-tail behavior is expected and commonly observed in ground motion prediction models, reflecting the inherent complexity of seismic wave propagation.</p>',
+    narr_id: '<p>Gambar ini berisi dua plot diagnostik yang saling melengkapi. Panel kiri menyajikan plot scatter observed versus predicted untuk percepatan spektral di seluruh 103 periode, dengan titik umumnya berkumpul di sekitar garis referensi 1:1, menunjukkan prediksi unbiased. Namun, underprediksi karakteristik pada nilai ekstrem tinggi terlihat (merepresentasikan gempa bumi besar dan stasiun near-field), yang konsisten dengan keterbatasan saturasi yang diidentifikasi dalam Gambar 13. Panel kanan menunjukkan plot Q-Q dari residual, membandingkan kuantilnya terhadap distribusi normal teoretis. Residual mendekati distribusi normal dengan heavy tails karakteristik, memvalidasi framework statistik log-normal yang standar dalam seismologi rekayasa dan pemodelan bahaya gempa bumi. Perilaku heavy-tail yang sedikit diharapkan dan secara umum diamati dalam model prediksi ground motion, mencerminkan kompleksitas inheren dari propagasi gelombang seismik.</p>'
+  },
+  {
+    id: 'fig15_distance_bias',
+    title_en: 'Distance-Dependent Bias',
+    title_id: 'Bias Tergantung-Jarak',
+    narr_en: '<p>This figure presents the mean bias (defined as log₁₀ predicted minus log₁₀ observed) as a function of source-station distance for several representative structural periods. The results reveal a strong distance dependence in model bias. At very short distances (<30 km, representing near-field recordings), predictions exhibit severe underprediction with bias values ranging from -1.5 to -2.0 log₁₀ units. This is caused by complex near-field effects including directivity (concentrated radiation in particular directions) and hanging-wall effects (asymmetry due to fault rupture direction). Beyond 100 kilometers, where the majority of operational BMKG EEWS recordings occur, the model is remarkably well-calibrated with bias remaining close to zero. This analysis provides concrete, quantitative guidance for future distance-dependent bias correction terms, such as incorporating hanging-wall indicators or distance-scaled feature engineering, which could further improve system performance in scenarios with near-field recordings.</p>',
+    narr_id: '<p>Gambar ini menyajikan mean bias (didefinisikan sebagai log₁₀ prediksi minus log₁₀ observasi) sebagai fungsi jarak sumber-stasiun untuk beberapa periode struktural representatif. Hasil mengungkap ketergantungan jarak yang kuat dalam bias model. Pada jarak sangat pendek (<30 km, merepresentasikan rekaman near-field), prediksi menunjukkan underprediksi parah dengan nilai bias berkisar dari -1.5 hingga -2.0 unit log₁₀. Ini disebabkan oleh efek near-field yang kompleks termasuk directivity (radiasi terkonsentrasi dalam arah tertentu) dan hanging-wall effects (asimetri karena arah ruptur patahan). Di luar 100 kilometer, di mana sebagian besar rekaman EEWS operasional BMKG terjadi, model luar biasa well-calibrated dengan bias tetap dekat dengan nol. Analisis ini memberikan panduan kuantitatif konkret untuk istilah koreksi bias tergantung-jarak masa depan, seperti menggabungkan indikator hanging-wall atau feature engineering berskala-jarak, yang bisa lebih meningkatkan performa sistem dalam skenario dengan rekaman near-field.</p>'
+  }
+];
+
+// ── Figure Narration Functions ──
+function openFigNarr(imgEl){
+  const src=imgEl.src;
+  const filename=src.split('/').pop();
+
+  // Map figure filenames to narration IDs
+  const figMap={
+    'fig01.png':'fig01',
+    'fig02.png':'fig02',
+    'fig03.png':'fig03',
+    'fig04.png':'fig04',
+    'fig05.png':'fig05',
+    'fig06.png':'fig06',
+    'fig07.png':'fig07',
+    'fig08.png':'fig08',
+    'fig09.png':'fig09',
+    'fig10_tau_phi_sigma.png':'fig10_tau_phi_sigma',
+    'fig11_r2_rmse_bias.png':'fig11_r2_rmse_bias',
+    'fig12_within_factor.png':'fig12_within_factor',
+    'fig13_mag_heatmap.png':'fig13_mag_heatmap',
+    'fig14_obs_vs_pred_qq.png':'fig14_obs_vs_pred_qq',
+    'fig15_distance_bias.png':'fig15_distance_bias'
+  };
+
+  const figId=figMap[filename];
+  if(!figId){console.warn('Unknown figure: '+filename);return}
+
+  const narration=figNarrations.find(f=>f.id===figId);
+  if(!narration){console.warn('No narration for: '+figId);return}
+
+  document.getElementById('figNarrImg').src=src;
+  const title=lang==='id'?narration.title_id:narration.title_en;
+  const text=lang==='id'?narration.narr_id:narration.narr_en;
+  document.getElementById('figNarrText').innerHTML='<h2>'+title+'</h2>'+text;
+  document.getElementById('figNarrOverlay').classList.add('show');
+}
+
+function closeFigNarr(){
+  document.getElementById('figNarrOverlay').classList.remove('show');
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFigNarr()});
 
 // ── Chart.js ──
 const periods=[0.0505,0.101,0.1515,0.202,0.2525,0.3,0.303,0.3535,0.404,0.4545,0.5051,0.5556,0.6061,0.6566,0.7071,0.7576,0.8081,0.8586,0.9091,0.9596,1.0,1.0101,1.0606,1.1111,1.1616,1.2121,1.2626,1.3131,1.3636,1.4141,1.4647,1.5151,1.5657,1.6162,1.6667,1.7172,1.7677,1.8182,1.8687,1.9192,1.9697,2.0202,2.0707,2.1212,2.1717,2.2222,2.2727,2.3232,2.3737,2.4242,2.4747,2.5253,2.5758,2.6263,2.6768,2.7273,2.7778,2.8283,2.8788,2.9293,2.9798,3.0,3.0303,3.0808,3.1313,3.1818,3.2323,3.2828,3.3333,3.3838,3.4343,3.4848,3.5354,3.5859,3.6364,3.6869,3.7374,3.7879,3.8384,3.8889,3.9394,3.9899,4.0404,4.0909,4.1414,4.1919,4.2424,4.2929,4.3434,4.3939,4.4444,4.495,4.5454,4.596,4.6465,4.697,4.7475,4.798,4.8485,4.899,4.9495,5.0];
