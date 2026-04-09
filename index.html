@@ -699,10 +699,15 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 <!-- ═══ DOWNLOAD ═══ -->
 <section id="download">
 <h2 data-en="Download Materials" data-id="Unduh Materi">Download</h2>
-<h3 data-en="Manuscript" data-id="Manuskrip">Manuscript</h3>
+<h3 data-en="Manuscript (English)" data-id="Manuskrip (Inggris)">Manuscript (EN)</h3>
+<div class="dl-section" style="margin-bottom:10px">
+  <a class="btn" href="data/MANUSCRIPT_Frontiers_EarthSci_20260410.docx" download data-en="English DOCX (2026-04-10)" data-id="DOCX Inggris (2026-04-10)">EN DOCX</a>
+  <a class="btn btn-o" href="data/MANUSCRIPT_Frontiers_EarthSci_Draft_20260405.md" download data-en="English Markdown" data-id="Markdown Inggris">EN Markdown</a>
+</div>
+<h3 data-en="Manuscript (Indonesian)" data-id="Manuskrip (Indonesia)">Manuscript (ID)</h3>
 <div class="dl-section" style="margin-bottom:16px">
-  <a class="btn" href="data/MANUSCRIPT_Frontiers_EarthSci_20260408.docx" download data-en="Manuscript (DOCX, 2026-04-08)" data-id="Manuskrip (DOCX, 2026-04-08)">Manuscript (DOCX)</a>
-  <a class="btn btn-o" href="data/MANUSCRIPT_Frontiers_EarthSci_Draft_20260405.md" download data-en="Manuscript (Markdown)" data-id="Manuskrip (Markdown)">Manuscript (Markdown)</a>
+  <a class="btn" href="data/MANUSCRIPT_Frontiers_EarthSci_20260410_ID.docx" download data-en="Indonesian DOCX (2026-04-10)" data-id="DOCX Indonesia (2026-04-10)">ID DOCX</a>
+  <a class="btn btn-o" href="data/MANUSCRIPT_Frontiers_EarthSci_Draft_20260405_ID.md" download data-en="Indonesian Markdown" data-id="Markdown Indonesia">ID Markdown</a>
 </div>
 <h3 data-en="Supporting Materials" data-id="Materi Pendukung">Supporting Materials</h3>
 <div class="dl-section">
@@ -912,6 +917,8 @@ function toggleLang(){
     if(t){if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')el.value=t;else el.innerHTML=t}
   });
   document.querySelector('.lang-toggle').textContent=lang==='en'?'ID / EN':'EN / ID';
+  // Reload manuscript in the selected language
+  if(typeof loadManuscript==='function')loadManuscript(lang);
 }
 // Initialize English on page load
 toggleLang();
@@ -1263,22 +1270,32 @@ function showMetricInfo(idx){
   document.getElementById('metricPopup').classList.add('show');
 }
 
-// ── Load and render manuscript ──
-fetch('data/MANUSCRIPT_Frontiers_EarthSci_Draft_20260405.md')
-  .then(r=>r.text())
-  .then(md=>{
-    const el=document.getElementById('manuscript-content');
-    // Render markdown to HTML using marked.js
-    el.innerHTML=marked.parse(md);
-    // Fix image paths to point to figures/
-    el.querySelectorAll('img').forEach(img=>{
-      const src=img.getAttribute('src');
-      if(src&&src.startsWith('figures/'))img.src=src;
+// ── Load and render manuscript (bilingual) ──
+const msFiles={
+  en:'data/MANUSCRIPT_Frontiers_EarthSci_Draft_20260405.md',
+  id:'data/MANUSCRIPT_Frontiers_EarthSci_Draft_20260405_ID.md'
+};
+let msCache={};
+function loadManuscript(l){
+  const el=document.getElementById('manuscript-content');
+  if(msCache[l]){el.innerHTML=msCache[l];return}
+  el.innerHTML='<p style="color:#999;text-align:center">Loading manuscript ('+l.toUpperCase()+')...</p>';
+  fetch(msFiles[l])
+    .then(r=>{if(!r.ok)throw new Error(r.status);return r.text()})
+    .then(md=>{
+      const html=marked.parse(md);
+      msCache[l]=html;
+      el.innerHTML=html;
+      el.querySelectorAll('img').forEach(img=>{
+        const src=img.getAttribute('src');
+        if(src&&src.startsWith('figures/'))img.src=src;
+      });
+    })
+    .catch(err=>{
+      el.innerHTML='<p style="color:red">Failed to load manuscript ('+l.toUpperCase()+'): '+err.message+'</p>';
     });
-  })
-  .catch(err=>{
-    document.getElementById('manuscript-content').innerHTML='<p style="color:red">Failed to load manuscript: '+err.message+'</p>';
-  });
+}
+loadManuscript(lang);
 </script>
 </body>
 </html>
