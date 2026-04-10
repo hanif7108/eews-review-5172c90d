@@ -918,7 +918,7 @@ function toggleLang(){
   });
   document.querySelector('.lang-toggle').textContent=lang==='en'?'ID / EN':'EN / ID';
   // Reload manuscript in the selected language
-  if(typeof loadManuscript==='function')loadManuscript(lang);
+  if(window._msReady)loadManuscript(lang);
 }
 // Initialize English on page load
 toggleLang();
@@ -1295,6 +1295,7 @@ function loadManuscript(l){
       el.innerHTML='<p style="color:red">Failed to load manuscript ('+l.toUpperCase()+'): '+err.message+'</p>';
     });
 }
+window._msReady=true;
 loadManuscript(lang);
 </script>
 </body>
