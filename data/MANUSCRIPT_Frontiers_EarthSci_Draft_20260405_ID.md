@@ -234,15 +234,15 @@ Table 5 menyajikan metrik E2E komposit di seluruh tujuh strategi, dan Figure 6 m
 
 | Strategy | Composite R² | RMSE (log₁₀ m/s²) | ΔR² vs Fixed-3s |
 |:---:|:---:|:---:|:---:|
-| Fixed PTW = 2 s | 0.7454 | 0.5154 | -0.0004 |
-| **Fixed PTW = 3 s (Baseline)** | **0.7458** | **0.5151** | — |
-| Fixed PTW = 4 s | 0.7495 | 0.5113 | +0.0037 |
-| Fixed PTW = 6 s | 0.7517 | 0.5090 | +0.0059 |
-| Fixed PTW = 8 s | 0.7584 | 0.5021 | +0.0126 |
-| IDA-PTW + Distance (Ground Truth) | 0.7311 | 0.5179 | -0.0147 |
-| **IDA-PTW Operational (Predicted)** | **0.7309** | **0.5181** | **-0.0149** |
+| Fixed PTW = 2 s | 0.7309 | 0.5181 | -0.0002 |
+| **Fixed PTW = 3 s (Baseline)** | **0.7311** | **0.5179** | — |
+| Fixed PTW = 4 s | 0.7352 | 0.5140 | +0.0041 |
+| Fixed PTW = 6 s | 0.7372 | 0.5120 | +0.0061 |
+| Fixed PTW = 8 s | 0.7444 | 0.5050 | +0.0133 |
+| IDA-PTW + Distance (Ground Truth) | 0.7311 | 0.5179 | +0.0000 |
+| **IDA-PTW Operational (Predicted)** | **0.7309** | **0.5181** | **-0.0002** |
 
-Penting untuk diperhatikan, nilai R² komposit (0,73–0,76) secara substansial melebihi nilai R² OOF per-model (0,57–0,59) dari Table 4. Ketidaksesuaian yang tampak ini timbul karena R² komposit menggabungkan prediksi di seluruh 103 periode — termasuk nilai Sa periode panjang yang berkorelasi kuat di mana konsistensi antar periode meningkatkan statistik agregat.
+Penting untuk diperhatikan, nilai R² komposit (0,73–0,74) secara substansial melebihi nilai R² OOF per-model (0,57–0,59) dari Table 4. Ketidaksesuaian yang tampak ini timbul karena R² komposit menggabungkan prediksi di seluruh 103 periode — termasuk nilai Sa periode panjang yang berkorelasi kuat di mana konsistensi antar periode meningkatkan statistik agregat.
 
 ![Figure 6. End-to-end composite performance comparison (IDA scenario). The IDA-PTW Operational strategy (orange) achieves competitive R² while prioritizing safety and lead time.](figures/fig06.png)
 
@@ -330,7 +330,7 @@ Paradigma ini menyarankan prinsip desain EEWS yang dapat digeneralisasi: **pisah
 
 ### 4.2 Kecukupan Routing Berbasis Intensitas dan Ketahanan Jarak
 
-Temuan utama adalah bahwa klasifikasi intensitas Tahap 1 saja — tanpa informasi jarak apa pun — sudah memberikan routing jendela PTW yang efektif. Routing hanya intensitas (Lemah → 3 s, Terasa → 4 s, Merusak → 6 s) mencapai R² komposit = 0.7436, yang *lebih tinggi* daripada routing operasional yang mempertimbangkan jarak (R² = 0.7309) dengan ΔR² = +0.013. Ini terjadi karena strategi hanya-intensitas mengkonsentrasikan 94% jejak pada PTW = 3 s — sudah hampir optimal untuk dataset di mana lokasi sumber yang didominasi lepas pantai di zona subduksi Sunda menempatkan sebagian besar jalur sumber-stasiun dalam rezim jauh (94.1% pada D > 100 km, median 384 km), konsisten dengan cakupan operasional jaringan akselerograf berbasis darat BMKG.
+Temuan utama adalah bahwa klasifikasi intensitas Tahap 1 saja — tanpa informasi jarak apa pun — sudah memberikan routing jendela PTW yang efektif. Routing hanya intensitas (Lemah → 3 s, Terasa → 4 s, Merusak → 6 s) mengkonsentrasikan 94% trace pada PTW = 3 s, menghasilkan R² komposit yang efektif setara dengan baseline Fixed 3 s (R² ≈ 0.731) dan routing operasional yang mempertimbangkan jarak (R² = 0.7309, ΔR² < 0.001). Kesetaraan mendekati ini terjadi karena lokasi sumber yang didominasi lepas pantai di zona subduksi Sunda menempatkan sebagian besar jalur sumber-stasiun dalam rezim jauh (94.1% pada D > 100 km, median 384 km), konsisten dengan cakupan operasional jaringan akselerograf berbasis darat BMKG — menjadikan jendela 3 s sudah hampir optimal untuk dataset ini.
 
 Estimator jarak (Tahap 1.5) oleh karena itu tidak meningkatkan akurasi prediksi dalam dataset saat ini; sebaliknya, perannya adalah arsitektural: ia berfungsi sebagai **batasan keselamatan waktu emas** untuk memastikan bahwa PTW yang dipilih tidak pernah melebihi anggaran waktu perjalanan S−P, khususnya untuk peristiwa near-field di mana waktu peringatan paling ketat. Desain saluran modular memungkinkan Tahap 1.5 untuk dilewati tanpa degradasi kinerja dalam penyebaran yang didominasi jauh, sambil tetap tersedia untuk skenario dengan paparan near-field yang signifikan.
 
