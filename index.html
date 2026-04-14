@@ -254,7 +254,148 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
 
 <div class="stage-detail" id="sd0"><h4 data-en="P-wave Detection (PTW = 0 s)" data-id="Deteksi Gelombang-P (PTW = 0 s)">P-wave Detection</h4><p data-en="The system uses GPD (Generalized Phase Detection) deep learning model combined with Baer-Kradolfer picker for precise P-wave onset detection. All subsequent processing begins from this detected arrival time. Features are extracted starting at PTW = 2 s (the earliest usable window)." data-id="Sistem menggunakan model deep learning GPD (Generalized Phase Detection) dikombinasikan dengan picker Baer-Kradolfer untuk deteksi onset gelombang-P yang presisi. Semua pemrosesan selanjutnya dimulai dari waktu kedatangan yang terdeteksi. Fitur diekstrak mulai PTW = 2 s (jendela paling awal yang dapat digunakan)."></p></div>
-<div class="stage-detail" id="sd5"><h4 style="color:#e65100" data-en="Stage 0: Ultra-Rapid P-wave Discriminator (0.5 s)" data-id="Stage 0: Ultra-Rapid P-wave Discriminator (0.5 s)">Stage 0: URPD (0.5s)</h4><p data-en="GBM classifier using 7 P-wave features from only 0.5 s of data, running in parallel with Stage 1. Detects potentially damaging near-field events and issues preliminary warnings before Stage 1 completes. Calibrated on 37,562 BMKG traces with event-grouped 5-fold CV:" data-id="Klasifikasi GBM menggunakan 7 fitur gelombang-P dari hanya 0.5 s data, berjalan paralel dengan Stage 1. Mendeteksi event near-field yang berpotensi merusak dan mengeluarkan peringatan awal sebelum Stage 1 selesai. Dikalibrasi pada 37.562 trace BMKG dengan 5-fold CV berdasar event:"></p><ul style="font-size:12px"><li><b>AUC = 0.988</b> | <b data-en="Balanced mode:" data-id="Mode seimbang:">Balanced:</b> Recall=100%, FAR=1.09%</li><li data-en="Top features: spectral centroid (60.6%), spectral ratio H/L (20.0%), peak acceleration (11.8%)" data-id="Fitur utama: spectral centroid (60.6%), spectral ratio H/L (20.0%), peak acceleration (11.8%)"></li><li data-en="Reduces blind zone: 38 km → 11 km (human) / 4 km (infrastructure)" data-id="Mereduksi zona buta: 38 km → 11 km (manusia) / 4 km (infrastruktur)"></li><li data-en="Dual-recipient model: human (≥1.0 s) vs automated infrastructure (≥0 s)" data-id="Model dual-penerima: manusia (≥1.0 s) vs infrastruktur otomatis (≥0 s)"></li></ul></div>
+<div class="stage-detail" id="sd5" style="background:linear-gradient(135deg,#fff8e1,#fff);border:2px solid #ff9800">
+
+  <h4 style="color:#e65100;font-size:16px;margin-bottom:12px" data-en="⚡ Stage 0: Ultra-Rapid P-wave Discriminator (URPD)" data-id="⚡ Stage 0: Ultra-Rapid P-wave Discriminator (URPD)">⚡ Stage 0: Ultra-Rapid P-wave Discriminator (URPD)</h4>
+
+  <!-- Mengapa Stage 0 diperlukan -->
+  <div style="background:#fff5f5;border-left:4px solid #ef5350;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:14px">
+    <div style="font-weight:700;color:#c62828;font-size:12px;margin-bottom:4px" data-en="🔴 The Problem: Near-Field Blind Zone" data-id="🔴 Masalah: Zona Buta Near-Field">🔴 The Problem</div>
+    <p style="font-size:12px;margin:0;color:#555" data-en="The main pipeline (Stage 1 → Stage 2) requires a <b>5-second time budget</b> (2 s processing + 3 s minimum warning). At epicentral distance D &lt; 38 km, the S-wave arrives before this budget expires &mdash; <b>no warning can be issued</b>. This is critical for Indonesia's active crustal faults near urban centers: Lembang Fault (Bandung, 9M pop.), Opak Fault (Yogyakarta, 3.7M pop.), Sumatran Fault (multi-city)." data-id="Pipeline utama (Stage 1 → Stage 2) membutuhkan <b>anggaran waktu 5 detik</b> (2 s pemrosesan + 3 s peringatan minimum). Pada jarak episentral D &lt; 38 km, gelombang S tiba sebelum anggaran ini habis &mdash; <b>peringatan tidak bisa dikirim</b>. Ini kritis untuk sesar kerak aktif Indonesia dekat pusat kota: Sesar Lembang (Bandung, 9 jt pop.), Sesar Opak (Yogyakarta, 3,7 jt pop.), Sesar Sumatera (multi-kota)."></p>
+  </div>
+
+  <!-- Bagaimana Stage 0 bekerja -->
+  <div style="background:#e8f5e9;border-left:4px solid #4caf50;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:14px">
+    <div style="font-weight:700;color:#2e7d32;font-size:12px;margin-bottom:6px" data-en="✅ The Solution: 0.5-Second Parallel Classifier" data-id="✅ Solusi: Klasifikasi Paralel 0.5 Detik">✅ The Solution</div>
+    <p style="font-size:12px;margin:0 0 10px;color:#555" data-en="Stage 0 runs <b>in parallel</b> with Stage 1, using only <b>0.5 seconds</b> of P-wave data. It answers a single binary question: <i>&quot;Is this earthquake potentially damaging?&quot;</i> If YES, a <b>preliminary warning</b> is issued immediately &mdash; 1.5 seconds before Stage 1 even finishes processing." data-id="Stage 0 berjalan <b>secara paralel</b> dengan Stage 1, menggunakan hanya <b>0.5 detik</b> data gelombang P. Ia menjawab satu pertanyaan biner: <i>&quot;Apakah gempa ini berpotensi merusak?&quot;</i> Jika YA, <b>peringatan awal</b> langsung dikirimkan &mdash; 1.5 detik sebelum Stage 1 selesai memproses."></p>
+    <!-- Flow diagram -->
+    <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px">
+      <span style="background:#fff;padding:4px 10px;border-radius:12px;border:1px solid #c8e6c9">P-arrival (t=0)</span>
+      <span style="color:#999">→</span>
+      <span style="background:#ff9800;color:#fff;padding:4px 10px;border-radius:12px;font-weight:700">Stage 0 (t=0.5s)</span>
+      <span style="color:#999">→</span>
+      <span style="background:#f44336;color:#fff;padding:4px 10px;border-radius:12px;font-weight:700" data-en="⚡ PRELIMINARY WARNING" data-id="⚡ PERINGATAN AWAL">⚡ WARNING</span>
+      <span style="color:#aaa;font-size:10px;padding:0 4px">meanwhile...</span>
+      <span style="background:#e3f2fd;padding:4px 10px;border-radius:12px;border:1px solid #90caf9" data-en="Stage 1 (t=2.0s) confirms/cancels" data-id="Stage 1 (t=2.0s) konfirmasi/batalkan">Stage 1 (t=2.0s) ✓/✗</span>
+    </div>
+  </div>
+
+  <!-- 7 Fitur ML -->
+  <div style="background:#f3e5f5;border-left:4px solid #9c27b0;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:14px">
+    <div style="font-weight:700;color:#6a1b9a;font-size:12px;margin-bottom:6px" data-en="🧠 Machine Learning: 7 P-wave Features" data-id="🧠 Machine Learning: 7 Fitur Gelombang-P">🧠 7 P-wave Features</div>
+    <p style="font-size:12px;margin:0 0 8px;color:#555" data-en="GradientBoosting classifier trained on <b>37,562 BMKG traces</b> (578 events) with event-grouped 5-fold cross-validation. The model uses 7 features extractable within 0.5 s of P-wave onset:" data-id="Klasifikasi GradientBoosting dilatih pada <b>37.562 trace BMKG</b> (578 event) dengan 5-fold cross-validation berdasar kelompok event. Model menggunakan 7 fitur yang dapat diekstrak dalam 0.5 s dari onset gelombang P:"></p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px">
+      <div style="background:#fff;padding:6px 8px;border-radius:6px;border:1px solid #e1bee7">
+        <span style="font-weight:700;color:#6a1b9a" data-en="1. Spectral Centroid" data-id="1. Spectral Centroid">1. Spectral Centroid</span>
+        <span style="float:right;color:#6a1b9a;font-weight:700">60.6%</span>
+      </div>
+      <div style="background:#fff;padding:6px 8px;border-radius:6px;border:1px solid #e1bee7">
+        <span style="font-weight:700;color:#6a1b9a" data-en="2. Spectral Ratio H/L" data-id="2. Spectral Ratio H/L">2. Spectral Ratio H/L</span>
+        <span style="float:right;color:#6a1b9a;font-weight:700">20.0%</span>
+      </div>
+      <div style="background:#fff;padding:6px 8px;border-radius:6px;border:1px solid #e1bee7">
+        <span data-en="3. Log Peak Accel." data-id="3. Log Perc. Puncak">3. Log Peak Accel.</span>
+        <span style="float:right;color:#6a1b9a;font-weight:700">11.8%</span>
+      </div>
+      <div style="background:#fff;padding:6px 8px;border-radius:6px;border:1px solid #e1bee7">
+        <span data-en="4. Spectral Rolloff" data-id="4. Spectral Rolloff">4. Spectral Rolloff</span>
+        <span style="float:right;color:#999">3.2%</span>
+      </div>
+      <div style="background:#fff;padding:6px 8px;border-radius:6px;border:1px solid #e1bee7">
+        <span data-en="5. Log CAV" data-id="5. Log CAV">5. Log CAV</span>
+        <span style="float:right;color:#999">2.5%</span>
+      </div>
+      <div style="background:#fff;padding:6px 8px;border-radius:6px;border:1px solid #e1bee7">
+        <span data-en="6. Average Freq." data-id="6. Frek. Rata-rata">6. Average Freq.</span>
+        <span style="float:right;color:#999">1.1%</span>
+      </div>
+      <div style="background:#fff;padding:6px 8px;border-radius:6px;border:1px solid #e1bee7;grid-column:span 2">
+        <span data-en="7. τ_c (Predominant Period)" data-id="7. τ_c (Periode Predominan)">7. &tau;<sub>c</sub> (Pred. Period)</span>
+        <span style="float:right;color:#999">0.8%</span>
+      </div>
+    </div>
+    <p style="font-size:11px;color:#888;margin:6px 0 0;font-style:italic" data-en="Top 3 features account for 92.4% of importance. Spectral features dominate because they are unit-invariant and distinguishable even in very short windows." data-id="3 fitur teratas menyumbang 92.4% importance. Fitur spektral mendominasi karena invariant terhadap unit dan dapat dibedakan bahkan dalam jendela sangat pendek.">Top 3 = 92.4% importance. Spectral features dominate (unit-invariant, short-window robust).</p>
+  </div>
+
+  <!-- Dual-recipient model -->
+  <div style="background:#e3f2fd;border-left:4px solid #1565c0;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:14px">
+    <div style="font-weight:700;color:#1565c0;font-size:12px;margin-bottom:6px" data-en="👥 Dual-Recipient Warning Model" data-id="👥 Model Peringatan Dual-Penerima">👥 Dual-Recipient Model</div>
+    <p style="font-size:12px;margin:0 0 8px;color:#555" data-en="Different recipients need different warning times. A human needs ≥ 1.0 s to drop-cover-hold. An automated system (gas shutoff, train brake, elevator stop) reacts in milliseconds and needs any warning &gt; 0 s." data-id="Penerima berbeda membutuhkan waktu peringatan berbeda. Manusia membutuhkan ≥ 1.0 s untuk merunduk-berlindung. Sistem otomatis (gas shutoff, rem kereta, lift berhenti) bereaksi dalam milidetik dan membutuhkan peringatan &gt; 0 s apapun."></p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
+      <div style="background:#fff;border-radius:8px;padding:10px;text-align:center;border:1px solid #90caf9">
+        <div style="font-size:11px;color:#888;margin-bottom:2px" data-en="🧑 Human (drop-cover-hold)" data-id="🧑 Manusia (merunduk-berlindung)">🧑 Human</div>
+        <div style="font-size:11px;color:#888" data-en="needs ≥ 1.0 s" data-id="butuh ≥ 1.0 s">needs &ge; 1.0 s</div>
+        <div style="font-size:22px;font-weight:800;color:#2e7d32;margin:4px 0">38 → 11 km</div>
+        <div style="font-size:11px;color:#666" data-en="71% blind zone reduction" data-id="71% reduksi zona buta">71% reduction</div>
+      </div>
+      <div style="background:#fff;border-radius:8px;padding:10px;text-align:center;border:1px solid #90caf9">
+        <div style="font-size:11px;color:#888" data-en="⚙️ Infrastructure (gas/train/elevator)" data-id="⚙️ Infrastruktur (gas/kereta/lift)">⚙️ Infrastructure</div>
+        <div style="font-size:11px;color:#888" data-en="needs > 0 s (reacts in ms)" data-id="butuh > 0 s (reaksi dlm ms)">needs &gt; 0 s</div>
+        <div style="font-size:22px;font-weight:800;color:#1565c0;margin:4px 0">38 → 4 km</div>
+        <div style="font-size:11px;color:#666" data-en="89% blind zone reduction" data-id="89% reduksi zona buta">89% reduction</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabel performa 3 mode -->
+  <div style="background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:12px 14px;margin-bottom:14px">
+    <div style="font-weight:700;color:#333;font-size:12px;margin-bottom:8px" data-en="📊 Calibrated Performance (3 Operating Modes)" data-id="📊 Performa Terkalibrasi (3 Mode Operasi)">📊 3 Operating Modes</div>
+    <table style="width:100%;font-size:11px;border-collapse:collapse">
+      <tr style="background:#e65100;color:#fff">
+        <th style="padding:6px 8px;text-align:left" data-en="Mode" data-id="Mode">Mode</th>
+        <th style="padding:6px 8px">Threshold</th>
+        <th style="padding:6px 8px">Recall</th>
+        <th style="padding:6px 8px">FAR</th>
+        <th style="padding:6px 8px;text-align:left" data-en="Use Case" data-id="Penggunaan">Use Case</th>
+      </tr>
+      <tr style="background:#fafafa">
+        <td style="padding:5px 8px;font-weight:600" data-en="Conservative" data-id="Konservatif">Conservative</td>
+        <td style="padding:5px 8px;text-align:center;font-family:monospace">0.9857</td>
+        <td style="padding:5px 8px;text-align:center">82.0%</td>
+        <td style="padding:5px 8px;text-align:center;font-weight:700;color:#2e7d32">0.02%</td>
+        <td style="padding:5px 8px;font-size:10px" data-en="Low-FAR: public sirens, tsunami" data-id="FAR rendah: sirene publik, tsunami">Low-FAR: public sirens</td>
+      </tr>
+      <tr>
+        <td style="padding:5px 8px;font-weight:700;color:#e65100" data-en="Balanced ★" data-id="Seimbang ★">Balanced ★</td>
+        <td style="padding:5px 8px;text-align:center;font-family:monospace">0.1572</td>
+        <td style="padding:5px 8px;text-align:center;font-weight:700;color:#2e7d32">100.0%</td>
+        <td style="padding:5px 8px;text-align:center">1.09%</td>
+        <td style="padding:5px 8px;font-size:10px" data-en="Recommended: human + infra" data-id="Rekomendasi: manusia + infra">🧑 Human + ⚙️ Infra</td>
+      </tr>
+      <tr style="background:#fafafa">
+        <td style="padding:5px 8px;font-weight:600" data-en="Aggressive" data-id="Agresif">Aggressive</td>
+        <td style="padding:5px 8px;text-align:center;font-family:monospace">0.0177</td>
+        <td style="padding:5px 8px;text-align:center;font-weight:700;color:#2e7d32">100.0%</td>
+        <td style="padding:5px 8px;text-align:center">5.00%</td>
+        <td style="padding:5px 8px;font-size:10px" data-en="Infra only: gas shutoff, train brake" data-id="Infra saja: gas shutoff, rem kereta">⚙️ Gas/Train/Elevator</td>
+      </tr>
+    </table>
+    <p style="font-size:10px;color:#999;margin:6px 0 0" data-en="AUC = 0.988 across all modes. Calibrated on 37,562 traces with event-grouped 5-fold CV (578 events, no event leakage)." data-id="AUC = 0.988 di semua mode. Dikalibrasi pada 37.562 trace dengan 5-fold CV berdasar event (578 event, tanpa kebocoran event).">AUC = 0.988 | 37,562 traces | 578 events | Event-grouped 5-fold CV (no leakage)</p>
+  </div>
+
+  <!-- Contoh Skenario: Cianjur -->
+  <div style="background:#fff8e1;border-left:4px solid #ff9800;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:6px">
+    <div style="font-weight:700;color:#e65100;font-size:12px;margin-bottom:6px" data-en="📍 Real Scenario: M5.6 Cianjur 2022 (D ≈ 15 km)" data-id="📍 Skenario Nyata: M5.6 Cianjur 2022 (D ≈ 15 km)">📍 Scenario: M5.6 Cianjur 2022</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
+      <div style="background:#ffebee;border-radius:6px;padding:8px;text-align:center">
+        <div style="font-size:10px;color:#999;margin-bottom:2px" data-en="Without Stage 0" data-id="Tanpa Stage 0">Without Stage 0</div>
+        <div style="font-size:10px;color:#999">golden = 2.0s, budget = 5.0s</div>
+        <div style="font-size:18px;font-weight:800;color:#c62828" data-en="❌ NO WARNING" data-id="❌ TANPA PERINGATAN">❌ NO WARNING</div>
+        <div style="font-size:10px;color:#999" data-en="D=15 km in blind zone (&lt;38 km)" data-id="D=15 km di zona buta (&lt;38 km)">D=15 km &lt; 38 km blind zone</div>
+      </div>
+      <div style="background:#e8f5e9;border-radius:6px;padding:8px;text-align:center">
+        <div style="font-size:10px;color:#999;margin-bottom:2px" data-en="With Stage 0" data-id="Dengan Stage 0">With Stage 0</div>
+        <div style="font-size:10px;color:#999">golden = 2.0s, budget = 0.5s</div>
+        <div style="font-size:18px;font-weight:800;color:#2e7d32" data-en="✅ 1.5 s WARNING" data-id="✅ 1.5 s PERINGATAN">✅ 1.5 s WARNING</div>
+        <div style="font-size:10px;color:#999" data-en="Enough for drop-cover-hold" data-id="Cukup untuk merunduk-berlindung">Drop-cover-hold ✓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disclaimer zona buta absolut -->
+  <p style="font-size:10px;color:#999;margin:8px 0 0;font-style:italic" data-en="⚠️ At D &lt; 4 km (golden time &lt; 0.5 s), even Stage 0 cannot provide warning. This is the absolute physical limit &mdash; no EEWS technology can overcome it." data-id="⚠️ Pada D &lt; 4 km (golden time &lt; 0.5 s), bahkan Stage 0 tidak bisa memberikan peringatan. Ini adalah batas fisika absolut &mdash; tidak ada teknologi EEWS yang bisa mengatasinya.">⚠️ D &lt; 4 km = absolute blind zone (physical limit, no EEWS can overcome)</p>
+
+</div>
 <div class="stage-detail" id="sd1"><h4 data-en="Stage 1: Intensity Gate Classifier" data-id="Stage 1: Klasifikasi Gerbang Intensitas">Stage 1: Intensity Gate</h4><p data-en="XGBoost classifier using 42 P-wave features at PTW = 2 s. Routes traces into three intensity classes based on PGA thresholds (BMKG ShakeMap):" data-id="Klasifikasi XGBoost menggunakan 42 fitur gelombang-P pada PTW = 2 s. Mengarahkan trace ke tiga kelas intensitas berdasarkan ambang batas PGA (BMKG ShakeMap):"></p><ul><li><b>Weak</b> (PGA &lt; 3.0 Gal, MMI &le; II): 32,001 traces (94.0%)</li><li><b>Felt</b> (3.0 &le; PGA &lt; 62.0 Gal, MMI III-V): 1,931 traces (5.7%)</li><li><b>Damaging</b> (PGA &ge; 62.0 Gal, MMI &ge; VI): 101 traces (0.3%)</li></ul><p data-en="Key feature: &tau;<sub>c</sub> (predominant period) accounts for 51% importance. Its natural saturation at M > 6.5 creates decision boundaries ideal for classification." data-id="Fitur kunci: &tau;<sub>c</sub> (periode predominan) menyumbang 51% importance. Saturasinya yang alami pada M > 6.5 menciptakan batas keputusan yang ideal untuk klasifikasi."></p></div>
 <div class="stage-detail" id="sd2"><h4 data-en="Stage 1.5: Epicentral Distance Estimator" data-id="Stage 1.5: Estimasi Jarak Episentral">Stage 1.5: Distance</h4><p data-en="XGBoost regressor using 30 Zhang et al. (2024) features at PTW = 2 s. Estimates epicentral distance for golden time calculation. Despite modest accuracy (R&sup2; &asymp; 0.10), the pipeline is extremely robust to distance errors (&Delta;R&sup2; = 0.0002 between predicted and perfect distance)." data-id="Regresor XGBoost menggunakan 30 fitur Zhang et al. (2024) pada PTW = 2 s. Mengestimasi jarak episentral untuk perhitungan golden time. Meskipun akurasi sedang (R&sup2; &asymp; 0.10), pipeline sangat robust terhadap error jarak (&Delta;R&sup2; = 0.0002 antara jarak prediksi dan sempurna)."></p></div>
 <div class="stage-detail" id="sd3"><h4 data-en="PTW Routing: Intensity x Distance Lookup" data-id="Routing PTW: Lookup Intensitas x Jarak">PTW Routing</h4><p data-en="The predicted intensity class and distance index a 6x6 lookup table that selects the optimal PTW (2-8 s). The golden time constraint ensures PTW never exceeds the S-wave arrival budget:" data-id="Kelas intensitas dan jarak yang diprediksi mengindeks tabel lookup 6x6 yang memilih PTW optimal (2-8 s). Batasan golden time memastikan PTW tidak melebihi anggaran kedatangan gelombang-S:"></p><p style="text-align:center;margin:8px 0;font-family:serif;font-style:italic">PTW<sub>selected</sub> &le; t<sub>golden</sub>(D&#770;) - t<sub>warn</sub></p><p data-en="where t_golden = D(1/V_S - 1/V_P) and t_warn = 3 s. Default routing: Weak &rarr; 3 s, Felt &rarr; 4 s, Damaging &rarr; 6 s." data-id="di mana t_golden = D(1/V_S - 1/V_P) dan t_warn = 3 s. Routing default: Weak &rarr; 3 s, Felt &rarr; 4 s, Damaging &rarr; 6 s."></p></div>
@@ -1044,7 +1185,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 let activeStage=-1;
 function showStage(n){
   document.querySelectorAll('.stage').forEach((s,i)=>s.classList.toggle('active',i===n));
-  for(let i=0;i<5;i++){const el=document.getElementById('sd'+i);if(el)el.classList.toggle('show',i===n&&activeStage!==n)}
+  var ids=[0,1,2,3,4,5];
+  ids.forEach(function(i){var el=document.getElementById('sd'+i);if(el)el.classList.toggle('show',i===n&&activeStage!==n)});
   activeStage=activeStage===n?-1:n;
 }
 
