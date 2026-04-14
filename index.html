@@ -36,14 +36,14 @@ h3{font-size:15px;color:#333;margin:20px 0 10px}
 .mc .v{font-size:26px;font-weight:700;color:var(--blue)}
 .mc .l{font-size:11px;color:#666;margin-top:2px}
 /* Pipeline */
-.pipeline{display:flex;align-items:flex-start;gap:0;margin:20px 0;overflow-x:auto;padding-bottom:10px}
-.stage{flex:1;min-width:160px;cursor:pointer;transition:all 0.3s}
-.stage .box{background:#fff;border:2px solid var(--border);border-radius:10px;padding:14px;text-align:center;box-shadow:var(--card-shadow);transition:all 0.3s;position:relative}
+.pipeline{display:flex;align-items:flex-start;gap:0;margin:20px 0;padding-bottom:10px}
+.stage{flex:1;min-width:0;cursor:pointer;transition:all 0.3s}
+.stage .box{background:#fff;border:2px solid var(--border);border-radius:10px;padding:10px 6px;text-align:center;box-shadow:var(--card-shadow);transition:all 0.3s;position:relative}
 .stage:hover .box,.stage.active .box{border-color:var(--blue);background:var(--light)}
-.stage .icon{font-size:28px;margin-bottom:6px}
-.stage .name{font-size:13px;font-weight:700;color:var(--blue)}
-.stage .sub{font-size:11px;color:#666;margin-top:4px}
-.arrow{display:flex;align-items:center;padding:0 4px;color:var(--blue);font-size:24px;font-weight:700;flex-shrink:0}
+.stage .icon{font-size:24px;margin-bottom:4px}
+.stage .name{font-size:12px;font-weight:700;color:var(--blue)}
+.stage .sub{font-size:10px;color:#666;margin-top:3px}
+.arrow{display:flex;align-items:center;padding:0 2px;color:var(--blue);font-size:20px;font-weight:700;flex-shrink:0}
 .stage-detail{background:var(--light);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:12px 0;font-size:13px;display:none;animation:fadeIn 0.3s}
 .stage-detail.show{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
@@ -195,44 +195,63 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 <h2 data-en="Interactive Pipeline Diagram" data-id="Diagram Pipeline Interaktif">Interactive Pipeline</h2>
 <p style="font-size:13px;color:#666;margin-bottom:12px" data-en="Click each stage to learn more about its role in the pipeline." data-id="Klik setiap stage untuk mempelajari perannya dalam pipeline.">Click each stage.</p>
 
-<!-- Main sequential pipeline -->
-<div class="pipeline">
-  <div class="stage" onclick="showStage(0)">
-    <div class="box"><div class="icon">🌊</div><div class="name" data-en="P-wave Detection" data-id="Deteksi Gelombang-P">P-wave Detection</div><div class="sub">GPD + Baer-Kradolfer</div></div>
+<!-- Full pipeline with Stage 0 parallel branch -->
+<div style="position:relative;margin:20px 0 12px">
+
+  <!-- Main sequential pipeline -->
+  <div class="pipeline" style="margin:0;position:relative;z-index:2">
+    <div class="stage" onclick="showStage(0)">
+      <div class="box" id="pwave-box"><div class="icon">🌊</div><div class="name" data-en="P-wave Detection" data-id="Deteksi Gelombang-P">P-wave Detection</div><div class="sub">GPD + Baer-Kradolfer</div></div>
+    </div>
+    <div class="arrow">&#8594;</div>
+    <div class="stage" onclick="showStage(1)">
+      <div class="box"><div class="icon">🏷</div><div class="name" data-en="Stage 1: Intensity Gate" data-id="Stage 1: Gerbang Intensitas">Stage 1: Intensity Gate</div><div class="sub">&tau;<sub>c</sub>-dominant (51%) | 2.0s</div></div>
+    </div>
+    <div class="arrow">&#8594;</div>
+    <div class="stage" onclick="showStage(2)">
+      <div class="box"><div class="icon">📏</div><div class="name" data-en="Stage 1.5: Distance" data-id="Stage 1.5: Jarak">Stage 1.5: Distance</div><div class="sub">30 Zhang features</div></div>
+    </div>
+    <div class="arrow">&#8594;</div>
+    <div class="stage" onclick="showStage(3)">
+      <div class="box"><div class="icon">🔀</div><div class="name" data-en="PTW Routing" data-id="Routing PTW">PTW Routing</div><div class="sub" data-en="Intensity x Distance" data-id="Intensitas x Jarak">Intensity x Distance</div></div>
+    </div>
+    <div class="arrow">&#8594;</div>
+    <div class="stage" onclick="showStage(4)">
+      <div class="box"><div class="icon">📊</div><div class="name" data-en="Stage 2: Sa(T) Prediction" data-id="Stage 2: Prediksi Sa(T)">Stage 2: Sa(T)</div><div class="sub">CVAD-dominant (89.5%)</div></div>
+    </div>
   </div>
-  <div class="arrow">&#8594;</div>
-  <div class="stage" onclick="showStage(1)">
-    <div class="box"><div class="icon">🏷</div><div class="name" data-en="Stage 1: Intensity Gate" data-id="Stage 1: Gerbang Intensitas">Stage 1: Intensity Gate</div><div class="sub">&tau;<sub>c</sub>-dominant (51%) | 2.0s</div></div>
+
+  <!-- Stage 0 parallel branch -->
+  <div style="margin:0;padding:14px 18px;background:linear-gradient(135deg,#fff8e1,#fff3e0);border:2px dashed #ff9800;border-radius:12px;cursor:pointer;position:relative;z-index:2" onclick="showStage(5)">
+    <!-- Dashed connector line from P-wave box down to Stage 0 -->
+    <div style="position:absolute;top:-24px;left:80px;width:3px;height:26px;border-left:2.5px dashed #ff9800"></div>
+    <div style="position:absolute;top:-11px;left:24px;font-size:10px;background:#fff3e0;padding:0 8px;color:#e65100;font-weight:700;letter-spacing:0.3px" data-en="⚡ PARALLEL BRANCH from P-wave Detection" data-id="⚡ CABANG PARALEL dari Deteksi Gelombang-P">⚡ PARALLEL BRANCH from P-wave Detection</div>
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <div style="background:#ff9800;color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">⚡</div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-weight:700;color:#e65100;font-size:14px;display:flex;align-items:center;gap:6px">
+          Stage 0: URPD
+          <span style="font-size:10px;font-weight:600;background:#ff9800;color:#fff;padding:2px 10px;border-radius:10px;letter-spacing:0.5px">PARALLEL</span>
+          <span style="font-size:10px;font-weight:600;background:#e65100;color:#fff;padding:2px 10px;border-radius:10px">0.5 s</span>
+        </div>
+        <div style="font-size:12px;color:#795548;margin-top:3px" data-en="Ultra-Rapid P-wave Discriminator → Preliminary warning for near-field events" data-id="Ultra-Rapid P-wave Discriminator → Peringatan awal untuk event near-field">Ultra-Rapid P-wave Discriminator → Preliminary warning for near-field events</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
+        <div style="display:flex;gap:6px">
+          <span style="background:#e8f5e9;color:#2e7d32;padding:4px 10px;border-radius:8px;font-size:11px;font-weight:600" data-en="🧑 Human: 38→11 km" data-id="🧑 Manusia: 38→11 km">🧑 Human: 38→11 km</span>
+          <span style="background:#e3f2fd;color:#1565c0;padding:4px 10px;border-radius:8px;font-size:11px;font-weight:600" data-en="⚙️ Infra: 38→4 km" data-id="⚙️ Infra: 38→4 km">⚙️ Infra: 38→4 km</span>
+        </div>
+        <div style="display:flex;gap:6px;justify-content:flex-end">
+          <span style="background:#fff;color:#e65100;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #ffcc80">AUC 0.988</span>
+          <span style="background:#fff;color:#e65100;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #ffcc80">Recall 100%</span>
+          <span style="background:#fff;color:#e65100;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #ffcc80">FAR 1%</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="arrow">&#8594;</div>
-  <div class="stage" onclick="showStage(2)">
-    <div class="box"><div class="icon">📏</div><div class="name" data-en="Stage 1.5: Distance" data-id="Stage 1.5: Jarak">Stage 1.5: Distance</div><div class="sub">30 Zhang features</div></div>
-  </div>
-  <div class="arrow">&#8594;</div>
-  <div class="stage" onclick="showStage(3)">
-    <div class="box"><div class="icon">🔀</div><div class="name" data-en="PTW Routing" data-id="Routing PTW">PTW Routing</div><div class="sub" data-en="Intensity x Distance" data-id="Intensitas x Jarak">Intensity x Distance</div></div>
-  </div>
-  <div class="arrow">&#8594;</div>
-  <div class="stage" onclick="showStage(4)">
-    <div class="box"><div class="icon">📊</div><div class="name" data-en="Stage 2: Sa(T) Prediction" data-id="Stage 2: Prediksi Sa(T)">Stage 2: Sa(T)</div><div class="sub">CVAD-dominant (89.5%)</div></div>
-  </div>
+
 </div>
 
-<!-- Stage 0 parallel branch (shown below the main pipeline) -->
-<div style="position:relative;margin:-8px 0 16px;padding:12px;background:linear-gradient(135deg,#fff8e1,#fff3e0);border:2px dashed #ff9800;border-radius:10px" onclick="showStage(5)">
-  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;cursor:pointer">
-    <div style="font-size:22px">⚡</div>
-    <div>
-      <div style="font-weight:700;color:#e65100;font-size:13px" data-en="Stage 0: URPD (runs PARALLEL with Stage 1)" data-id="Stage 0: URPD (berjalan PARALEL dengan Stage 1)">Stage 0: URPD <span style="font-size:11px;font-weight:400;background:#ff9800;color:#fff;padding:2px 8px;border-radius:10px;margin-left:4px">PARALLEL</span></div>
-      <div style="font-size:11px;color:#795548;margin-top:2px" data-en="0.5s processing → Preliminary warning for near-field D &lt; 38 km | AUC = 0.988 | Recall = 100% @ 1% FAR" data-id="0.5s pemrosesan → Peringatan awal untuk near-field D &lt; 38 km | AUC = 0.988 | Recall = 100% @ 1% FAR">0.5s → Preliminary warning | AUC=0.988 | Recall=100% @ 1% FAR</div>
-    </div>
-    <div style="margin-left:auto;display:flex;gap:6px">
-      <span style="background:#e8f5e9;color:#2e7d32;padding:3px 8px;border-radius:8px;font-size:10px;font-weight:600" data-en="🧑 Human: 38→11 km" data-id="🧑 Manusia: 38→11 km">🧑 38→11km</span>
-      <span style="background:#e3f2fd;color:#1565c0;padding:3px 8px;border-radius:8px;font-size:10px;font-weight:600" data-en="⚙️ Infra: 38→4 km" data-id="⚙️ Infra: 38→4 km">⚙️ 38→4km</span>
-    </div>
-  </div>
-  <div style="position:absolute;top:-14px;left:20px;font-size:10px;background:#fff3e0;padding:0 6px;color:#e65100;font-weight:600" data-en="↳ branches from P-wave Detection" data-id="↳ bercabang dari Deteksi Gelombang-P">↳ branches from P-wave Detection</div>
-</div>
 
 <div class="stage-detail" id="sd0"><h4 data-en="P-wave Detection (PTW = 0 s)" data-id="Deteksi Gelombang-P (PTW = 0 s)">P-wave Detection</h4><p data-en="The system uses GPD (Generalized Phase Detection) deep learning model combined with Baer-Kradolfer picker for precise P-wave onset detection. All subsequent processing begins from this detected arrival time. Features are extracted starting at PTW = 2 s (the earliest usable window)." data-id="Sistem menggunakan model deep learning GPD (Generalized Phase Detection) dikombinasikan dengan picker Baer-Kradolfer untuk deteksi onset gelombang-P yang presisi. Semua pemrosesan selanjutnya dimulai dari waktu kedatangan yang terdeteksi. Fitur diekstrak mulai PTW = 2 s (jendela paling awal yang dapat digunakan)."></p></div>
 <div class="stage-detail" id="sd5"><h4 style="color:#e65100" data-en="Stage 0: Ultra-Rapid P-wave Discriminator (0.5 s)" data-id="Stage 0: Ultra-Rapid P-wave Discriminator (0.5 s)">Stage 0: URPD (0.5s)</h4><p data-en="GBM classifier using 7 P-wave features from only 0.5 s of data, running in parallel with Stage 1. Detects potentially damaging near-field events and issues preliminary warnings before Stage 1 completes. Calibrated on 37,562 BMKG traces with event-grouped 5-fold CV:" data-id="Klasifikasi GBM menggunakan 7 fitur gelombang-P dari hanya 0.5 s data, berjalan paralel dengan Stage 1. Mendeteksi event near-field yang berpotensi merusak dan mengeluarkan peringatan awal sebelum Stage 1 selesai. Dikalibrasi pada 37.562 trace BMKG dengan 5-fold CV berdasar event:"></p><ul style="font-size:12px"><li><b>AUC = 0.988</b> | <b data-en="Balanced mode:" data-id="Mode seimbang:">Balanced:</b> Recall=100%, FAR=1.09%</li><li data-en="Top features: spectral centroid (60.6%), spectral ratio H/L (20.0%), peak acceleration (11.8%)" data-id="Fitur utama: spectral centroid (60.6%), spectral ratio H/L (20.0%), peak acceleration (11.8%)"></li><li data-en="Reduces blind zone: 38 km → 11 km (human) / 4 km (infrastructure)" data-id="Mereduksi zona buta: 38 km → 11 km (manusia) / 4 km (infrastruktur)"></li><li data-en="Dual-recipient model: human (≥1.0 s) vs automated infrastructure (≥0 s)" data-id="Model dual-penerima: manusia (≥1.0 s) vs infrastruktur otomatis (≥0 s)"></li></ul></div>
