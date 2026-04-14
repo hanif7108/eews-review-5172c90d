@@ -920,6 +920,154 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <b style="color:#2e7d32" data-en="Key Insight:" data-id="Insight Utama:">Key Insight:</b>
   <span data-en="Stage 0 distinguishes two warning recipients: <b>humans</b> (need ≥1.0 s for protective action) and <b>automated infrastructure</b> (gas shutoff ~100 ms, train brake ~200 ms, elevator stop ~500 ms). Even at D = 5–10 km where human warning is impossible, sub-second alerts can still trigger gas pipeline shutoff and train emergency braking — potentially preventing secondary disasters (fires, derailments) after the earthquake." data-id="Stage 0 membedakan dua penerima peringatan: <b>manusia</b> (butuh ≥1.0 s untuk aksi protektif) dan <b>infrastruktur otomatis</b> (gas shutoff ~100 ms, rem kereta ~200 ms, lift berhenti ~500 ms). Bahkan pada D = 5–10 km di mana peringatan untuk manusia mustahil, alert sub-detik tetap bisa memicu penutupan pipa gas dan pengereman darurat kereta — berpotensi mencegah bencana sekunder (kebakaran, anjloknya kereta) setelah gempa."></span>
 </div>
+
+<!-- ═══ REAL EARTHQUAKE VALIDATION ═══ -->
+<h3 style="margin-top:24px;margin-bottom:12px" data-en="Real Earthquake Validation (3 Major West Java Events)" data-id="Validasi Gempa Nyata (3 Gempa Besar Jawa Barat)">Real Earthquake Validation</h3>
+<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="Stage 0 GBM classifier validated on independent BMKG strong-motion recordings from three recent destructive earthquakes. 0.5 s of P-wave data extracted from each station's vertical component." data-id="Klasifikasi GBM Stage 0 divalidasi pada rekaman strong-motion BMKG independen dari tiga gempa destruktif terkini. 0.5 s data gelombang P diekstrak dari komponen vertikal setiap stasiun."></p>
+
+<!-- Summary comparison table -->
+<table style="width:100%;font-size:12px;border-collapse:collapse;margin-bottom:16px">
+  <tr style="background:var(--blue);color:#fff">
+    <th style="padding:8px;text-align:left" data-en="Event" data-id="Gempa">Event</th>
+    <th style="padding:8px" data-en="Type" data-id="Tipe">Type</th>
+    <th style="padding:8px" data-en="Depth" data-id="Kedalaman">Depth</th>
+    <th style="padding:8px" data-en="Stations" data-id="Stasiun">Stations</th>
+    <th style="padding:8px" data-en="Near-field" data-id="Near-field">Near-field</th>
+    <th style="padding:8px" data-en="Balanced Detection" data-id="Deteksi Balanced">Balanced</th>
+    <th style="padding:8px" data-en="P(dmg) mean" data-id="P(dmg) rerata">P(dmg)</th>
+  </tr>
+  <tr style="background:#fff3e0">
+    <td style="padding:6px 8px;font-weight:700">M5.6 Cianjur 2022</td>
+    <td style="padding:6px 8px;text-align:center" data-en="Shallow crustal" data-id="Kerak dangkal">Crustal</td>
+    <td style="padding:6px 8px;text-align:center">~10 km</td>
+    <td style="padding:6px 8px;text-align:center">98</td>
+    <td style="padding:6px 8px;text-align:center;font-weight:700">13</td>
+    <td style="padding:6px 8px;text-align:center;font-weight:700;color:#2e7d32">13/13 (100%)</td>
+    <td style="padding:6px 8px;text-align:center">0.530</td>
+  </tr>
+  <tr>
+    <td style="padding:6px 8px;font-weight:700">M5.7 Sumedang 2023</td>
+    <td style="padding:6px 8px;text-align:center" data-en="Shallow crustal" data-id="Kerak dangkal">Crustal</td>
+    <td style="padding:6px 8px;text-align:center">~10 km</td>
+    <td style="padding:6px 8px;text-align:center">241</td>
+    <td style="padding:6px 8px;text-align:center;font-weight:700">10</td>
+    <td style="padding:6px 8px;text-align:center;font-weight:700;color:#2e7d32">10/10 (100%)</td>
+    <td style="padding:6px 8px;text-align:center">0.833</td>
+  </tr>
+  <tr style="background:#e3f2fd">
+    <td style="padding:6px 8px;font-weight:700">M6.2 Garut 2024</td>
+    <td style="padding:6px 8px;text-align:center" data-en="Deep subduction" data-id="Subduksi dalam">Subduction</td>
+    <td style="padding:6px 8px;text-align:center">68 km</td>
+    <td style="padding:6px 8px;text-align:center">162</td>
+    <td style="padding:6px 8px;text-align:center;color:#999" data-en="0 (offshore)" data-id="0 (lepas pantai)">0</td>
+    <td style="padding:6px 8px;text-align:center" data-en="N/A (all far-field)" data-id="N/A (semua far-field)">67% far-field</td>
+    <td style="padding:6px 8px;text-align:center">0.387</td>
+  </tr>
+</table>
+
+<!-- Three earthquake detail cards -->
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px">
+
+  <!-- Cianjur card -->
+  <div style="background:#fff8e1;border:2px solid #ff9800;border-radius:10px;padding:14px">
+    <div style="font-weight:700;color:#e65100;font-size:13px;margin-bottom:8px">M5.6 Cianjur</div>
+    <div style="font-size:11px;color:#666;margin-bottom:8px">21 Nov 2022 &bull; Depth ~10 km</div>
+    <div style="text-align:center;margin:8px 0">
+      <div style="font-size:32px;font-weight:800;color:#2e7d32">100%</div>
+      <div style="font-size:11px;color:#666" data-en="13/13 near-field detected" data-id="13/13 near-field terdeteksi">13/13 near-field</div>
+    </div>
+    <div style="font-size:11px;color:#555;margin-top:8px">
+      <div style="margin-bottom:3px" data-en="🟡 13 stations RESCUED (D=8-34 km)" data-id="🟡 13 stasiun DISELAMATKAN (D=8-34 km)">🟡 13 stations rescued</div>
+      <div style="margin-bottom:3px" data-en="⏱ Warning: 0.5-4.0 s" data-id="⏱ Peringatan: 0.5-4.0 s">⏱ Warning: 0.5–4.0 s</div>
+      <div data-en="📍 Closest: CCJM (8 km) → 0.5s ⚙️" data-id="📍 Terdekat: CCJM (8 km) → 0.5s ⚙️">📍 CCJM (8 km) → 0.5s</div>
+    </div>
+  </div>
+
+  <!-- Sumedang card -->
+  <div style="background:#fff8e1;border:2px solid #ff9800;border-radius:10px;padding:14px">
+    <div style="font-weight:700;color:#e65100;font-size:13px;margin-bottom:8px">M5.7 Sumedang</div>
+    <div style="font-size:11px;color:#666;margin-bottom:8px">31 Dec 2023 &bull; Depth ~10 km</div>
+    <div style="text-align:center;margin:8px 0">
+      <div style="font-size:32px;font-weight:800;color:#2e7d32">100%</div>
+      <div style="font-size:11px;color:#666" data-en="10/10 near-field detected" data-id="10/10 near-field terdeteksi">10/10 near-field</div>
+    </div>
+    <div style="font-size:11px;color:#555;margin-top:8px">
+      <div style="margin-bottom:3px" data-en="🟡 10 stations RESCUED (D=5-33 km)" data-id="🟡 10 stasiun DISELAMATKAN (D=5-33 km)">🟡 10 stations rescued</div>
+      <div style="margin-bottom:3px" data-en="⏱ Warning: 0.1-3.8 s" data-id="⏱ Peringatan: 0.1-3.8 s">⏱ Warning: 0.1–3.8 s</div>
+      <div data-en="📍 Closest: CSJM (5 km) → 0.1s ⚙️" data-id="📍 Terdekat: CSJM (5 km) → 0.1s ⚙️">📍 CSJM (5 km) → 0.1s</div>
+    </div>
+  </div>
+
+  <!-- Garut card -->
+  <div style="background:#e3f2fd;border:2px solid #90caf9;border-radius:10px;padding:14px">
+    <div style="font-weight:700;color:#1565c0;font-size:13px;margin-bottom:8px">M6.2 Garut</div>
+    <div style="font-size:11px;color:#666;margin-bottom:8px">27 Apr 2024 &bull; Depth 68 km</div>
+    <div style="text-align:center;margin:8px 0">
+      <div style="font-size:32px;font-weight:800;color:#1565c0">67%</div>
+      <div style="font-size:11px;color:#666" data-en="far-field trigger (no blind zone)" data-id="trigger far-field (tanpa zona buta)">far-field trigger</div>
+    </div>
+    <div style="font-size:11px;color:#555;margin-top:8px">
+      <div style="margin-bottom:3px" data-en="🟢 All stations D > 150 km" data-id="🟢 Semua stasiun D > 150 km">🟢 All D > 150 km</div>
+      <div style="margin-bottom:3px" data-en="🌊 Offshore subduction event" data-id="🌊 Gempa subduksi lepas pantai">🌊 Offshore subduction</div>
+      <div data-en="📊 Peak PGA: 60.8 Gal (CCJM)" data-id="📊 PGA puncak: 60.8 Gal (CCJM)">📊 PGA: 60.8 Gal peak</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Detailed rescued stations -->
+<div style="background:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:16px;margin-bottom:16px">
+  <div style="font-weight:700;font-size:13px;margin-bottom:10px" data-en="🟡 Rescued Stations: Without Stage 0 → With Stage 0" data-id="🟡 Stasiun Diselamatkan: Tanpa Stage 0 → Dengan Stage 0">🟡 Rescued Stations Detail</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <!-- Cianjur rescued -->
+    <div>
+      <div style="font-weight:600;font-size:12px;color:#e65100;margin-bottom:6px">Cianjur M5.6 (13 stations)</div>
+      <table style="width:100%;font-size:10px;border-collapse:collapse">
+        <tr style="background:#e65100;color:#fff"><th style="padding:3px 4px">Station</th><th style="padding:3px 4px">D</th><th style="padding:3px 4px">P(dmg)</th><th style="padding:3px 4px" data-en="Stage 1" data-id="Stage 1">S1</th><th style="padding:3px 4px" data-en="Stage 0" data-id="Stage 0">S0</th></tr>
+        <tr style="background:#fff3e0"><td style="padding:2px 4px">CCJM</td><td style="padding:2px 4px">8 km</td><td style="padding:2px 4px">0.288</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#e65100">⚙️ 0.5s</td></tr>
+        <tr><td style="padding:2px 4px">CIJM</td><td style="padding:2px 4px">9 km</td><td style="padding:2px 4px">0.683</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#e65100">⚙️ 0.7s</td></tr>
+        <tr style="background:#fff3e0"><td style="padding:2px 4px">CBJM</td><td style="padding:2px 4px">9 km</td><td style="padding:2px 4px">0.501</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#e65100">⚙️ 0.7s</td></tr>
+        <tr><td style="padding:2px 4px">CBJR</td><td style="padding:2px 4px">11 km</td><td style="padding:2px 4px">0.409</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#e65100">⚙️ 1.0s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">CPJR</td><td style="padding:2px 4px">13 km</td><td style="padding:2px 4px">0.251</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 1.2s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">CIJI</td><td style="padding:2px 4px">14 km</td><td style="padding:2px 4px;font-weight:700">0.999</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 1.4s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">CWJM</td><td style="padding:2px 4px">18 km</td><td style="padding:2px 4px;font-weight:700">0.995</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 1.9s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">BBJR</td><td style="padding:2px 4px">30 km</td><td style="padding:2px 4px">0.315</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 3.4s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">BALB</td><td style="padding:2px 4px">34 km</td><td style="padding:2px 4px">0.409</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 4.0s</td></tr>
+      </table>
+      <div style="font-size:9px;color:#999;margin-top:2px" data-en="+ 4 more rescued stations (CLJR, CGJR, BALE, BSJR)" data-id="+ 4 stasiun lain diselamatkan">+ 4 more stations</div>
+    </div>
+
+    <!-- Sumedang rescued -->
+    <div>
+      <div style="font-weight:600;font-size:12px;color:#e65100;margin-bottom:6px">Sumedang M5.7 (10 stations)</div>
+      <table style="width:100%;font-size:10px;border-collapse:collapse">
+        <tr style="background:#e65100;color:#fff"><th style="padding:3px 4px">Station</th><th style="padding:3px 4px">D</th><th style="padding:3px 4px">P(dmg)</th><th style="padding:3px 4px" data-en="Stage 1" data-id="Stage 1">S1</th><th style="padding:3px 4px" data-en="Stage 0" data-id="Stage 0">S0</th></tr>
+        <tr style="background:#fff3e0"><td style="padding:2px 4px">CSJM</td><td style="padding:2px 4px">5 km</td><td style="padding:2px 4px;font-weight:700">0.995</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#e65100">⚙️ 0.1s</td></tr>
+        <tr><td style="padding:2px 4px">CSJR</td><td style="padding:2px 4px">11 km</td><td style="padding:2px 4px;font-weight:700">0.993</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#e65100">⚙️ 1.0s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">KCJR</td><td style="padding:2px 4px">13 km</td><td style="padding:2px 4px;font-weight:700">0.988</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 1.3s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">CCJR</td><td style="padding:2px 4px">15 km</td><td style="padding:2px 4px">0.679</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 1.4s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">WGJR</td><td style="padding:2px 4px">15 km</td><td style="padding:2px 4px;font-weight:700">0.992</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 1.5s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">SCJM</td><td style="padding:2px 4px">17 km</td><td style="padding:2px 4px;font-weight:700">0.995</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 1.7s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">MGJR</td><td style="padding:2px 4px">22 km</td><td style="padding:2px 4px;font-weight:700">0.998</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 2.4s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">SPJR</td><td style="padding:2px 4px">23 km</td><td style="padding:2px 4px">0.409</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 2.5s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">LPJR</td><td style="padding:2px 4px">31 km</td><td style="padding:2px 4px">0.288</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 3.6s</td></tr>
+        <tr style="background:#fffde7"><td style="padding:2px 4px">GBJR</td><td style="padding:2px 4px">33 km</td><td style="padding:2px 4px;font-weight:700">0.997</td><td style="padding:2px 4px;color:#c62828">❌</td><td style="padding:2px 4px;color:#2e7d32;font-weight:700">✅ 3.8s</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Conclusion box -->
+<div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border:2px solid #4caf50;border-radius:10px;padding:16px;margin-top:12px">
+  <div style="font-weight:700;font-size:13px;color:#1b5e20;margin-bottom:8px" data-en="✅ Validation Conclusion" data-id="✅ Kesimpulan Validasi">✅ Validation Conclusion</div>
+  <div style="font-size:12px;color:#333">
+    <p style="margin:0 0 6px" data-en="Stage 0 achieved <b>100% detection</b> on all 23 near-field stations across both shallow crustal earthquakes (Cianjur + Sumedang) in Balanced mode. These 23 stations would have received <b>zero warning</b> from Stage 1 alone." data-id="Stage 0 mencapai <b>deteksi 100%</b> pada seluruh 23 stasiun near-field di kedua gempa kerak dangkal (Cianjur + Sumedang) dalam mode Balanced. Ke-23 stasiun ini tidak akan mendapat <b>peringatan apapun</b> dari Stage 1 saja."></p>
+    <p style="margin:0 0 6px" data-en="The Garut M6.2 deep subduction event confirms Stage 0 is <b>non-disruptive</b> for distant events — the main pipeline already provides 15-20 s of warning time." data-id="Gempa subduksi dalam M6.2 Garut mengonfirmasi Stage 0 bersifat <b>non-disruptif</b> untuk gempa jauh — pipeline utama sudah menyediakan 15-20 s waktu peringatan."></p>
+    <p style="margin:0;font-weight:600" data-en="Stage 0 is most critical precisely where it matters most: shallow crustal earthquakes near urban centers (Lembang, Opak, Sumatran Fault scenarios)." data-id="Stage 0 paling kritis tepat di mana ia paling dibutuhkan: gempa kerak dangkal dekat pusat perkotaan (skenario Sesar Lembang, Opak, Sumatera)."></p>
+  </div>
+</div>
+
 </section>
 
 <!-- ═══ COMPREHENSIVE PERFORMANCE METRICS (Dai et al. 2024) ═══ -->
