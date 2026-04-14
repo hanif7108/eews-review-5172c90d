@@ -264,59 +264,131 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 <h2 data-en="Interactive Pipeline Diagram" data-id="Diagram Pipeline Interaktif">Interactive Pipeline</h2>
 <p style="font-size:13px;color:#666;margin-bottom:12px" data-en="Click each stage to learn more about its role in the pipeline." data-id="Klik setiap stage untuk mempelajari perannya dalam pipeline.">Click each stage.</p>
 
-<!-- Full pipeline with Stage 0 parallel branch -->
-<div style="position:relative;margin:20px 0 12px">
+<!-- Simplified Pipeline Diagram -->
+<div style="margin:20px 0 12px">
 
-  <!-- Main sequential pipeline -->
-  <div class="pipeline" style="margin:0;position:relative;z-index:2">
-    <div class="stage" onclick="showStage(0)">
+  <!-- ROW 1: P-wave Detection (entry point) -->
+  <div style="text-align:center;margin-bottom:0">
+    <div class="stage" onclick="showStage(0)" style="display:inline-block;max-width:220px">
       <div class="box" id="pwave-box"><div class="icon">🌊</div><div class="name" data-en="P-wave Detection" data-id="Deteksi Gelombang-P">P-wave Detection</div><div class="sub">GPD + Baer-Kradolfer</div></div>
-    </div>
-    <div class="arrow">&#8594;</div>
-    <div class="stage" onclick="showStage(1)">
-      <div class="box"><div class="icon">🏷</div><div class="name" data-en="Stage 1: Intensity Gate" data-id="Stage 1: Gerbang Intensitas">Stage 1: Intensity Gate</div><div class="sub">&tau;<sub>c</sub>-dominant (51%) | 2.0s</div></div>
-    </div>
-    <div class="arrow">&#8594;</div>
-    <div class="stage" onclick="showStage(2)">
-      <div class="box"><div class="icon">📏</div><div class="name" data-en="Stage 1.5: Distance" data-id="Stage 1.5: Jarak">Stage 1.5: Distance</div><div class="sub">30 Zhang features</div></div>
-    </div>
-    <div class="arrow">&#8594;</div>
-    <div class="stage" onclick="showStage(3)">
-      <div class="box"><div class="icon">🔀</div><div class="name" data-en="PTW Routing" data-id="Routing PTW">PTW Routing</div><div class="sub" data-en="Intensity x Distance" data-id="Intensitas x Jarak">Intensity x Distance</div></div>
-    </div>
-    <div class="arrow">&#8594;</div>
-    <div class="stage" onclick="showStage(4)">
-      <div class="box"><div class="icon">📊</div><div class="name" data-en="Stage 2: Sa(T) Prediction" data-id="Stage 2: Prediksi Sa(T)">Stage 2: Sa(T)</div><div class="sub">CVAD-dominant (89.5%)</div></div>
     </div>
   </div>
 
-  <!-- Stage 0 parallel branch -->
-  <div style="margin:0;padding:14px 18px;background:linear-gradient(135deg,#fff8e1,#fff3e0);border:2px dashed #ff9800;border-radius:12px;cursor:pointer;position:relative;z-index:2" onclick="showStage(5)">
-    <!-- Dashed connector line from P-wave box down to Stage 0 -->
-    <div style="position:absolute;top:-24px;left:80px;width:3px;height:26px;border-left:2.5px dashed #ff9800"></div>
-    <div style="position:absolute;top:-11px;left:24px;font-size:10px;background:#fff3e0;padding:0 8px;color:#e65100;font-weight:700;letter-spacing:0.3px" data-en="⚡ PARALLEL BRANCH from P-wave Detection" data-id="⚡ CABANG PARALEL dari Deteksi Gelombang-P">⚡ PARALLEL BRANCH from P-wave Detection</div>
-    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-      <div style="background:#ff9800;color:#fff;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">⚡</div>
-      <div style="flex:1;min-width:200px">
-        <div style="font-weight:700;color:#e65100;font-size:14px;display:flex;align-items:center;gap:6px">
-          Stage 0: URPD
-          <span style="font-size:10px;font-weight:600;background:#ff9800;color:#fff;padding:2px 10px;border-radius:10px;letter-spacing:0.5px">PARALLEL</span>
-          <span style="font-size:10px;font-weight:600;background:#e65100;color:#fff;padding:2px 10px;border-radius:10px">0.5 s</span>
-        </div>
-        <div style="font-size:12px;color:#795548;margin-top:3px" data-en="Ultra-Rapid P-wave Discriminator → Preliminary warning for near-field events" data-id="Ultra-Rapid P-wave Discriminator → Peringatan awal untuk event near-field">Ultra-Rapid P-wave Discriminator → Preliminary warning for near-field events</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
-        <div style="display:flex;gap:6px">
-          <span style="background:#e8f5e9;color:#2e7d32;padding:4px 10px;border-radius:8px;font-size:11px;font-weight:600" data-en="🧑 Human: 38→11 km" data-id="🧑 Manusia: 38→11 km">🧑 Human: 38→11 km</span>
-          <span style="background:#e3f2fd;color:#1565c0;padding:4px 10px;border-radius:8px;font-size:11px;font-weight:600" data-en="⚙️ Infra: 38→4 km" data-id="⚙️ Infra: 38→4 km">⚙️ Infra: 38→4 km</span>
-        </div>
-        <div style="display:flex;gap:6px;justify-content:flex-end">
-          <span style="background:#fff;color:#e65100;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #ffcc80">AUC 0.988</span>
-          <span style="background:#fff;color:#e65100;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #ffcc80">Recall 100%</span>
-          <span style="background:#fff;color:#e65100;padding:3px 8px;border-radius:6px;font-size:10px;font-weight:600;border:1px solid #ffcc80">FAR 1%</span>
+  <!-- FORK: two parallel arrows down -->
+  <div style="display:flex;justify-content:center;gap:180px;margin:0;padding:0;position:relative">
+    <!-- Left arrow (Stage 0 - fast) -->
+    <div style="text-align:center;color:#e65100;font-size:13px;font-weight:700;line-height:1.2">
+      <div>↓</div>
+      <div style="font-size:9px;background:#fff3e0;padding:1px 8px;border-radius:8px;display:inline-block;color:#e65100" data-en="PARALLEL" data-id="PARALEL">PARALLEL</div>
+    </div>
+    <!-- Right arrow (Stage 1 - main) -->
+    <div style="text-align:center;color:var(--blue);font-size:13px;font-weight:700;line-height:1.2">
+      <div>↓</div>
+      <div style="font-size:9px;background:var(--light);padding:1px 8px;border-radius:8px;display:inline-block;color:var(--blue)" data-en="PARALLEL" data-id="PARALEL">PARALLEL</div>
+    </div>
+    <!-- Connecting horizontal line from P-wave to both branches -->
+    <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:180px;height:1px;border-top:2px solid #999"></div>
+  </div>
+
+  <!-- ROW 2: Stage 0 (left) and Stage 1 (right) side by side -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 4px">
+
+    <!-- LEFT: Stage 0 (fast path) -->
+    <div style="cursor:pointer" onclick="showStage(5)">
+      <div style="background:linear-gradient(135deg,#fff8e1,#fff3e0);border:2px solid #ff9800;border-radius:10px;padding:14px;text-align:center;box-shadow:var(--card-shadow);transition:all 0.3s;position:relative" onmouseover="this.style.borderColor='#e65100'" onmouseout="this.style.borderColor='#ff9800'">
+        <div style="font-size:20px;margin-bottom:4px">⚡</div>
+        <div style="font-weight:700;color:#e65100;font-size:12px" data-en="Stage 0: URPD" data-id="Stage 0: URPD">Stage 0: URPD</div>
+        <div style="font-size:10px;color:#795548;margin-top:3px" data-en="0.5 s | 7 spectral features" data-id="0.5 s | 7 fitur spektral">0.5 s | 7 spectral features</div>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:6px">
+          <span style="background:#fff;color:#e65100;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600;border:1px solid #ffcc80">AUC 0.988</span>
+          <span style="background:#fff;color:#e65100;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600;border:1px solid #ffcc80">Recall 100%</span>
         </div>
       </div>
     </div>
+
+    <!-- RIGHT: Stage 1 (main path) -->
+    <div style="cursor:pointer" onclick="showStage(1)">
+      <div style="background:#fff;border:2px solid var(--blue);border-radius:10px;padding:14px;text-align:center;box-shadow:var(--card-shadow);transition:all 0.3s" onmouseover="this.style.borderColor='#14466d'" onmouseout="this.style.borderColor='var(--blue)'">
+        <div style="font-size:20px;margin-bottom:4px">🏷</div>
+        <div style="font-weight:700;color:var(--blue);font-size:12px" data-en="Stage 1: Intensity Gate" data-id="Stage 1: Gerbang Intensitas">Stage 1: Intensity Gate</div>
+        <div style="font-size:10px;color:#666;margin-top:3px">2.0 s | &tau;<sub>c</sub>-dominant (51%)</div>
+        <div style="display:flex;gap:4px;justify-content:center;margin-top:6px">
+          <span style="background:var(--light);color:var(--blue);padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600">Acc 93%</span>
+          <span style="background:var(--light);color:var(--blue);padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600">Recall 72.3%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Decision outputs -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 4px">
+
+    <!-- LEFT: Stage 0 decision result -->
+    <div style="text-align:center">
+      <div style="color:#e65100;font-weight:700;font-size:12px">↓</div>
+      <div style="display:inline-block;background:#fff3e0;border:1.5px dashed #ff9800;border-radius:8px;padding:8px 14px;font-size:11px;margin:2px 0">
+        <div style="font-weight:700;color:#e65100;margin-bottom:4px" data-en="Decision (0.5 s)" data-id="Keputusan (0.5 s)">Decision (0.5 s)</div>
+        <div data-en="P(damaging) > threshold?" data-id="P(merusak) > ambang?">P(damaging) &gt; threshold?</div>
+      </div>
+      <div style="display:flex;justify-content:center;gap:24px;margin-top:4px">
+        <!-- YES path -->
+        <div style="text-align:center">
+          <div style="font-size:11px;font-weight:700;color:#2e7d32" data-en="YES →" data-id="YA →">YES ↓</div>
+          <div style="background:#c62828;color:#fff;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:700;margin-top:2px;box-shadow:0 2px 6px rgba(198,40,40,0.3)">
+            <div>⚡</div>
+            <div data-en="PRELIMINARY WARNING" data-id="PERINGATAN AWAL">PRELIMINARY<br>WARNING</div>
+          </div>
+          <div style="font-size:9px;color:#888;margin-top:3px" data-en="D &lt; 38 km rescue zone" data-id="Zona rescue D &lt; 38 km">D &lt; 38 km</div>
+          <div style="display:flex;flex-direction:column;gap:2px;margin-top:3px;align-items:center">
+            <span style="font-size:9px;background:#e8f5e9;color:#2e7d32;padding:1px 6px;border-radius:4px" data-en="🧑 38→11 km" data-id="🧑 38→11 km">🧑 38→11 km</span>
+            <span style="font-size:9px;background:#e3f2fd;color:#1565c0;padding:1px 6px;border-radius:4px" data-en="⚙️ 38→4 km" data-id="⚙️ 38→4 km">⚙️ 38→4 km</span>
+          </div>
+        </div>
+        <!-- NO path -->
+        <div style="text-align:center">
+          <div style="font-size:11px;font-weight:700;color:#999" data-en="NO →" data-id="TIDAK →">NO ↓</div>
+          <div style="background:#f5f5f5;color:#999;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:600;margin-top:2px;border:1px solid #e0e0e0">
+            <div data-en="Wait for Stage 1" data-id="Tunggu Stage 1">Wait for<br>Stage 1</div>
+          </div>
+          <div style="font-size:9px;color:#aaa;margin-top:3px" data-en="Not near-field" data-id="Bukan near-field">D &gt; 38 km</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Stage 1 continues to main pipeline -->
+    <div style="text-align:center">
+      <div style="color:var(--blue);font-weight:700;font-size:12px">↓</div>
+      <div style="font-size:10px;color:#666;margin-bottom:4px" data-en="Confirms/cancels Stage 0 + continues pipeline" data-id="Konfirmasi/batalkan Stage 0 + lanjutkan pipeline">Confirms/cancels Stage 0</div>
+      <!-- Mini sequential pipeline: 1.5 → Routing → Stage 2 -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap">
+        <div class="stage" onclick="showStage(2)" style="flex:0 1 auto">
+          <div class="box" style="padding:8px 6px"><div style="font-size:14px">📏</div><div class="name" style="font-size:10px" data-en="Stage 1.5" data-id="Stage 1.5">Stage 1.5</div><div class="sub" style="font-size:9px" data-en="Distance" data-id="Jarak">Distance</div></div>
+        </div>
+        <div style="color:var(--blue);font-weight:700;font-size:14px">&rarr;</div>
+        <div class="stage" onclick="showStage(3)" style="flex:0 1 auto">
+          <div class="box" style="padding:8px 6px"><div style="font-size:14px">🔀</div><div class="name" style="font-size:10px" data-en="Routing" data-id="Routing">Routing</div><div class="sub" style="font-size:9px" data-en="I×D Lookup" data-id="I×D Lookup">I×D Lookup</div></div>
+        </div>
+        <div style="color:var(--blue);font-weight:700;font-size:14px">&rarr;</div>
+        <div class="stage" onclick="showStage(4)" style="flex:0 1 auto">
+          <div class="box" style="padding:8px 6px"><div style="font-size:14px">📊</div><div class="name" style="font-size:10px" data-en="Stage 2" data-id="Stage 2">Stage 2</div><div class="sub" style="font-size:9px">Sa(T)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom: Final output arrows merging -->
+  <div style="text-align:center;margin-top:8px">
+    <div style="display:inline-block;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border:2px solid #4caf50;border-radius:10px;padding:10px 24px;box-shadow:0 2px 8px rgba(76,175,80,0.2)">
+      <div style="font-size:12px;font-weight:700;color:#1b5e20" data-en="📢 Final Warning: Sa(T) at 103 periods" data-id="📢 Peringatan Final: Sa(T) pada 103 periode">📢 Final Warning: Sa(T) at 103 periods</div>
+      <div style="font-size:10px;color:#2e7d32;margin-top:2px" data-en="Structure-specific hazard assessment | T = 0.1–5.0 s" data-id="Penilaian bahaya spesifik-struktur | T = 0.1–5.0 s">Structure-specific | T = 0.1–5.0 s</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;font-size:10px;color:#888">
+    <span><span style="display:inline-block;width:12px;height:12px;background:#fff3e0;border:1.5px solid #ff9800;border-radius:3px;vertical-align:middle;margin-right:3px"></span> <span data-en="Fast path (0.5 s)" data-id="Jalur cepat (0.5 s)">Fast path (0.5 s)</span></span>
+    <span><span style="display:inline-block;width:12px;height:12px;background:#fff;border:1.5px solid var(--blue);border-radius:3px;vertical-align:middle;margin-right:3px"></span> <span data-en="Main pipeline (2–8 s)" data-id="Pipeline utama (2–8 s)">Main pipeline (2–8 s)</span></span>
+    <span style="color:#aaa" data-en="Click any box for details" data-id="Klik kotak untuk detail">ℹ️ Click any box</span>
   </div>
 
 </div>
