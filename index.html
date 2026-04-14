@@ -145,15 +145,15 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <button class="lang-toggle" onclick="toggleLang()">ID / EN</button>
 </div>
 
+
 <nav><div class="inner">
   <a href="#overview" class="active" data-en="Overview" data-id="Ringkasan">Overview</a>
-  <a href="#pipeline" data-en="Pipeline" data-id="Pipeline">Pipeline</a>
   <a href="#why" data-en="Why This Matters" data-id="Mengapa Penting">Why This Matters</a>
-  <a href="#results" data-en="Results" data-id="Hasil">Results</a>
-  <a href="#evidence" data-en="Evidence" data-id="Bukti">Evidence</a>
-  <a href="#charts" data-en="Interactive Charts" data-id="Grafik Interaktif">Interactive Charts</a>
-  <a href="#safety" data-en="Safety" data-id="Keselamatan">Safety</a>
+  <a href="#pipeline" data-en="Pipeline" data-id="Pipeline">Pipeline</a>
   <a href="#stage0" data-en="Stage 0" data-id="Stage 0">Stage 0</a>
+  <a href="#evidence" data-en="Evidence" data-id="Bukti">Evidence</a>
+  <a href="#results" data-en="Results" data-id="Hasil">Results</a>
+  <a href="#charts" data-en="Interactive Charts" data-id="Grafik Interaktif">Interactive Charts</a>
   <a href="#comp-metrics" data-en="Comp. Metrics" data-id="Metrik Komprehensif">Comp. Metrics</a>
   <a href="#figures" data-en="Figures" data-id="Gambar">Figures</a>
   <a href="#manuscript" data-en="Manuscript" data-id="Manuskrip">Manuscript</a>
@@ -188,6 +188,75 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <div class="mc" style="cursor:pointer" onclick="showMetricInfo(4)"><div class="v">34,033</div><div class="l" data-en="Traces (329 events)" data-id="Trace (329 event)">Traces</div><div style="font-size:9px;color:#aaa;margin-top:2px">&#9432; click</div></div>
   <div class="mc" style="cursor:pointer" onclick="showMetricInfo(5)"><div class="v">517+1</div><div class="l" data-en="Models (515 Sa + Stage 0)" data-id="Model (515 Sa + Stage 0)">Models</div><div style="font-size:9px;color:#aaa;margin-top:2px">&#9432; click</div></div>
 </div>
+</section>
+
+<!-- ═══ WHY THIS MATTERS ═══ -->
+<section id="why">
+<h2 data-en="Why This Matters" data-id="Mengapa Penting">Why This Matters</h2>
+
+<div class="narrative">
+<div class="ncard" style="cursor:pointer" onclick="showNarrDetail(0)">
+  <div class="num">1</div>
+  <h3 data-en="The Saturation Problem" data-id="Masalah Saturasi">The Saturation Problem</h3>
+  <p data-en="Traditional EEWS use &tau;<sub>c</sub> (predominant period) to estimate earthquake magnitude. But &tau;<sub>c</sub> saturates for M &gt; 6.5 &mdash; it plateaus and can't distinguish M6.5 from M7.5. This means the largest, most dangerous earthquakes are systematically underestimated." data-id="EEWS tradisional menggunakan &tau;<sub>c</sub> (periode predominan) untuk mengestimasi magnitudo gempa. Tapi &tau;<sub>c</sub> mengalami saturasi untuk M &gt; 6.5 &mdash; nilainya mendatar dan tidak bisa membedakan M6.5 dari M7.5. Artinya gempa terbesar dan paling berbahaya secara sistematis diremehkan."></p>
+  <div class="highlight" data-en="Our solution: Don't fight saturation &mdash; exploit it. Use &tau;<sub>c</sub>'s ceiling as a natural classifier boundary." data-id="Solusi kami: Jangan melawan saturasi &mdash; manfaatkan. Gunakan ceiling &tau;<sub>c</sub> sebagai batas klasifikasi alami."></div>
+  <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">&#8505;&#65039; click for detail</div>
+</div>
+
+<div class="ncard" style="cursor:pointer" onclick="showNarrDetail(1)">
+  <div class="num">2</div>
+  <h3 data-en="Feature Dichotomy" data-id="Dikotomi Fitur">Feature Dichotomy</h3>
+  <p data-en="We discovered that XGBoost naturally partitions features by their physics: <b>Stage 1</b> uses saturating &tau;<sub>c</sub> (51% importance) for discrete classification, while <b>Stage 2</b> uses non-saturating CVAD (89.5%) for continuous regression. This separation emerges from seismic source theory, not manual engineering." data-id="Kami menemukan bahwa XGBoost secara alami mempartisi fitur berdasarkan fisikanya: <b>Stage 1</b> menggunakan &tau;<sub>c</sub> saturating (51% importance) untuk klasifikasi diskret, sementara <b>Stage 2</b> menggunakan CVAD non-saturating (89.5%) untuk regresi kontinu. Pemisahan ini muncul dari teori sumber seismik, bukan rekayasa manual."></p>
+  <div class="highlight" data-en="First systematic exploitation of IM saturation properties in EEWS design." data-id="Eksploitasi sistematis pertama dari sifat saturasi IM dalam desain EEWS."></div>
+  <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">&#8505;&#65039; click for detail</div>
+</div>
+
+<div class="ncard" style="cursor:pointer" onclick="showNarrDetail(2)">
+  <div class="num">3</div>
+  <h3 data-en="Golden Time Constraint" data-id="Batasan Golden Time">Golden Time Constraint</h3>
+  <p data-en="The S-P travel time difference (golden time) defines the maximum observation window. At median distance 384 km, golden time is ~51 s &mdash; ample for PTW exploration. But near-field events (D &lt; 22 km) have &lt; 2 s golden time. IDA-PTW respects this constraint: 99.9% of traces use PTW = 3-4 s." data-id="Selisih waktu tempuh S-P (golden time) mendefinisikan jendela observasi maksimum. Pada jarak median 384 km, golden time ~51 s &mdash; cukup untuk eksplorasi PTW. Tapi event near-field (D &lt; 22 km) hanya punya &lt; 2 s golden time. IDA-PTW menghormati batasan ini: 99.9% trace menggunakan PTW = 3-4 s."></p>
+  <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">&#8505;&#65039; click for detail</div>
+</div>
+
+<div class="ncard" style="cursor:pointer" onclick="showNarrDetail(3)">
+  <div class="num">4</div>
+  <h3 data-en="Real-World Indonesian Scenario" data-id="Skenario Nyata Indonesia">Real-World Scenario</h3>
+  <p data-en="Indonesia's geological complexity creates situations where moderate earthquakes (M4.5-5.5) produce destructive ground shaking at specific sites due to soft-soil amplification, shallow basin effects, or proximity to active faults. Examples include the 2006 M6.3 Yogyakarta earthquake, where localized site effects caused severe damage far beyond what the moderate magnitude would suggest." data-id="Kompleksitas geologi Indonesia menciptakan situasi di mana gempa moderat (M4.5-5.5) menghasilkan guncangan destruktif di lokasi tertentu akibat amplifikasi tanah lunak, efek cekungan dangkal, atau kedekatan dengan sesar aktif. Contohnya gempa M6.3 Yogyakarta 2006, di mana efek tapak lokal menyebabkan kerusakan parah jauh melebihi prediksi magnitudo."></p>
+  <div class="highlight" data-en="IDA-PTW directly responds to what the sensor ACTUALLY measures, making it inherently robust to Indonesia's complex site geology." data-id="IDA-PTW langsung merespons apa yang SEBENARNYA diukur sensor, sehingga inheren robust terhadap geologi tapak Indonesia yang kompleks."></div>
+  <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">&#8505;&#65039; click for detail</div>
+</div>
+</div>
+
+<h3 data-en="Three Key Contributions" data-id="Tiga Kontribusi Utama">Three Key Contributions</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:16px 0">
+  <div style="background:#e3f2fd;border-radius:8px;padding:16px;border-left:4px solid var(--blue)">
+    <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px" data-en="Contribution 1" data-id="Kontribusi 1">Contribution 1</div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="Feature Dichotomy Paradigm" data-id="Paradigma Dikotomi Fitur">Feature Dichotomy</div>
+    <p style="font-size:11px;color:#555" data-en="First systematic exploitation of P-wave IM saturation properties: &tau;<sub>c</sub> (saturating) for classification, CVAD (non-saturating) for regression. A new design principle for EEWS." data-id="Eksploitasi sistematis pertama dari sifat saturasi IM gelombang-P: &tau;<sub>c</sub> (saturating) untuk klasifikasi, CVAD (non-saturating) untuk regresi. Prinsip desain baru untuk EEWS."></p>
+  </div>
+  <div style="background:#e8f5e9;border-radius:8px;padding:16px;border-left:4px solid var(--green)">
+    <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px" data-en="Contribution 2" data-id="Kontribusi 2">Contribution 2</div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="Distance-Aware Adaptive PTW" data-id="PTW Adaptif Sadar-Jarak">Adaptive PTW</div>
+    <p style="font-size:11px;color:#555" data-en="Intensity &times; Distance lookup table with golden time constraint. Dynamically selects optimal PTW (3-8 s) per trace while guaranteeing warning feasibility." data-id="Tabel lookup Intensitas &times; Jarak dengan batasan golden time. Secara dinamis memilih PTW optimal (3-8 s) per trace sambil menjamin kelayakan peringatan."></p>
+  </div>
+  <div style="background:#fff3e0;border-radius:8px;padding:16px;border-left:4px solid var(--orange)">
+    <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:6px" data-en="Contribution 3" data-id="Kontribusi 3">Contribution 3</div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="103-Period Spectral Prediction" data-id="Prediksi Spektral 103 Periode">103 Periods Sa(T)</div>
+    <p style="font-size:11px;color:#555" data-en="First single-station system predicting Sa(T) at 103 periods (T = 0.1-5.0 s). Previous best: ~20 periods using multi-station networks. Enables structure-specific hazard assessment." data-id="Sistem single-station pertama yang memprediksi Sa(T) pada 103 periode (T = 0.1-5.0 s). Terbaik sebelumnya: ~20 periode menggunakan jaringan multi-stasiun. Memungkinkan penilaian bahaya spesifik-struktur."></p>
+  </div>
+</div>
+
+<h3 data-en="Positioning vs Existing Methods" data-id="Posisi terhadap Metode yang Ada">Positioning vs Existing Methods</h3>
+<p style="font-size:13px;color:#666;margin-bottom:12px" data-en="This is the only EEWS study that simultaneously satisfies all seven requirements below." data-id="Ini satu-satunya studi EEWS yang secara simultan memenuhi ketujuh persyaratan di bawah."></p>
+<table style="font-size:11px">
+  <tr><th data-en="Study" data-id="Studi">Study</th><th>Sa(T)</th><th>&gt;20 T</th><th data-en="Single Stn" data-id="1 Stasiun">1-Stn</th><th data-en="No Catalog" data-id="Tanpa Katalog">No Cat.</th><th data-en="Adaptive" data-id="Adaptif">Adapt.</th><th data-en="Safety" data-id="Keselamatan">Safety</th><th data-en="Event-CV" data-id="Event-CV">Ev-CV</th></tr>
+  <tr><td>Wu &amp; Kanamori (2005)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+  <tr><td>Zollo et al. (2010)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&check;</td><td>&ndash;</td></tr>
+  <tr><td>Lara et al. (2023)</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+  <tr><td>Iaccarino et al. (2024)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
+  <tr class="hl"><td><b data-en="This study" data-id="Studi ini">This study</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td></tr>
+</table>
+<p style="font-size:11px;color:#666;margin-top:6px" data-en="Sa(T) = predicts spectral acceleration | >20 T = more than 20 periods | 1-Stn = single station | No Cat. = no catalog info needed | Adapt. = adaptive PTW | Safety = reports damaging recall | Ev-CV = event-grouped cross-validation" data-id="Sa(T) = memprediksi percepatan spektral | >20 T = lebih dari 20 periode | 1-Stn = single station | Tanpa Kat. = tanpa info katalog | Adaptif = PTW adaptif | Keselamatan = melaporkan recall merusak | Ev-CV = cross-validation berdasar event"></p>
 </section>
 
 <!-- ═══ INTERACTIVE PIPELINE ═══ -->
@@ -479,345 +548,9 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
     <tr><td data-en="Autonomous" data-id="Otonom">Autonomous</td><td data-en="Needs catalog magnitude" data-id="Perlu magnitudo katalog">Needs catalog</td><td data-en="Fully autonomous (3s P-wave only)" data-id="Sepenuhnya otonom (hanya 3s gelombang-P)"><b>Autonomous</b></td><td data-en="No network dependency" data-id="Tanpa ketergantungan jaringan"></td></tr>
   </table>
   <p style="font-size:11px;color:#666;margin-top:8px" data-en="For EEWS, detecting damaging events is far more important than marginally higher prediction accuracy. IDA achieves the same R&sup2; as Fixed 3s while gaining 55&times; better damaging recall." data-id="Untuk EEWS, mendeteksi event merusak jauh lebih penting daripada akurasi prediksi yang sedikit lebih tinggi. IDA mencapai R&sup2; yang sama dengan Fixed 3s sambil mendapat recall merusak 55&times; lebih baik."></p>
+  <p style="font-size:11px;color:#555;margin-top:8px;background:#fff8e1;padding:10px 12px;border-radius:6px;border-left:3px solid var(--orange)" data-en="IDA-PTW achieves a <b>55x improvement</b> in Damaging recall (72.3% vs 1.3%). This is because intensity-driven routing responds to observed ground motion at the sensor site, making it inherently robust to local site amplification effects that magnitude-based systems cannot detect." data-id="IDA-PTW mencapai <b>peningkatan 55x</b> dalam Damaging recall (72.3% vs 1.3%). Ini karena routing berbasis intensitas merespons ground motion yang diamati di lokasi sensor, sehingga secara inheren robust terhadap efek amplifikasi tapak lokal yang tidak bisa dideteksi sistem berbasis magnitudo."></p>
 </div>
 
-</section>
-
-<!-- ═══ WHY THIS MATTERS ═══ -->
-<section id="why">
-<h2 data-en="Why This Matters" data-id="Mengapa Penting">Why This Matters</h2>
-
-<div class="narrative">
-<div class="ncard">
-  <div class="num">1</div>
-  <h3 data-en="The Saturation Problem" data-id="Masalah Saturasi">The Saturation Problem</h3>
-  <p data-en="Traditional EEWS use &tau;<sub>c</sub> (predominant period) to estimate earthquake magnitude. But &tau;<sub>c</sub> saturates for M &gt; 6.5 &mdash; it plateaus and can't distinguish M6.5 from M7.5. This means the largest, most dangerous earthquakes are systematically underestimated." data-id="EEWS tradisional menggunakan &tau;<sub>c</sub> (periode predominan) untuk mengestimasi magnitudo gempa. Tapi &tau;<sub>c</sub> mengalami saturasi untuk M &gt; 6.5 &mdash; nilainya mendatar dan tidak bisa membedakan M6.5 dari M7.5. Artinya gempa terbesar dan paling berbahaya secara sistematis diremehkan."></p>
-  <div class="highlight" data-en="Our solution: Don't fight saturation &mdash; exploit it. Use &tau;<sub>c</sub>'s ceiling as a natural classifier boundary." data-id="Solusi kami: Jangan melawan saturasi &mdash; manfaatkan. Gunakan ceiling &tau;<sub>c</sub> sebagai batas klasifikasi alami."></div>
-</div>
-
-<div class="ncard">
-  <div class="num">2</div>
-  <h3 data-en="Feature Dichotomy" data-id="Dikotomi Fitur">Feature Dichotomy</h3>
-  <p data-en="We discovered that XGBoost naturally partitions features by their physics: <b>Stage 1</b> uses saturating &tau;<sub>c</sub> (51% importance) for discrete classification, while <b>Stage 2</b> uses non-saturating CVAD (89.5%) for continuous regression. This separation emerges from seismic source theory, not manual engineering." data-id="Kami menemukan bahwa XGBoost secara alami mempartisi fitur berdasarkan fisikanya: <b>Stage 1</b> menggunakan &tau;<sub>c</sub> saturating (51% importance) untuk klasifikasi diskret, sementara <b>Stage 2</b> menggunakan CVAD non-saturating (89.5%) untuk regresi kontinu. Pemisahan ini muncul dari teori sumber seismik, bukan rekayasa manual."></p>
-  <div class="highlight" data-en="First systematic exploitation of IM saturation properties in EEWS design." data-id="Eksploitasi sistematis pertama dari sifat saturasi IM dalam desain EEWS."></div>
-</div>
-
-<div class="ncard">
-  <div class="num">3</div>
-  <h3 data-en="Golden Time Constraint" data-id="Batasan Golden Time">Golden Time Constraint</h3>
-  <p data-en="The S-P travel time difference (golden time) defines the maximum observation window. At median distance 384 km, golden time is ~51 s &mdash; ample for PTW exploration. But near-field events (D &lt; 22 km) have &lt; 2 s golden time. IDA-PTW respects this constraint: 99.9% of traces use PTW = 3-4 s." data-id="Selisih waktu tempuh S-P (golden time) mendefinisikan jendela observasi maksimum. Pada jarak median 384 km, golden time ~51 s &mdash; cukup untuk eksplorasi PTW. Tapi event near-field (D &lt; 22 km) hanya punya &lt; 2 s golden time. IDA-PTW menghormati batasan ini: 99.9% trace menggunakan PTW = 3-4 s."></p>
-</div>
-
-<div class="ncard">
-  <div class="num">4</div>
-  <h3 data-en="Real-World Indonesian Scenario" data-id="Skenario Nyata Indonesia">Real-World Scenario</h3>
-  <p data-en="Indonesia's geological complexity creates situations where moderate earthquakes (M4.5-5.5) produce destructive ground shaking at specific sites due to soft-soil amplification, shallow basin effects, or proximity to active faults. Examples include the 2006 M6.3 Yogyakarta earthquake, where localized site effects caused severe damage far beyond what the moderate magnitude would suggest." data-id="Kompleksitas geologi Indonesia menciptakan situasi di mana gempa moderat (M4.5-5.5) menghasilkan guncangan destruktif di lokasi tertentu akibat amplifikasi tanah lunak, efek cekungan dangkal, atau kedekatan dengan sesar aktif. Contohnya gempa M6.3 Yogyakarta 2006, di mana efek tapak lokal menyebabkan kerusakan parah jauh melebihi prediksi magnitudo."></p>
-  <div class="highlight" data-en="IDA-PTW directly responds to what the sensor ACTUALLY measures, making it inherently robust to Indonesia's complex site geology." data-id="IDA-PTW langsung merespons apa yang SEBENARNYA diukur sensor, sehingga inheren robust terhadap geologi tapak Indonesia yang kompleks."></div>
-</div>
-</div>
-
-<h3 data-en="Three Key Contributions" data-id="Tiga Kontribusi Utama">Three Key Contributions</h3>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:16px 0">
-  <div style="background:#e3f2fd;border-radius:8px;padding:16px;border-left:4px solid var(--blue)">
-    <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:6px" data-en="Contribution 1" data-id="Kontribusi 1">Contribution 1</div>
-    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="Feature Dichotomy Paradigm" data-id="Paradigma Dikotomi Fitur">Feature Dichotomy</div>
-    <p style="font-size:11px;color:#555" data-en="First systematic exploitation of P-wave IM saturation properties: &tau;<sub>c</sub> (saturating) for classification, CVAD (non-saturating) for regression. A new design principle for EEWS." data-id="Eksploitasi sistematis pertama dari sifat saturasi IM gelombang-P: &tau;<sub>c</sub> (saturating) untuk klasifikasi, CVAD (non-saturating) untuk regresi. Prinsip desain baru untuk EEWS."></p>
-  </div>
-  <div style="background:#e8f5e9;border-radius:8px;padding:16px;border-left:4px solid var(--green)">
-    <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:6px" data-en="Contribution 2" data-id="Kontribusi 2">Contribution 2</div>
-    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="Distance-Aware Adaptive PTW" data-id="PTW Adaptif Sadar-Jarak">Adaptive PTW</div>
-    <p style="font-size:11px;color:#555" data-en="Intensity &times; Distance lookup table with golden time constraint. Dynamically selects optimal PTW (3-8 s) per trace while guaranteeing warning feasibility." data-id="Tabel lookup Intensitas &times; Jarak dengan batasan golden time. Secara dinamis memilih PTW optimal (3-8 s) per trace sambil menjamin kelayakan peringatan."></p>
-  </div>
-  <div style="background:#fff3e0;border-radius:8px;padding:16px;border-left:4px solid var(--orange)">
-    <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:6px" data-en="Contribution 3" data-id="Kontribusi 3">Contribution 3</div>
-    <div style="font-size:13px;font-weight:600;margin-bottom:4px" data-en="103-Period Spectral Prediction" data-id="Prediksi Spektral 103 Periode">103 Periods Sa(T)</div>
-    <p style="font-size:11px;color:#555" data-en="First single-station system predicting Sa(T) at 103 periods (T = 0.1-5.0 s). Previous best: ~20 periods using multi-station networks. Enables structure-specific hazard assessment." data-id="Sistem single-station pertama yang memprediksi Sa(T) pada 103 periode (T = 0.1-5.0 s). Terbaik sebelumnya: ~20 periode menggunakan jaringan multi-stasiun. Memungkinkan penilaian bahaya spesifik-struktur."></p>
-  </div>
-</div>
-
-<h3 data-en="Positioning vs Existing Methods" data-id="Posisi terhadap Metode yang Ada">Positioning vs Existing Methods</h3>
-<p style="font-size:13px;color:#666;margin-bottom:12px" data-en="This is the only EEWS study that simultaneously satisfies all seven requirements below." data-id="Ini satu-satunya studi EEWS yang secara simultan memenuhi ketujuh persyaratan di bawah."></p>
-<table style="font-size:11px">
-  <tr><th data-en="Study" data-id="Studi">Study</th><th>Sa(T)</th><th>&gt;20 T</th><th data-en="Single Stn" data-id="1 Stasiun">1-Stn</th><th data-en="No Catalog" data-id="Tanpa Katalog">No Cat.</th><th data-en="Adaptive" data-id="Adaptif">Adapt.</th><th data-en="Safety" data-id="Keselamatan">Safety</th><th data-en="Event-CV" data-id="Event-CV">Ev-CV</th></tr>
-  <tr><td>Wu &amp; Kanamori (2005)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
-  <tr><td>Zollo et al. (2010)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&check;</td><td>&ndash;</td></tr>
-  <tr><td>Lara et al. (2023)</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
-  <tr><td>Iaccarino et al. (2024)</td><td>&ndash;</td><td>&ndash;</td><td>&check;</td><td>&check;</td><td>&ndash;</td><td>&ndash;</td><td>&ndash;</td></tr>
-  <tr class="hl"><td><b data-en="This study" data-id="Studi ini">This study</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td><td><b>&check;</b></td></tr>
-</table>
-<p style="font-size:11px;color:#666;margin-top:6px" data-en="Sa(T) = predicts spectral acceleration | >20 T = more than 20 periods | 1-Stn = single station | No Cat. = no catalog info needed | Adapt. = adaptive PTW | Safety = reports damaging recall | Ev-CV = event-grouped cross-validation" data-id="Sa(T) = memprediksi percepatan spektral | >20 T = lebih dari 20 periode | 1-Stn = single station | Tanpa Kat. = tanpa info katalog | Adaptif = PTW adaptif | Keselamatan = melaporkan recall merusak | Ev-CV = cross-validation berdasar event"></p>
-</section>
-
-<!-- ═══ RESULTS TABLE ═══ -->
-<section id="results">
-<h2 data-en="End-to-End Results (Table 5)" data-id="Hasil End-to-End (Tabel 5)">E2E Results</h2>
-<table>
-  <tr><th data-en="Strategy" data-id="Strategi">Strategy</th><th>R&sup2;</th><th>RMSE</th><th>&Delta;R&sup2;</th></tr>
-  <tr><td>Fixed 2s</td><td>0.7309</td><td>0.5181</td><td>-0.0002</td></tr>
-  <tr><td><b>Fixed 3s (Baseline)</b></td><td><b>0.7311</b></td><td><b>0.5179</b></td><td>--</td></tr>
-  <tr><td>Fixed 4s</td><td>0.7352</td><td>0.5140</td><td>+0.0041</td></tr>
-  <tr><td>Fixed 6s</td><td>0.7372</td><td>0.5120</td><td>+0.0061</td></tr>
-  <tr><td>Fixed 8s</td><td>0.7444</td><td>0.5050</td><td>+0.0133</td></tr>
-  <tr><td>IDA + GT Distance</td><td>0.7311</td><td>0.5179</td><td>+0.0000</td></tr>
-  <tr class="hl"><td><b>IDA Operational</b></td><td><b>0.7309</b></td><td><b>0.5181</b></td><td><b>-0.0002</b></td></tr>
-</table>
-<p style="font-size:12px;color:#666;margin-top:8px" data-en="IDA achieves R&sup2; = 0.7309, virtually identical to Fixed 3s baseline (&Delta;R&sup2; = -0.0002). Safety benefits without accuracy loss. All numbers from consistent IDA-filtered evaluation (34,033 traces)." data-id="IDA mencapai R&sup2; = 0.7309, hampir identik dengan baseline Fixed 3s (&Delta;R&sup2; = -0.0002). Manfaat keselamatan tanpa kehilangan akurasi. Semua angka dari evaluasi IDA-filtered yang konsisten (34.033 trace)."></p>
-</section>
-
-<!-- ═══ STAGE-BY-STAGE EVIDENCE ═══ -->
-<section id="evidence">
-<h2 data-en="Stage-by-Stage Pipeline Evidence" data-id="Bukti Pipeline Per-Tahap">Pipeline Evidence</h2>
-<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="Validated metrics for each pipeline stage, using 5-fold event-grouped cross-validation on 34,033 traces." data-id="Metrik tervalidasi untuk setiap tahap pipeline, menggunakan 5-fold cross-validation berdasar event pada 34.033 trace."></p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:16px 0">
-
-<!-- Stage 1 -->
-<div style="background:#fff;border:2px solid var(--blue);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
-  <div style="font-size:11px;color:#fff;background:var(--blue);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 1</div>
-  <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px" data-en="Intensity Gate Classifier" data-id="Klasifikasi Gerbang Intensitas">Intensity Gate</div>
-  <div style="font-size:12px;margin-bottom:10px" data-en="XGBoost classifier, 42 P-wave features at PTW = 2 s" data-id="Klasifikasi XGBoost, 42 fitur P-wave pada PTW = 2 s"></div>
-  <table style="font-size:11px;margin:0">
-    <tr><td data-en="Overall Accuracy" data-id="Akurasi Keseluruhan" style="text-align:left">Accuracy</td><td style="font-weight:700;color:var(--blue)">93.01%</td></tr>
-    <tr><td data-en="Damaging Recall" data-id="Recall Merusak" style="text-align:left">Damaging Recall</td><td style="font-weight:700;color:var(--green)">72.3%</td></tr>
-    <tr><td data-en="Critical Miss Rate" data-id="Laju Kehilangan Kritis" style="text-align:left">Critical Miss</td><td>8.9%</td></tr>
-    <tr><td data-en="Top Feature" data-id="Fitur Utama" style="text-align:left">Top Feature</td><td>&tau;<sub>c</sub> (51%)</td></tr>
-  </table>
-  <div style="margin-top:10px;font-size:10px;color:#666" data-en="Confusion Matrix (Weak / Felt / Damaging):" data-id="Matriks Konfusi (Weak / Felt / Damaging):">CM:</div>
-  <div style="font-family:monospace;font-size:10px;background:#f8f9fa;padding:6px;border-radius:4px;margin-top:4px">
-    W&rarr; 30540 &nbsp;1439 &nbsp;&nbsp;&nbsp;22<br>
-    F&rarr; &nbsp;&nbsp;883 &nbsp;1041 &nbsp;&nbsp;&nbsp;&nbsp;7<br>
-    D&rarr; &nbsp;&nbsp;&nbsp;&nbsp;9 &nbsp;&nbsp;&nbsp;19 &nbsp;&nbsp;&nbsp;73
-  </div>
-  <div style="background:#e8f5e9;border-radius:6px;padding:8px 12px;margin-top:10px;font-size:10px;border-left:3px solid var(--green)">
-    <b data-en="Key finding:" data-id="Temuan kunci:">Key:</b>
-    <span data-en="Intensity classification alone (without distance) achieves R&sup2; &asymp; <b>0.731</b>, virtually identical to Fixed 3s baseline and IDA Operational. Distance estimator serves as safety constraint, not accuracy booster." data-id="Klasifikasi intensitas saja (tanpa jarak) mencapai R&sup2; &asymp; <b>0.731</b>, hampir identik dengan baseline Fixed 3s dan IDA Operasional. Distance estimator berfungsi sebagai batasan keselamatan, bukan penambah akurasi."></span>
-  </div>
-</div>
-
-<!-- Stage 1.5 -->
-<div style="background:#fff;border:2px solid var(--orange);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
-  <div style="font-size:11px;color:#fff;background:var(--orange);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 1.5</div>
-  <div style="font-size:14px;font-weight:700;color:var(--orange);margin-bottom:8px" data-en="Golden Time Safety Constraint" data-id="Batasan Keselamatan Golden Time">Golden Time Safety</div>
-  <div style="font-size:12px;margin-bottom:10px" data-en="XGBoost regressor, 30 Zhang et al. (2024) features at PTW = 2 s. Does NOT improve accuracy (intensity-only R&sup2; is higher); serves as <b>golden time safety net</b> for near-field events." data-id="Regresor XGBoost, 30 fitur Zhang et al. (2024) pada PTW = 2 s. TIDAK meningkatkan akurasi (R&sup2; intensity-only lebih tinggi); berfungsi sebagai <b>jaring pengaman golden time</b> untuk event near-field."></div>
-  <table style="font-size:11px;margin:0">
-    <tr><td style="text-align:left" data-en="Routing Fidelity" data-id="Fidelitas Routing">Routing Fidelity</td><td style="font-weight:700;color:var(--green)">99.97%</td></tr>
-    <tr><td style="text-align:left" data-en="Golden Time Compliance" data-id="Kepatuhan Golden Time">Golden Time</td><td style="font-weight:700;color:var(--green)">&gt;99%</td></tr>
-    <tr><td style="text-align:left" data-en="Routing Bias" data-id="Bias Routing">Bias</td><td style="color:var(--green)" data-en="Conservative (safe-side)" data-id="Konservatif (sisi aman)">Conservative &#9989;</td></tr>
-    <tr><td style="text-align:left" data-en="Top Feature" data-id="Fitur Utama">Top Feature</td><td>predominant_freq (19%)</td></tr>
-  </table>
-  <div style="background:#e8f5e9;border-radius:6px;padding:8px 12px;margin-top:10px;font-size:11px;text-align:center">
-    <div style="font-family:monospace;font-size:10px">
-      Oracle <span style="color:#999" data-en="(perfect distance)" data-id="(jarak sempurna)">(perfect)</span>: R&sup2; = <b>0.7311</b><br>
-      Predicted: R&sup2; = <b>0.7309</b><br>
-      <span style="color:var(--green);font-weight:700">&Delta;R&sup2; = 0.0002</span>
-    </div>
-  </div>
-  <div style="text-align:center;margin-top:8px">
-    <span class="r2-clickable" style="color:var(--orange);font-size:11px" onclick="document.getElementById('r2popup').classList.add('show')" data-en="Why not R&sup2;? Click for details &#9432;" data-id="Mengapa bukan R&sup2;? Klik untuk detail &#9432;">Why not R&sup2;? &#9432;</span>
-  </div>
-</div>
-
-<!-- PTW Routing -->
-<div style="background:#fff;border:2px solid #7b1fa2;border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
-  <div style="font-size:11px;color:#fff;background:#7b1fa2;display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px" data-en="Routing" data-id="Routing">Routing</div>
-  <div style="font-size:14px;font-weight:700;color:#7b1fa2;margin-bottom:8px" data-en="Intensity &times; Distance PTW Selection" data-id="Seleksi PTW Intensitas &times; Jarak">PTW Selection</div>
-  <div style="font-size:12px;margin-bottom:10px" data-en="6&times;6 lookup table + golden time constraint" data-id="Tabel lookup 6&times;6 + batasan golden time"></div>
-  <table style="font-size:11px;margin:0">
-    <tr><td style="text-align:left" data-en="Golden Time Compliance" data-id="Kepatuhan Golden Time">Golden Time</td><td style="font-weight:700;color:var(--green)">&gt;99%</td></tr>
-    <tr><td style="text-align:left" data-en="PTW 3-4s traces" data-id="Trace PTW 3-4s">PTW 3-4s</td><td>99.9%</td></tr>
-    <tr><td style="text-align:left" data-en="Oracle vs Predicted" data-id="Oracle vs Prediksi">&Delta;R&sup2;</td><td style="font-weight:700">0.0002</td></tr>
-  </table>
-  <div style="font-size:10px;color:#666;margin-top:10px" data-en="Operational PTW Distribution:" data-id="Distribusi PTW Operasional:">Distribution:</div>
-  <div style="font-family:monospace;font-size:10px;background:#f8f9fa;padding:6px;border-radius:4px;margin-top:4px">
-    3s: 24,020 (70.6%)<br>
-    4s: &nbsp;9,974 (29.3%)<br>
-    6s: &nbsp;&nbsp;&nbsp;&nbsp;26 &nbsp;(0.1%)<br>
-    8s: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 &nbsp;(0.0%)
-  </div>
-</div>
-
-<!-- Stage 2 -->
-<div style="background:#fff;border:2px solid var(--green);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
-  <div style="font-size:11px;color:#fff;background:var(--green);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 2</div>
-  <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:8px" data-en="Sa(T) Spectral Regressors" data-id="Regresor Spektral Sa(T)">Sa(T) Regressors</div>
-  <div style="font-size:12px;margin-bottom:10px" data-en="515 XGBoost models (103 periods &times; 5 PTWs)" data-id="515 model XGBoost (103 periode &times; 5 PTW)"></div>
-  <table style="font-size:11px;margin:0">
-    <tr><td style="text-align:left" data-en="Models Trained" data-id="Model Terlatih">Models</td><td>515 / 515 (0 failed)</td></tr>
-    <tr><td style="text-align:left">R&sup2; mean (OOF)</td><td style="font-weight:700">0.580</td></tr>
-    <tr><td style="text-align:left">R&sup2; range</td><td>0.481 &ndash; 0.644</td></tr>
-    <tr><td data-en="Top Feature" data-id="Fitur Utama" style="text-align:left">Top Feature</td><td>CVAD (89.5%)</td></tr>
-    <tr><td style="text-align:left" data-en="Validation" data-id="Validasi">CV</td><td>5-fold GroupKFold</td></tr>
-  </table>
-</div>
-
-<!-- E2E -->
-<div style="background:#fff;border:2px solid var(--red);border-radius:10px;padding:18px;box-shadow:var(--card-shadow);grid-column:1/-1">
-  <div style="font-size:11px;color:#fff;background:var(--red);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">End-to-End</div>
-  <div style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px" data-en="Full Pipeline: Stage 1 &rarr; 1.5 &rarr; Routing &rarr; Stage 2" data-id="Pipeline Lengkap: Stage 1 &rarr; 1.5 &rarr; Routing &rarr; Stage 2">Full Pipeline</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
-    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
-      <div style="font-size:10px;color:#666" data-en="IDA Operational R&sup2;" data-id="R&sup2; IDA Operasional">IDA R&sup2;</div>
-      <div style="font-size:24px;font-weight:700;color:var(--blue)">0.731</div>
-    </div>
-    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
-      <div style="font-size:10px;color:#666">RMSE</div>
-      <div style="font-size:24px;font-weight:700;color:var(--orange)">0.518</div>
-      <div style="font-size:9px;color:#999">log&sub;10 m/s&sup2;</div>
-    </div>
-    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
-      <div style="font-size:10px;color:#666" data-en="Damaging Recall" data-id="Recall Merusak">Recall</div>
-      <div style="font-size:24px;font-weight:700;color:var(--green)">72.3%</div>
-    </div>
-    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
-      <div style="font-size:10px;color:#666" data-en="Oracle &Delta;R&sup2;" data-id="Oracle &Delta;R&sup2;">Oracle &Delta;</div>
-      <div style="font-size:24px;font-weight:700;color:var(--green)">0.0002</div>
-      <div style="font-size:9px;color:#999" data-en="self-correcting" data-id="koreksi-diri">robust</div>
-    </div>
-  </div>
-</div>
-
-</div>
-</section>
-
-<!-- ═══ INTERACTIVE CHARTS ═══ -->
-<section id="charts">
-<h2 data-en="Per-Period Performance (103 periods)" data-id="Performa Per-Periode (103 periode)">Interactive Charts</h2>
-<p style="font-size:13px;color:#666;margin-bottom:8px" data-en="Hover over the charts to see R&sup2; and RMSE at each spectral period." data-id="Arahkan kursor ke grafik untuk melihat R&sup2; dan RMSE pada setiap periode spektral.">Hover to explore.</p>
-
-<h3 data-en="IDA-PTW E2E Performance (Operational Pipeline)" data-id="Performa E2E IDA-PTW (Pipeline Operasional)">E2E Performance</h3>
-<div class="chart-container"><canvas id="r2chart"></canvas></div>
-
-<h3 style="margin-top:24px" data-en="Without vs With V<sub>S30</sub> Site Parameter (Per-Model OOF R&sup2;)" data-id="Tanpa vs Dengan Parameter Tapak V<sub>S30</sub> (R&sup2; OOF Per-Model)">Without vs With Vs30</h3>
-<p style="font-size:12px;color:#666;margin-bottom:8px" data-en="V<sub>S30</sub> is a standard site characterization parameter available from BMKG station metadata (233 stations measured) and USGS global model (Allen &amp; Wald, 2009) for remaining stations. Green line (with V<sub>S30</sub>) is consistently above blue line (without V<sub>S30</sub>) across all 102 periods." data-id="V<sub>S30</sub> adalah parameter karakterisasi tapak standar yang tersedia dari metadata stasiun BMKG (233 stasiun terukur) dan model global USGS (Allen &amp; Wald, 2009) untuk stasiun lainnya. Garis hijau (dengan V<sub>S30</sub>) secara konsisten di atas garis biru (tanpa V<sub>S30</sub>) di seluruh 102 periode."></p>
-<div class="chart-container"><canvas id="vs30chart"></canvas></div>
-<div class="metrics" style="margin-top:12px">
-  <div class="mc"><div class="v">0.544</div><div class="l">R&sup2; min (T&asymp;0.3s)</div></div>
-  <div class="mc"><div class="v">0.709</div><div class="l">R&sup2; max (T=5.0s)</div></div>
-  <div class="mc"><div class="v">0.646</div><div class="l">R&sup2; mean</div></div>
-  <div class="mc"><div class="v">0.663</div><div class="l">R&sup2; median</div></div>
-</div>
-
-<h3 style="margin-top:28px" data-en="Why Does R&sup2; Drop at Short Periods (T = 0.3&ndash;0.6 s)?" data-id="Mengapa R&sup2; Turun di Periode Pendek (T = 0.3&ndash;0.6 s)?">Why R&sup2; drops at T=0.3-0.6s</h3>
-
-<div style="background:var(--light);border-radius:8px;padding:16px;margin:12px 0;font-size:12px">
-  <div style="font-weight:700;color:var(--blue);margin-bottom:8px;font-size:13px" data-en="Theoretical Basis" data-id="Dasar Teori">Theory</div>
-  <p data-en="Spectral acceleration at any period is governed by three components: <b>Sa(T) = Source &times; Path &times; Site</b> (Kramer, 1996). Their relative contributions shift dramatically with period:" data-id="Percepatan spektral pada setiap periode dikendalikan tiga komponen: <b>Sa(T) = Sumber &times; Jalur &times; Tapak</b> (Kramer, 1996). Kontribusi relatifnya bergeser drastis terhadap periode:"></p>
-  <table style="font-size:11px;margin:10px 0">
-    <tr><th data-en="Component" data-id="Komponen">Component</th><th data-en="Short Period (T&lt;0.5s)" data-id="Periode Pendek (T&lt;0.5s)">T &lt; 0.5s</th><th data-en="Long Period (T&gt;1s)" data-id="Periode Panjang (T&gt;1s)">T &gt; 1s</th></tr>
-    <tr><td><b data-en="Source" data-id="Sumber">Source</b></td>
-      <td style="color:var(--red)" data-en="Stress drop (stochastic, varies 3&ndash;10&times;) (Boore, 2003)" data-id="Stress drop (stokastik, variasi 3&ndash;10&times;) (Boore, 2003)">Stress drop &mdash; variable</td>
-      <td style="color:var(--green)" data-en="Seismic moment (stable, well-captured by P-wave features)" data-id="Momen seismik (stabil, tertangkap baik oleh fitur P-wave)">Moment &mdash; stable</td></tr>
-    <tr><td><b data-en="Path" data-id="Jalur">Path</b></td>
-      <td style="color:var(--red)" data-en="High Q attenuation + &kappa; varies 0.01&ndash;0.08 s (Anderson &amp; Hough, 1984)" data-id="Atenuasi Q tinggi + &kappa; bervariasi 0.01&ndash;0.08 s (Anderson &amp; Hough, 1984)">High attenuation &mdash; variable</td>
-      <td style="color:var(--green)" data-en="Low attenuation, &kappa; irrelevant at low frequencies" data-id="Atenuasi rendah, &kappa; tidak relevan di frekuensi rendah">Low attenuation &mdash; stable</td></tr>
-    <tr><td><b data-en="Site" data-id="Tapak">Site</b></td>
-      <td style="color:var(--red)" data-en="Strong amplification at f&sub;0 = V<sub>S</sub>/4H (Borcherdt, 1994)" data-id="Amplifikasi kuat pada f&sub;0 = V<sub>S</sub>/4H (Borcherdt, 1994)">Amplified &mdash; very variable</td>
-      <td style="color:var(--green)" data-en="Wavelength &gt;&gt; sediment thickness, minimal effect" data-id="Panjang gelombang &gt;&gt; tebal sedimen, efek minimal">Minimal effect &mdash; stable</td></tr>
-    <tr><td><b data-en="Pipeline" data-id="Pipeline">Pipeline</b></td>
-      <td style="color:var(--red)" data-en="42 P-wave features CANNOT capture site/path/stress drop" data-id="42 fitur P-wave TIDAK BISA menangkap tapak/jalur/stress drop"><b>Cannot capture &rarr; low R&sup2;</b></td>
-      <td style="color:var(--green)" data-en="42 P-wave features CAPTURE seismic moment effectively" data-id="42 fitur P-wave MENANGKAP momen seismik efektif"><b>Well captured &rarr; high R&sup2;</b></td></tr>
-  </table>
-</div>
-
-<div style="display:grid;grid-template-columns:auto 1fr;gap:0;margin:16px 0">
-
-  <div style="background:var(--blue);color:#fff;border-radius:10px 0 0 0;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;min-width:40px">1</div>
-  <div style="background:#e3f2fd;padding:14px 18px;border-radius:0 10px 0 0;border-bottom:1px solid #fff">
-    <div style="font-weight:700;font-size:13px;color:var(--blue)" data-en="Site Effects Without V<sub>S30</sub>" data-id="Efek Tapak Tanpa V<sub>S30</sub>">Site Effects</div>
-    <p style="font-size:12px;margin-top:4px" data-en="Short-period Sa is controlled by local geology (V<sub>S30</sub>, basin resonance, impedance contrasts) which varies dramatically between stations. Two stations 5 km apart can produce Sa(0.3s) differing by 5&ndash;10&times; for the same earthquake. <b>These parameters are not in our 42-feature input set</b> &mdash; this is the single largest source of prediction uncertainty." data-id="Sa periode pendek dikendalikan oleh geologi lokal (V<sub>S30</sub>, resonansi cekungan, kontras impedansi) yang bervariasi drastis antar-stasiun. Dua stasiun berjarak 5 km bisa menghasilkan Sa(0.3s) berbeda 5&ndash;10&times; untuk gempa yang sama. <b>Parameter ini tidak ada dalam 42 fitur input kami</b> &mdash; ini sumber terbesar ketidakpastian prediksi."></p>
-  </div>
-
-  <div style="background:var(--blue);color:#fff;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">2</div>
-  <div style="background:#e8f5e9;padding:14px 18px;border-bottom:1px solid #fff">
-    <div style="font-weight:700;font-size:13px;color:var(--green)" data-en="High-Frequency Path Attenuation" data-id="Atenuasi Jalur Frekuensi Tinggi">Path Attenuation</div>
-    <p style="font-size:12px;margin-top:4px" data-en="Seismic waves at f &gt; 2 Hz (governing short-period Sa) undergo strong anelastic attenuation (Q) that varies along propagation paths through the heterogeneous Sunda subduction crust. At median distance 384 km, much high-frequency energy is absorbed before reaching the station." data-id="Gelombang seismik pada f &gt; 2 Hz (mengendalikan Sa periode pendek) mengalami atenuasi anelastik (Q) kuat yang bervariasi sepanjang jalur perambatan di kerak subduksi Sunda yang heterogen. Pada median jarak 384 km, banyak energi frekuensi tinggi terserap sebelum sampai ke stasiun."></p>
-  </div>
-
-  <div style="background:var(--blue);color:#fff;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">3</div>
-  <div style="background:#fff3e0;padding:14px 18px;border-bottom:1px solid #fff">
-    <div style="font-weight:700;font-size:13px;color:var(--orange)" data-en="P-wave Window Limitation" data-id="Keterbatasan Jendela Gelombang-P">P-wave Window</div>
-    <p style="font-size:12px;margin-top:4px" data-en="The initial 3-second P-wave window captures low-frequency content related to seismic moment (Kanamori, 2005), which correlates with long-period Sa (T &gt; 1 s). High-frequency rupture details (stress drop, directivity) influencing short-period Sa have not yet manifested in this early window." data-id="Jendela 3 detik awal gelombang-P menangkap konten frekuensi rendah terkait momen seismik (Kanamori, 2005), yang berkorelasi dengan Sa periode panjang (T &gt; 1 s). Detail ruptur frekuensi tinggi (stress drop, directivity) yang mempengaruhi Sa periode pendek belum termanifestasi dalam jendela awal ini."></p>
-  </div>
-
-  <div style="background:var(--blue);color:#fff;border-radius:0 0 0 10px;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">4</div>
-  <div style="background:#fce4ec;padding:14px 18px;border-radius:0 0 10px 0">
-    <div style="font-weight:700;font-size:13px;color:var(--red)" data-en="Intra-Band Spectral Variability" data-id="Variabilitas Spektral Intra-Band">Intra-Band Variability</div>
-    <p style="font-size:12px;margin-top:4px" data-en="Energy distribution within the seismic focus band (2&ndash;10 Hz = T 0.1&ndash;0.5 s) varies greatly &mdash; earthquakes with similar source parameters can peak at different frequencies due to stochastic rupture. This variability is <b>amplified by site response</b>: soft-soil stations with dominant period T<sub>dom</sub> &asymp; 0.3 s selectively amplify Sa at that period, while rock stations do not. Without V<sub>S30</sub> or T<sub>dom</sub> as features, this combined source-site variability is irreducible noise." data-id="Distribusi energi dalam band fokus gempa (2&ndash;10 Hz = T 0.1&ndash;0.5 s) sangat bervariasi &mdash; gempa dengan parameter sumber mirip bisa memuncak di frekuensi berbeda akibat sifat stokastik ruptur. Variabilitas ini <b>diperbesar oleh respons tapak</b>: stasiun tanah lunak dengan periode dominan T<sub>dom</sub> &asymp; 0.3 s mengamplifikasi Sa pada periode tersebut secara selektif, sementara stasiun batuan tidak. Tanpa V<sub>S30</sub> atau T<sub>dom</sub> sebagai fitur, variabilitas gabungan sumber-tapak ini menjadi noise yang tak tereduksi."></p>
-  </div>
-
-</div>
-
-<div style="background:var(--light);border-radius:8px;padding:16px;margin:12px 0;display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center">
-  <div style="text-align:center">
-    <div style="font-size:11px;color:#666" data-en="Short Period (T = 0.3s)" data-id="Periode Pendek (T = 0.3s)">Short Period</div>
-    <div style="font-size:10px;color:#999">f = 2&ndash;10 Hz</div>
-    <div style="font-size:28px;font-weight:700;color:var(--red)">0.544</div>
-    <div style="font-size:10px;color:#999" data-en="Site + path + source variability" data-id="Variabilitas tapak + jalur + sumber">High variability</div>
-  </div>
-  <div style="text-align:center">
-    <div style="font-size:24px;color:#ccc">&harr;</div>
-    <div style="font-size:11px;font-weight:700;color:var(--blue)" data-en="23% R&sup2; gap" data-id="Gap R&sup2; 23%">23% gap</div>
-  </div>
-  <div style="text-align:center">
-    <div style="font-size:11px;color:#666" data-en="Long Period (T = 5.0s)" data-id="Periode Panjang (T = 5.0s)">Long Period</div>
-    <div style="font-size:10px;color:#999">f = 0.2 Hz</div>
-    <div style="font-size:28px;font-weight:700;color:var(--green)">0.709</div>
-    <div style="font-size:10px;color:#999" data-en="Seismic moment (well-captured)" data-id="Momen seismik (tertangkap baik)">Low variability</div>
-  </div>
-</div>
-
-<div style="background:#e8f5e9;border:2px solid #66bb6a;border-radius:10px;padding:20px;margin:20px 0">
-  <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:12px" data-en="&#9989; Validation: Training With V<sub>S30</sub> Site Parameter (338 Stations)" data-id="&#9989; Validasi: Training Dengan Parameter Tapak V<sub>S30</sub> (338 Stasiun)">&#9989; With Vs30 (338 sta)</div>
-  <p style="font-size:12px;margin-bottom:12px" data-en="To validate the hypothesis that site effects are the primary cause of low short-period R&sup2;, we retrained all 515 models with <b>44 features</b> (42 P-wave IMs + V<sub>S30</sub> + ln V<sub>S30</sub>). Following NGA-West2 convention (Ancheta et al., 2014), V<sub>S30</sub> values are classified as <b>measured</b> (BMKG field surveys: HVSR, MASW, borehole; &sigma;<sub>ln</sub> &asymp; 0.05–0.15) or <b>inferred</b> (Allen &amp; Wald 2009 topographic proxy; &sigma;<sub>ln</sub> &asymp; 0.36–0.44). In the expanded experiment, <b>338 stations with measured V<sub>S30</sub></b> (39.6% of the network) were integrated, updating 265 stations (117,965 traces, 61.3% of training data) from inferred to measured values. V<sub>S30</sub> range expanded to 71.9–1,949.3 m/s spanning NEHRP classes A(5), B(20), C(97), D(173), E(43)." data-id="Untuk memvalidasi hipotesis bahwa efek tapak adalah penyebab utama rendahnya R&sup2; periode pendek, kami melatih ulang seluruh 515 model dengan <b>44 fitur</b> (42 IM P-wave + V<sub>S30</sub> + ln V<sub>S30</sub>). Mengikuti konvensi NGA-West2 (Ancheta et al., 2014), nilai V<sub>S30</sub> diklasifikasikan sebagai <b>measured</b> (survei lapangan BMKG: HVSR, MASW, borehole; &sigma;<sub>ln</sub> &asymp; 0,05–0,15) atau <b>inferred</b> (proxy topografi Allen &amp; Wald 2009; &sigma;<sub>ln</sub> &asymp; 0,36–0,44). Dalam eksperimen diperluas, <b>338 stasiun dengan V<sub>S30</sub> measured</b> (39,6% jaringan) diintegrasikan, memperbarui 265 stasiun (117.965 trace, 61,3% data training) dari nilai inferred ke measured. Rentang V<sub>S30</sub> diperluas ke 71,9–1.949,3 m/s meliputi kelas NEHRP A(5), B(20), C(97), D(173), E(43)."></p>
-
-  <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px" data-en="Result: 100% of periods improved — &Delta;R&sup2; = +0.143 (+24.6%)" data-id="Hasil: 100% periode membaik — &Delta;R&sup2; = +0,143 (+24,6%)">100% improved — ΔR² +24.6%</div>
-
-  <table style="font-size:12px;margin-bottom:12px">
-    <tr><th data-en="Metric" data-id="Metrik">Metric</th><th data-en="Baseline (42f)" data-id="Baseline (42f)">Base(42f)</th><th data-en="Phase 1 (203 sta)" data-id="Fase 1 (203 sta)">Ph1(203)</th><th data-en="Phase 2 (338 sta)" data-id="Fase 2 (338 sta)"><b>Ph2(338)</b></th><th data-en="&Delta; vs Base" data-id="&Delta; vs Base">&Delta;Base</th></tr>
-    <tr><td><b>R&sup2; mean</b></td><td>0.5798</td><td>0.6096</td><td style="color:var(--green)"><b>0.7224</b></td><td style="color:var(--green)"><b>+0.143 (+24.6%)</b></td></tr>
-    <tr><td data-en="Short T=0.05-0.6s" data-id="Pendek T=0.05-0.6s">Short T=0.05-0.6s</td><td>0.489</td><td>0.508</td><td style="color:var(--green)"><b>0.683</b></td><td style="color:var(--green)">+0.194</td></tr>
-    <tr><td data-en="Long T&ge;3.0s" data-id="Panjang T&ge;3.0s">Long T&ge;3.0s</td><td>0.607</td><td>0.647</td><td style="color:var(--green)"><b>0.778</b></td><td style="color:var(--green)">+0.171</td></tr>
-    <tr><td data-en="Periods improved" data-id="Periode membaik">Improved</td><td colspan="4" style="color:var(--green);font-weight:700;text-align:center" data-en="103 / 103 (100%) — all bands" data-id="103 / 103 (100%) — semua band">103 / 103 (100%)</td></tr>
-  </table>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-    <div style="background:#fff;border-radius:8px;padding:12px;text-align:center;border:1px solid #c8e6c9">
-      <div style="font-size:10px;color:#666" data-en="PGA Improvement" data-id="Peningkatan PGA">PGA</div>
-      <div style="font-size:10px;color:#999">T = 0 s</div>
-      <div style="font-size:11px;margin-top:4px"><span style="color:#999">0.516</span> &rarr; <span style="font-weight:700;color:var(--green)">0.696</span></div>
-      <div style="font-size:10px;color:var(--green)">+0.180 (+34.9%)</div>
-    </div>
-    <div style="background:#fff;border-radius:8px;padding:12px;text-align:center;border:1px solid #c8e6c9">
-      <div style="font-size:10px;color:#666" data-en="Sa(1.0s) Improvement" data-id="Peningkatan Sa(1,0s)">Sa(1.0 s)</div>
-      <div style="font-size:10px;color:#999">f = 1.0 Hz</div>
-      <div style="font-size:11px;margin-top:4px"><span style="color:#999">0.527</span> &rarr; <span style="font-weight:700;color:var(--green)">0.705</span></div>
-      <div style="font-size:10px;color:var(--green)">+0.178 (+33.7%)</div>
-    </div>
-  </div>
-
-  <h4 style="color:var(--green);margin:16px 0 8px;font-size:13px" data-en="R&sup2; Comparison by Spectral Band" data-id="Perbandingan R&sup2; per Band Spektral">By Band</h4>
-  <div class="chart-container" style="height:250px"><canvas id="bandChart"></canvas></div>
-
-  <h4 style="color:var(--green);margin:16px 0 8px;font-size:13px" data-en="R&sup2; at Key Structural Periods" data-id="R&sup2; pada Periode Struktural Kunci">Key Periods</h4>
-  <div class="chart-container" style="height:300px"><canvas id="barChart"></canvas></div>
-
-  <div style="background:#fff;border-radius:6px;padding:10px 14px;border-left:3px solid var(--orange);font-size:11px;margin-top:12px">
-    <b data-en="Interpretation:" data-id="Interpretasi:">Interpretation:</b>
-    <span data-en="The universal improvement confirms site effects as the primary cause of short-period R&sup2; drop. Current results use 338 stations with <b>measured</b> V<sub>S30</sub> (39.6%, from BMKG field surveys) and 516 stations with <b>inferred</b> V<sub>S30</sub> (60.4%, from Allen &amp; Wald 2009 topographic proxy). The transition from inferred (&sigma;<sub>ln</sub> &asymp; 0.36–0.44) to measured (&sigma;<sub>ln</sub> &asymp; 0.05–0.15) V<sub>S30</sub> values is the primary driver of the +24.6% improvement. With full measured V<sub>S30</sub> coverage at all BMKG stations, the improvement is expected to be substantially larger." data-id="Peningkatan universal mengkonfirmasi efek tapak sebagai penyebab utama rendahnya R&sup2; periode pendek. Hasil saat ini menggunakan 338 stasiun dengan V<sub>S30</sub> <b>measured</b> (39,6%, dari survei lapangan BMKG) dan 516 stasiun dengan V<sub>S30</sub> <b>inferred</b> (60,4%, dari proxy topografi Allen &amp; Wald 2009). Transisi dari inferred (&sigma;<sub>ln</sub> &asymp; 0,36–0,44) ke measured (&sigma;<sub>ln</sub> &asymp; 0,05–0,15) V<sub>S30</sub> adalah driver utama peningkatan +24,6%. Dengan cakupan V<sub>S30</sub> measured penuh di semua stasiun BMKG, peningkatan diharapkan jauh lebih besar."></span>
-  </div>
-</div>
-
-</section>
-
-<!-- ═══ SAFETY ═══ -->
-<section id="safety">
-<h2 data-en="Operational Safety" data-id="Keselamatan Operasional">Safety</h2>
-<table>
-  <tr><th data-en="Strategy" data-id="Strategi">Strategy</th><th data-en="Damaging Recall" data-id="Recall Merusak">Damaging Recall</th><th data-en="Critical Miss" data-id="Kehilangan Kritis">Critical Miss</th></tr>
-  <tr class="hl"><td><b>IDA-PTW</b></td><td><b>72.3%</b></td><td><b>8.9%</b></td></tr>
-  <tr><td>Source-Aware</td><td>1.3%</td><td>~98%</td></tr>
-</table>
-<p style="font-size:13px;margin-top:12px" data-en="IDA-PTW achieves a 55x improvement in Damaging recall. This is because intensity-driven routing responds to observed ground motion at the sensor site, making it inherently robust to local site amplification effects that magnitude-based systems cannot detect." data-id="IDA-PTW mencapai peningkatan 55x dalam Damaging recall. Ini karena routing berbasis intensitas merespons ground motion yang diamati di lokasi sensor, sehingga secara inheren robust terhadap efek amplifikasi tapak lokal yang tidak bisa dideteksi sistem berbasis magnitudo."></p>
 </section>
 
 <!-- ═══ STAGE 0: NEAR-FIELD BLIND ZONE MITIGATION ═══ -->
@@ -1070,6 +803,268 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
 </section>
 
+<!-- ═══ STAGE-BY-STAGE EVIDENCE ═══ -->
+<section id="evidence">
+<h2 data-en="Stage-by-Stage Pipeline Evidence" data-id="Bukti Pipeline Per-Tahap">Pipeline Evidence</h2>
+<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="Validated metrics for each pipeline stage, using 5-fold event-grouped cross-validation on 34,033 traces." data-id="Metrik tervalidasi untuk setiap tahap pipeline, menggunakan 5-fold cross-validation berdasar event pada 34.033 trace."></p>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:16px 0">
+
+<!-- Stage 1 -->
+<div style="background:#fff;border:2px solid var(--blue);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
+  <div style="font-size:11px;color:#fff;background:var(--blue);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 1</div>
+  <div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:8px" data-en="Intensity Gate Classifier" data-id="Klasifikasi Gerbang Intensitas">Intensity Gate</div>
+  <div style="font-size:12px;margin-bottom:10px" data-en="XGBoost classifier, 42 P-wave features at PTW = 2 s" data-id="Klasifikasi XGBoost, 42 fitur P-wave pada PTW = 2 s"></div>
+  <table style="font-size:11px;margin:0">
+    <tr><td data-en="Overall Accuracy" data-id="Akurasi Keseluruhan" style="text-align:left">Accuracy</td><td style="font-weight:700;color:var(--blue)">93.01%</td></tr>
+    <tr><td data-en="Damaging Recall" data-id="Recall Merusak" style="text-align:left">Damaging Recall</td><td style="font-weight:700;color:var(--green)">72.3%</td></tr>
+    <tr><td data-en="Critical Miss Rate" data-id="Laju Kehilangan Kritis" style="text-align:left">Critical Miss</td><td>8.9%</td></tr>
+    <tr><td data-en="Top Feature" data-id="Fitur Utama" style="text-align:left">Top Feature</td><td>&tau;<sub>c</sub> (51%)</td></tr>
+  </table>
+  <div style="margin-top:10px;font-size:10px;color:#666" data-en="Confusion Matrix (Weak / Felt / Damaging):" data-id="Matriks Konfusi (Weak / Felt / Damaging):">CM:</div>
+  <div style="font-family:monospace;font-size:10px;background:#f8f9fa;padding:6px;border-radius:4px;margin-top:4px">
+    W&rarr; 30540 &nbsp;1439 &nbsp;&nbsp;&nbsp;22<br>
+    F&rarr; &nbsp;&nbsp;883 &nbsp;1041 &nbsp;&nbsp;&nbsp;&nbsp;7<br>
+    D&rarr; &nbsp;&nbsp;&nbsp;&nbsp;9 &nbsp;&nbsp;&nbsp;19 &nbsp;&nbsp;&nbsp;73
+  </div>
+  <div style="background:#e8f5e9;border-radius:6px;padding:8px 12px;margin-top:10px;font-size:10px;border-left:3px solid var(--green)">
+    <b data-en="Key finding:" data-id="Temuan kunci:">Key:</b>
+    <span data-en="Intensity classification alone (without distance) achieves R&sup2; &asymp; <b>0.731</b>, virtually identical to Fixed 3s baseline and IDA Operational. Distance estimator serves as safety constraint, not accuracy booster." data-id="Klasifikasi intensitas saja (tanpa jarak) mencapai R&sup2; &asymp; <b>0.731</b>, hampir identik dengan baseline Fixed 3s dan IDA Operasional. Distance estimator berfungsi sebagai batasan keselamatan, bukan penambah akurasi."></span>
+  </div>
+</div>
+
+<!-- Stage 1.5 -->
+<div style="background:#fff;border:2px solid var(--orange);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
+  <div style="font-size:11px;color:#fff;background:var(--orange);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 1.5</div>
+  <div style="font-size:14px;font-weight:700;color:var(--orange);margin-bottom:8px" data-en="Golden Time Safety Constraint" data-id="Batasan Keselamatan Golden Time">Golden Time Safety</div>
+  <div style="font-size:12px;margin-bottom:10px" data-en="XGBoost regressor, 30 Zhang et al. (2024) features at PTW = 2 s. Does NOT improve accuracy (intensity-only R&sup2; is higher); serves as <b>golden time safety net</b> for near-field events." data-id="Regresor XGBoost, 30 fitur Zhang et al. (2024) pada PTW = 2 s. TIDAK meningkatkan akurasi (R&sup2; intensity-only lebih tinggi); berfungsi sebagai <b>jaring pengaman golden time</b> untuk event near-field."></div>
+  <table style="font-size:11px;margin:0">
+    <tr><td style="text-align:left" data-en="Routing Fidelity" data-id="Fidelitas Routing">Routing Fidelity</td><td style="font-weight:700;color:var(--green)">99.97%</td></tr>
+    <tr><td style="text-align:left" data-en="Golden Time Compliance" data-id="Kepatuhan Golden Time">Golden Time</td><td style="font-weight:700;color:var(--green)">&gt;99%</td></tr>
+    <tr><td style="text-align:left" data-en="Routing Bias" data-id="Bias Routing">Bias</td><td style="color:var(--green)" data-en="Conservative (safe-side)" data-id="Konservatif (sisi aman)">Conservative &#9989;</td></tr>
+    <tr><td style="text-align:left" data-en="Top Feature" data-id="Fitur Utama">Top Feature</td><td>predominant_freq (19%)</td></tr>
+  </table>
+  <div style="background:#e8f5e9;border-radius:6px;padding:8px 12px;margin-top:10px;font-size:11px;text-align:center">
+    <div style="font-family:monospace;font-size:10px">
+      Oracle <span style="color:#999" data-en="(perfect distance)" data-id="(jarak sempurna)">(perfect)</span>: R&sup2; = <b>0.7311</b><br>
+      Predicted: R&sup2; = <b>0.7309</b><br>
+      <span style="color:var(--green);font-weight:700">&Delta;R&sup2; = 0.0002</span>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:8px">
+    <span class="r2-clickable" style="color:var(--orange);font-size:11px" onclick="document.getElementById('r2popup').classList.add('show')" data-en="Why not R&sup2;? Click for details &#9432;" data-id="Mengapa bukan R&sup2;? Klik untuk detail &#9432;">Why not R&sup2;? &#9432;</span>
+  </div>
+</div>
+
+<!-- PTW Routing -->
+<div style="background:#fff;border:2px solid #7b1fa2;border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
+  <div style="font-size:11px;color:#fff;background:#7b1fa2;display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px" data-en="Routing" data-id="Routing">Routing</div>
+  <div style="font-size:14px;font-weight:700;color:#7b1fa2;margin-bottom:8px" data-en="Intensity &times; Distance PTW Selection" data-id="Seleksi PTW Intensitas &times; Jarak">PTW Selection</div>
+  <div style="font-size:12px;margin-bottom:10px" data-en="6&times;6 lookup table + golden time constraint" data-id="Tabel lookup 6&times;6 + batasan golden time"></div>
+  <table style="font-size:11px;margin:0">
+    <tr><td style="text-align:left" data-en="Golden Time Compliance" data-id="Kepatuhan Golden Time">Golden Time</td><td style="font-weight:700;color:var(--green)">&gt;99%</td></tr>
+    <tr><td style="text-align:left" data-en="PTW 3-4s traces" data-id="Trace PTW 3-4s">PTW 3-4s</td><td>99.9%</td></tr>
+    <tr><td style="text-align:left" data-en="Oracle vs Predicted" data-id="Oracle vs Prediksi">&Delta;R&sup2;</td><td style="font-weight:700">0.0002</td></tr>
+  </table>
+  <div style="font-size:10px;color:#666;margin-top:10px" data-en="Operational PTW Distribution:" data-id="Distribusi PTW Operasional:">Distribution:</div>
+  <div style="font-family:monospace;font-size:10px;background:#f8f9fa;padding:6px;border-radius:4px;margin-top:4px">
+    3s: 24,020 (70.6%)<br>
+    4s: &nbsp;9,974 (29.3%)<br>
+    6s: &nbsp;&nbsp;&nbsp;&nbsp;26 &nbsp;(0.1%)<br>
+    8s: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 &nbsp;(0.0%)
+  </div>
+</div>
+
+<!-- Stage 2 -->
+<div style="background:#fff;border:2px solid var(--green);border-radius:10px;padding:18px;box-shadow:var(--card-shadow)">
+  <div style="font-size:11px;color:#fff;background:var(--green);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">Stage 2</div>
+  <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:8px" data-en="Sa(T) Spectral Regressors" data-id="Regresor Spektral Sa(T)">Sa(T) Regressors</div>
+  <div style="font-size:12px;margin-bottom:10px" data-en="515 XGBoost models (103 periods &times; 5 PTWs)" data-id="515 model XGBoost (103 periode &times; 5 PTW)"></div>
+  <table style="font-size:11px;margin:0">
+    <tr><td style="text-align:left" data-en="Models Trained" data-id="Model Terlatih">Models</td><td>515 / 515 (0 failed)</td></tr>
+    <tr><td style="text-align:left">R&sup2; mean (OOF)</td><td style="font-weight:700">0.580</td></tr>
+    <tr><td style="text-align:left">R&sup2; range</td><td>0.481 &ndash; 0.644</td></tr>
+    <tr><td data-en="Top Feature" data-id="Fitur Utama" style="text-align:left">Top Feature</td><td>CVAD (89.5%)</td></tr>
+    <tr><td style="text-align:left" data-en="Validation" data-id="Validasi">CV</td><td>5-fold GroupKFold</td></tr>
+  </table>
+</div>
+
+<!-- E2E -->
+<div style="background:#fff;border:2px solid var(--red);border-radius:10px;padding:18px;box-shadow:var(--card-shadow);grid-column:1/-1">
+  <div style="font-size:11px;color:#fff;background:var(--red);display:inline-block;padding:2px 10px;border-radius:10px;margin-bottom:8px">End-to-End</div>
+  <div style="font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px" data-en="Full Pipeline: Stage 1 &rarr; 1.5 &rarr; Routing &rarr; Stage 2" data-id="Pipeline Lengkap: Stage 1 &rarr; 1.5 &rarr; Routing &rarr; Stage 2">Full Pipeline</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
+    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#666" data-en="IDA Operational R&sup2;" data-id="R&sup2; IDA Operasional">IDA R&sup2;</div>
+      <div style="font-size:24px;font-weight:700;color:var(--blue)">0.731</div>
+    </div>
+    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#666">RMSE</div>
+      <div style="font-size:24px;font-weight:700;color:var(--orange)">0.518</div>
+      <div style="font-size:9px;color:#999">log&sub;10 m/s&sup2;</div>
+    </div>
+    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#666" data-en="Damaging Recall" data-id="Recall Merusak">Recall</div>
+      <div style="font-size:24px;font-weight:700;color:var(--green)">72.3%</div>
+    </div>
+    <div style="text-align:center;background:var(--light);border-radius:8px;padding:12px">
+      <div style="font-size:10px;color:#666" data-en="Oracle &Delta;R&sup2;" data-id="Oracle &Delta;R&sup2;">Oracle &Delta;</div>
+      <div style="font-size:24px;font-weight:700;color:var(--green)">0.0002</div>
+      <div style="font-size:9px;color:#999" data-en="self-correcting" data-id="koreksi-diri">robust</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- ═══ RESULTS TABLE ═══ -->
+<section id="results">
+<h2 data-en="End-to-End Results (Table 5)" data-id="Hasil End-to-End (Tabel 5)">E2E Results</h2>
+<table>
+  <tr><th data-en="Strategy" data-id="Strategi">Strategy</th><th>R&sup2;</th><th>RMSE</th><th>&Delta;R&sup2;</th></tr>
+  <tr style="cursor:pointer" onclick="showResultDetail(0)"><td>Fixed 2s</td><td>0.7309</td><td>0.5181</td><td>-0.0002</td></tr>
+  <tr style="cursor:pointer" onclick="showResultDetail(1)"><td><b>Fixed 3s (Baseline)</b></td><td><b>0.7311</b></td><td><b>0.5179</b></td><td>--</td></tr>
+  <tr style="cursor:pointer" onclick="showResultDetail(2)"><td>Fixed 4s</td><td>0.7352</td><td>0.5140</td><td>+0.0041</td></tr>
+  <tr style="cursor:pointer" onclick="showResultDetail(3)"><td>Fixed 6s</td><td>0.7372</td><td>0.5120</td><td>+0.0061</td></tr>
+  <tr style="cursor:pointer" onclick="showResultDetail(4)"><td>Fixed 8s</td><td>0.7444</td><td>0.5050</td><td>+0.0133</td></tr>
+  <tr style="cursor:pointer" onclick="showResultDetail(5)"><td>IDA + GT Distance</td><td>0.7311</td><td>0.5179</td><td>+0.0000</td></tr>
+  <tr class="hl" style="cursor:pointer" onclick="showResultDetail(6)"><td><b>IDA Operational</b></td><td><b>0.7309</b></td><td><b>0.5181</b></td><td><b>-0.0002</b></td></tr>
+</table>
+<p style="font-size:10px;color:#aaa;margin-bottom:4px;text-align:center">&#8505;&#65039; Click any row for details</p>
+<p style="font-size:12px;color:#666;margin-top:8px" data-en="IDA achieves R&sup2; = 0.7309, virtually identical to Fixed 3s baseline (&Delta;R&sup2; = -0.0002). Safety benefits without accuracy loss. All numbers from consistent IDA-filtered evaluation (34,033 traces)." data-id="IDA mencapai R&sup2; = 0.7309, hampir identik dengan baseline Fixed 3s (&Delta;R&sup2; = -0.0002). Manfaat keselamatan tanpa kehilangan akurasi. Semua angka dari evaluasi IDA-filtered yang konsisten (34.033 trace)."></p>
+</section>
+
+<!-- ═══ INTERACTIVE CHARTS ═══ -->
+<section id="charts">
+<h2 data-en="Per-Period Performance (103 periods)" data-id="Performa Per-Periode (103 periode)">Interactive Charts</h2>
+<p style="font-size:13px;color:#666;margin-bottom:8px" data-en="Hover over the charts to see R&sup2; and RMSE at each spectral period." data-id="Arahkan kursor ke grafik untuk melihat R&sup2; dan RMSE pada setiap periode spektral.">Hover to explore.</p>
+
+<h3 data-en="IDA-PTW E2E Performance (Operational Pipeline)" data-id="Performa E2E IDA-PTW (Pipeline Operasional)">E2E Performance</h3>
+<div class="chart-container"><canvas id="r2chart"></canvas></div>
+
+<h3 style="margin-top:24px" data-en="Without vs With V<sub>S30</sub> Site Parameter (Per-Model OOF R&sup2;)" data-id="Tanpa vs Dengan Parameter Tapak V<sub>S30</sub> (R&sup2; OOF Per-Model)">Without vs With Vs30</h3>
+<p style="font-size:12px;color:#666;margin-bottom:8px" data-en="V<sub>S30</sub> is a standard site characterization parameter available from BMKG station metadata (233 stations measured) and USGS global model (Allen &amp; Wald, 2009) for remaining stations. Green line (with V<sub>S30</sub>) is consistently above blue line (without V<sub>S30</sub>) across all 102 periods." data-id="V<sub>S30</sub> adalah parameter karakterisasi tapak standar yang tersedia dari metadata stasiun BMKG (233 stasiun terukur) dan model global USGS (Allen &amp; Wald, 2009) untuk stasiun lainnya. Garis hijau (dengan V<sub>S30</sub>) secara konsisten di atas garis biru (tanpa V<sub>S30</sub>) di seluruh 102 periode."></p>
+<div class="chart-container"><canvas id="vs30chart"></canvas></div>
+<div class="metrics" style="margin-top:12px">
+  <div class="mc"><div class="v">0.544</div><div class="l">R&sup2; min (T&asymp;0.3s)</div></div>
+  <div class="mc"><div class="v">0.709</div><div class="l">R&sup2; max (T=5.0s)</div></div>
+  <div class="mc"><div class="v">0.646</div><div class="l">R&sup2; mean</div></div>
+  <div class="mc"><div class="v">0.663</div><div class="l">R&sup2; median</div></div>
+</div>
+
+<h3 style="margin-top:28px" data-en="Why Does R&sup2; Drop at Short Periods (T = 0.3&ndash;0.6 s)?" data-id="Mengapa R&sup2; Turun di Periode Pendek (T = 0.3&ndash;0.6 s)?">Why R&sup2; drops at T=0.3-0.6s</h3>
+
+<div style="background:var(--light);border-radius:8px;padding:16px;margin:12px 0;font-size:12px">
+  <div style="font-weight:700;color:var(--blue);margin-bottom:8px;font-size:13px" data-en="Theoretical Basis" data-id="Dasar Teori">Theory</div>
+  <p data-en="Spectral acceleration at any period is governed by three components: <b>Sa(T) = Source &times; Path &times; Site</b> (Kramer, 1996). Their relative contributions shift dramatically with period:" data-id="Percepatan spektral pada setiap periode dikendalikan tiga komponen: <b>Sa(T) = Sumber &times; Jalur &times; Tapak</b> (Kramer, 1996). Kontribusi relatifnya bergeser drastis terhadap periode:"></p>
+  <table style="font-size:11px;margin:10px 0">
+    <tr><th data-en="Component" data-id="Komponen">Component</th><th data-en="Short Period (T&lt;0.5s)" data-id="Periode Pendek (T&lt;0.5s)">T &lt; 0.5s</th><th data-en="Long Period (T&gt;1s)" data-id="Periode Panjang (T&gt;1s)">T &gt; 1s</th></tr>
+    <tr><td><b data-en="Source" data-id="Sumber">Source</b></td>
+      <td style="color:var(--red)" data-en="Stress drop (stochastic, varies 3&ndash;10&times;) (Boore, 2003)" data-id="Stress drop (stokastik, variasi 3&ndash;10&times;) (Boore, 2003)">Stress drop &mdash; variable</td>
+      <td style="color:var(--green)" data-en="Seismic moment (stable, well-captured by P-wave features)" data-id="Momen seismik (stabil, tertangkap baik oleh fitur P-wave)">Moment &mdash; stable</td></tr>
+    <tr><td><b data-en="Path" data-id="Jalur">Path</b></td>
+      <td style="color:var(--red)" data-en="High Q attenuation + &kappa; varies 0.01&ndash;0.08 s (Anderson &amp; Hough, 1984)" data-id="Atenuasi Q tinggi + &kappa; bervariasi 0.01&ndash;0.08 s (Anderson &amp; Hough, 1984)">High attenuation &mdash; variable</td>
+      <td style="color:var(--green)" data-en="Low attenuation, &kappa; irrelevant at low frequencies" data-id="Atenuasi rendah, &kappa; tidak relevan di frekuensi rendah">Low attenuation &mdash; stable</td></tr>
+    <tr><td><b data-en="Site" data-id="Tapak">Site</b></td>
+      <td style="color:var(--red)" data-en="Strong amplification at f&sub;0 = V<sub>S</sub>/4H (Borcherdt, 1994)" data-id="Amplifikasi kuat pada f&sub;0 = V<sub>S</sub>/4H (Borcherdt, 1994)">Amplified &mdash; very variable</td>
+      <td style="color:var(--green)" data-en="Wavelength &gt;&gt; sediment thickness, minimal effect" data-id="Panjang gelombang &gt;&gt; tebal sedimen, efek minimal">Minimal effect &mdash; stable</td></tr>
+    <tr><td><b data-en="Pipeline" data-id="Pipeline">Pipeline</b></td>
+      <td style="color:var(--red)" data-en="42 P-wave features CANNOT capture site/path/stress drop" data-id="42 fitur P-wave TIDAK BISA menangkap tapak/jalur/stress drop"><b>Cannot capture &rarr; low R&sup2;</b></td>
+      <td style="color:var(--green)" data-en="42 P-wave features CAPTURE seismic moment effectively" data-id="42 fitur P-wave MENANGKAP momen seismik efektif"><b>Well captured &rarr; high R&sup2;</b></td></tr>
+  </table>
+</div>
+
+<div style="display:grid;grid-template-columns:auto 1fr;gap:0;margin:16px 0">
+
+  <div style="background:var(--blue);color:#fff;border-radius:10px 0 0 0;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;min-width:40px">1</div>
+  <div style="background:#e3f2fd;padding:14px 18px;border-radius:0 10px 0 0;border-bottom:1px solid #fff">
+    <div style="font-weight:700;font-size:13px;color:var(--blue)" data-en="Site Effects Without V<sub>S30</sub>" data-id="Efek Tapak Tanpa V<sub>S30</sub>">Site Effects</div>
+    <p style="font-size:12px;margin-top:4px" data-en="Short-period Sa is controlled by local geology (V<sub>S30</sub>, basin resonance, impedance contrasts) which varies dramatically between stations. Two stations 5 km apart can produce Sa(0.3s) differing by 5&ndash;10&times; for the same earthquake. <b>These parameters are not in our 42-feature input set</b> &mdash; this is the single largest source of prediction uncertainty." data-id="Sa periode pendek dikendalikan oleh geologi lokal (V<sub>S30</sub>, resonansi cekungan, kontras impedansi) yang bervariasi drastis antar-stasiun. Dua stasiun berjarak 5 km bisa menghasilkan Sa(0.3s) berbeda 5&ndash;10&times; untuk gempa yang sama. <b>Parameter ini tidak ada dalam 42 fitur input kami</b> &mdash; ini sumber terbesar ketidakpastian prediksi."></p>
+  </div>
+
+  <div style="background:var(--blue);color:#fff;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">2</div>
+  <div style="background:#e8f5e9;padding:14px 18px;border-bottom:1px solid #fff">
+    <div style="font-weight:700;font-size:13px;color:var(--green)" data-en="High-Frequency Path Attenuation" data-id="Atenuasi Jalur Frekuensi Tinggi">Path Attenuation</div>
+    <p style="font-size:12px;margin-top:4px" data-en="Seismic waves at f &gt; 2 Hz (governing short-period Sa) undergo strong anelastic attenuation (Q) that varies along propagation paths through the heterogeneous Sunda subduction crust. At median distance 384 km, much high-frequency energy is absorbed before reaching the station." data-id="Gelombang seismik pada f &gt; 2 Hz (mengendalikan Sa periode pendek) mengalami atenuasi anelastik (Q) kuat yang bervariasi sepanjang jalur perambatan di kerak subduksi Sunda yang heterogen. Pada median jarak 384 km, banyak energi frekuensi tinggi terserap sebelum sampai ke stasiun."></p>
+  </div>
+
+  <div style="background:var(--blue);color:#fff;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">3</div>
+  <div style="background:#fff3e0;padding:14px 18px;border-bottom:1px solid #fff">
+    <div style="font-weight:700;font-size:13px;color:var(--orange)" data-en="P-wave Window Limitation" data-id="Keterbatasan Jendela Gelombang-P">P-wave Window</div>
+    <p style="font-size:12px;margin-top:4px" data-en="The initial 3-second P-wave window captures low-frequency content related to seismic moment (Kanamori, 2005), which correlates with long-period Sa (T &gt; 1 s). High-frequency rupture details (stress drop, directivity) influencing short-period Sa have not yet manifested in this early window." data-id="Jendela 3 detik awal gelombang-P menangkap konten frekuensi rendah terkait momen seismik (Kanamori, 2005), yang berkorelasi dengan Sa periode panjang (T &gt; 1 s). Detail ruptur frekuensi tinggi (stress drop, directivity) yang mempengaruhi Sa periode pendek belum termanifestasi dalam jendela awal ini."></p>
+  </div>
+
+  <div style="background:var(--blue);color:#fff;border-radius:0 0 0 10px;padding:14px 16px;text-align:center;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">4</div>
+  <div style="background:#fce4ec;padding:14px 18px;border-radius:0 0 10px 0">
+    <div style="font-weight:700;font-size:13px;color:var(--red)" data-en="Intra-Band Spectral Variability" data-id="Variabilitas Spektral Intra-Band">Intra-Band Variability</div>
+    <p style="font-size:12px;margin-top:4px" data-en="Energy distribution within the seismic focus band (2&ndash;10 Hz = T 0.1&ndash;0.5 s) varies greatly &mdash; earthquakes with similar source parameters can peak at different frequencies due to stochastic rupture. This variability is <b>amplified by site response</b>: soft-soil stations with dominant period T<sub>dom</sub> &asymp; 0.3 s selectively amplify Sa at that period, while rock stations do not. Without V<sub>S30</sub> or T<sub>dom</sub> as features, this combined source-site variability is irreducible noise." data-id="Distribusi energi dalam band fokus gempa (2&ndash;10 Hz = T 0.1&ndash;0.5 s) sangat bervariasi &mdash; gempa dengan parameter sumber mirip bisa memuncak di frekuensi berbeda akibat sifat stokastik ruptur. Variabilitas ini <b>diperbesar oleh respons tapak</b>: stasiun tanah lunak dengan periode dominan T<sub>dom</sub> &asymp; 0.3 s mengamplifikasi Sa pada periode tersebut secara selektif, sementara stasiun batuan tidak. Tanpa V<sub>S30</sub> atau T<sub>dom</sub> sebagai fitur, variabilitas gabungan sumber-tapak ini menjadi noise yang tak tereduksi."></p>
+  </div>
+
+</div>
+
+<div style="background:var(--light);border-radius:8px;padding:16px;margin:12px 0;display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center">
+  <div style="text-align:center">
+    <div style="font-size:11px;color:#666" data-en="Short Period (T = 0.3s)" data-id="Periode Pendek (T = 0.3s)">Short Period</div>
+    <div style="font-size:10px;color:#999">f = 2&ndash;10 Hz</div>
+    <div style="font-size:28px;font-weight:700;color:var(--red)">0.544</div>
+    <div style="font-size:10px;color:#999" data-en="Site + path + source variability" data-id="Variabilitas tapak + jalur + sumber">High variability</div>
+  </div>
+  <div style="text-align:center">
+    <div style="font-size:24px;color:#ccc">&harr;</div>
+    <div style="font-size:11px;font-weight:700;color:var(--blue)" data-en="23% R&sup2; gap" data-id="Gap R&sup2; 23%">23% gap</div>
+  </div>
+  <div style="text-align:center">
+    <div style="font-size:11px;color:#666" data-en="Long Period (T = 5.0s)" data-id="Periode Panjang (T = 5.0s)">Long Period</div>
+    <div style="font-size:10px;color:#999">f = 0.2 Hz</div>
+    <div style="font-size:28px;font-weight:700;color:var(--green)">0.709</div>
+    <div style="font-size:10px;color:#999" data-en="Seismic moment (well-captured)" data-id="Momen seismik (tertangkap baik)">Low variability</div>
+  </div>
+</div>
+
+<div style="background:#e8f5e9;border:2px solid #66bb6a;border-radius:10px;padding:20px;margin:20px 0">
+  <div style="font-size:14px;font-weight:700;color:var(--green);margin-bottom:12px" data-en="&#9989; Validation: Training With V<sub>S30</sub> Site Parameter (338 Stations)" data-id="&#9989; Validasi: Training Dengan Parameter Tapak V<sub>S30</sub> (338 Stasiun)">&#9989; With Vs30 (338 sta)</div>
+  <p style="font-size:12px;margin-bottom:12px" data-en="To validate the hypothesis that site effects are the primary cause of low short-period R&sup2;, we retrained all 515 models with <b>44 features</b> (42 P-wave IMs + V<sub>S30</sub> + ln V<sub>S30</sub>). Following NGA-West2 convention (Ancheta et al., 2014), V<sub>S30</sub> values are classified as <b>measured</b> (BMKG field surveys: HVSR, MASW, borehole; &sigma;<sub>ln</sub> &asymp; 0.05–0.15) or <b>inferred</b> (Allen &amp; Wald 2009 topographic proxy; &sigma;<sub>ln</sub> &asymp; 0.36–0.44). In the expanded experiment, <b>338 stations with measured V<sub>S30</sub></b> (39.6% of the network) were integrated, updating 265 stations (117,965 traces, 61.3% of training data) from inferred to measured values. V<sub>S30</sub> range expanded to 71.9–1,949.3 m/s spanning NEHRP classes A(5), B(20), C(97), D(173), E(43)." data-id="Untuk memvalidasi hipotesis bahwa efek tapak adalah penyebab utama rendahnya R&sup2; periode pendek, kami melatih ulang seluruh 515 model dengan <b>44 fitur</b> (42 IM P-wave + V<sub>S30</sub> + ln V<sub>S30</sub>). Mengikuti konvensi NGA-West2 (Ancheta et al., 2014), nilai V<sub>S30</sub> diklasifikasikan sebagai <b>measured</b> (survei lapangan BMKG: HVSR, MASW, borehole; &sigma;<sub>ln</sub> &asymp; 0,05–0,15) atau <b>inferred</b> (proxy topografi Allen &amp; Wald 2009; &sigma;<sub>ln</sub> &asymp; 0,36–0,44). Dalam eksperimen diperluas, <b>338 stasiun dengan V<sub>S30</sub> measured</b> (39,6% jaringan) diintegrasikan, memperbarui 265 stasiun (117.965 trace, 61,3% data training) dari nilai inferred ke measured. Rentang V<sub>S30</sub> diperluas ke 71,9–1.949,3 m/s meliputi kelas NEHRP A(5), B(20), C(97), D(173), E(43)."></p>
+
+  <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:8px" data-en="Result: 100% of periods improved — &Delta;R&sup2; = +0.143 (+24.6%)" data-id="Hasil: 100% periode membaik — &Delta;R&sup2; = +0,143 (+24,6%)">100% improved — ΔR² +24.6%</div>
+
+  <table style="font-size:12px;margin-bottom:12px">
+    <tr><th data-en="Metric" data-id="Metrik">Metric</th><th data-en="Baseline (42f)" data-id="Baseline (42f)">Base(42f)</th><th data-en="Phase 1 (203 sta)" data-id="Fase 1 (203 sta)">Ph1(203)</th><th data-en="Phase 2 (338 sta)" data-id="Fase 2 (338 sta)"><b>Ph2(338)</b></th><th data-en="&Delta; vs Base" data-id="&Delta; vs Base">&Delta;Base</th></tr>
+    <tr><td><b>R&sup2; mean</b></td><td>0.5798</td><td>0.6096</td><td style="color:var(--green)"><b>0.7224</b></td><td style="color:var(--green)"><b>+0.143 (+24.6%)</b></td></tr>
+    <tr><td data-en="Short T=0.05-0.6s" data-id="Pendek T=0.05-0.6s">Short T=0.05-0.6s</td><td>0.489</td><td>0.508</td><td style="color:var(--green)"><b>0.683</b></td><td style="color:var(--green)">+0.194</td></tr>
+    <tr><td data-en="Long T&ge;3.0s" data-id="Panjang T&ge;3.0s">Long T&ge;3.0s</td><td>0.607</td><td>0.647</td><td style="color:var(--green)"><b>0.778</b></td><td style="color:var(--green)">+0.171</td></tr>
+    <tr><td data-en="Periods improved" data-id="Periode membaik">Improved</td><td colspan="4" style="color:var(--green);font-weight:700;text-align:center" data-en="103 / 103 (100%) — all bands" data-id="103 / 103 (100%) — semua band">103 / 103 (100%)</td></tr>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+    <div style="background:#fff;border-radius:8px;padding:12px;text-align:center;border:1px solid #c8e6c9">
+      <div style="font-size:10px;color:#666" data-en="PGA Improvement" data-id="Peningkatan PGA">PGA</div>
+      <div style="font-size:10px;color:#999">T = 0 s</div>
+      <div style="font-size:11px;margin-top:4px"><span style="color:#999">0.516</span> &rarr; <span style="font-weight:700;color:var(--green)">0.696</span></div>
+      <div style="font-size:10px;color:var(--green)">+0.180 (+34.9%)</div>
+    </div>
+    <div style="background:#fff;border-radius:8px;padding:12px;text-align:center;border:1px solid #c8e6c9">
+      <div style="font-size:10px;color:#666" data-en="Sa(1.0s) Improvement" data-id="Peningkatan Sa(1,0s)">Sa(1.0 s)</div>
+      <div style="font-size:10px;color:#999">f = 1.0 Hz</div>
+      <div style="font-size:11px;margin-top:4px"><span style="color:#999">0.527</span> &rarr; <span style="font-weight:700;color:var(--green)">0.705</span></div>
+      <div style="font-size:10px;color:var(--green)">+0.178 (+33.7%)</div>
+    </div>
+  </div>
+
+  <h4 style="color:var(--green);margin:16px 0 8px;font-size:13px" data-en="R&sup2; Comparison by Spectral Band" data-id="Perbandingan R&sup2; per Band Spektral">By Band</h4>
+  <div class="chart-container" style="height:250px"><canvas id="bandChart"></canvas></div>
+
+  <h4 style="color:var(--green);margin:16px 0 8px;font-size:13px" data-en="R&sup2; at Key Structural Periods" data-id="R&sup2; pada Periode Struktural Kunci">Key Periods</h4>
+  <div class="chart-container" style="height:300px"><canvas id="barChart"></canvas></div>
+
+  <div style="background:#fff;border-radius:6px;padding:10px 14px;border-left:3px solid var(--orange);font-size:11px;margin-top:12px">
+    <b data-en="Interpretation:" data-id="Interpretasi:">Interpretation:</b>
+    <span data-en="The universal improvement confirms site effects as the primary cause of short-period R&sup2; drop. Current results use 338 stations with <b>measured</b> V<sub>S30</sub> (39.6%, from BMKG field surveys) and 516 stations with <b>inferred</b> V<sub>S30</sub> (60.4%, from Allen &amp; Wald 2009 topographic proxy). The transition from inferred (&sigma;<sub>ln</sub> &asymp; 0.36–0.44) to measured (&sigma;<sub>ln</sub> &asymp; 0.05–0.15) V<sub>S30</sub> values is the primary driver of the +24.6% improvement. With full measured V<sub>S30</sub> coverage at all BMKG stations, the improvement is expected to be substantially larger." data-id="Peningkatan universal mengkonfirmasi efek tapak sebagai penyebab utama rendahnya R&sup2; periode pendek. Hasil saat ini menggunakan 338 stasiun dengan V<sub>S30</sub> <b>measured</b> (39,6%, dari survei lapangan BMKG) dan 516 stasiun dengan V<sub>S30</sub> <b>inferred</b> (60,4%, dari proxy topografi Allen &amp; Wald 2009). Transisi dari inferred (&sigma;<sub>ln</sub> &asymp; 0,36–0,44) ke measured (&sigma;<sub>ln</sub> &asymp; 0,05–0,15) V<sub>S30</sub> adalah driver utama peningkatan +24,6%. Dengan cakupan V<sub>S30</sub> measured penuh di semua stasiun BMKG, peningkatan diharapkan jauh lebih besar."></span>
+  </div>
+</div>
+
+</section>
+
 <!-- ═══ COMPREHENSIVE PERFORMANCE METRICS (Dai et al. 2024) ═══ -->
 <section id="comp-metrics">
 <h2 data-en="Comprehensive Performance Evaluation (Dai et al. 2024)" data-id="Evaluasi Performa Komprehensif (Dai et al. 2024)">Comprehensive Metrics</h2>
@@ -1173,7 +1168,6 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   </div>
 </div>
 </div>
-
 <!-- R² = 0.099 Explanation Popup -->
 <div class="r2-popup-overlay" id="r2popup" onclick="if(event.target===this)this.classList.remove('show')">
 <div class="r2-popup">
@@ -1320,6 +1314,23 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
     <p style="font-size:12px" data-en="The pipeline achieves near-identical results whether using predicted or perfect distance, proving fully autonomous single-station operation." data-id="Pipeline mencapai hasil yang hampir identik baik menggunakan jarak prediksi maupun sempurna, membuktikan operasi single-station sepenuhnya otonom."></p>
   </div>
 
+</div>
+</div>
+
+
+<!-- Narrative Detail Popup -->
+<div class="r2-popup-overlay" id="narrPopup" onclick="if(event.target===this)this.classList.remove('show')">
+<div class="r2-popup" style="max-width:650px">
+  <button class="close-btn" onclick="document.getElementById('narrPopup').classList.remove('show')">&times;</button>
+  <div id="narrPopupContent"></div>
+</div>
+</div>
+
+<!-- Result Detail Popup -->
+<div class="r2-popup-overlay" id="resultPopup" onclick="if(event.target===this)this.classList.remove('show')">
+<div class="r2-popup" style="max-width:600px">
+  <button class="close-btn" onclick="document.getElementById('resultPopup').classList.remove('show')">&times;</button>
+  <div id="resultPopupContent"></div>
 </div>
 </div>
 
@@ -1727,6 +1738,105 @@ function loadManuscript(l){
 }
 window._msReady=true;
 loadManuscript(lang);
+
+// ── Narrative Detail Popups ──
+var narrDetailData = [
+  {
+    title_en:'The Saturation Problem',
+    title_id:'Masalah Saturasi',
+    body_en:'<p>Traditional EEWS use \u03C4<sub>c</sub> (predominant period) to estimate earthquake magnitude. \u03C4<sub>c</sub> is derived from the ratio of displacement to velocity integrals of the P-wave signal. For moderate earthquakes (M < 6.0), \u03C4<sub>c</sub> increases proportionally with magnitude \u2014 making it an effective proxy. However, \u03C4<sub>c</sub> saturates for M > 6.5: it plateaus around 4-5 seconds regardless of whether the earthquake is M6.5, M7.0, or M8.0. This occurs because the initial P-wave window (2-8 seconds) only samples the beginning of the rupture, and large earthquakes simply have longer ruptures that extend beyond this window.</p><p style="margin-top:12px"><b>Our innovation:</b> Instead of fighting saturation, we exploit it. \u03C4<sub>c</sub>\u2019s natural ceiling creates a clear boundary between intensity classes \u2014 perfectly suited for discrete classification (Stage 1) rather than continuous magnitude regression.</p>',
+    body_id:'<p>EEWS tradisional menggunakan \u03C4<sub>c</sub> (periode predominan) untuk mengestimasi magnitudo gempa. \u03C4<sub>c</sub> diturunkan dari rasio integral perpindahan terhadap kecepatan sinyal gelombang-P. Untuk gempa moderat (M < 6.0), \u03C4<sub>c</sub> meningkat secara proporsional dengan magnitudo \u2014 menjadikannya proksi yang efektif. Namun, \u03C4<sub>c</sub> mengalami saturasi untuk M > 6.5: nilainya mendatar di sekitar 4-5 detik terlepas dari apakah gempa M6.5, M7.0, atau M8.0. Ini terjadi karena jendela gelombang-P awal (2-8 detik) hanya menangkap awal ruptur, dan gempa besar memiliki ruptur yang lebih panjang yang melampaui jendela ini.</p><p style="margin-top:12px"><b>Inovasi kami:</b> Alih-alih melawan saturasi, kami memanfaatkannya. Ceiling alami \u03C4<sub>c</sub> menciptakan batas yang jelas antara kelas intensitas \u2014 sangat cocok untuk klasifikasi diskret (Stage 1) daripada regresi magnitudo kontinu.</p>'
+  },
+  {
+    title_en:'Feature Dichotomy',
+    title_id:'Dikotomi Fitur',
+    body_en:'<p>We discovered that XGBoost naturally assigns fundamentally different features to different tasks based on their physical properties.</p><p><b>Stage 1 (classification):</b> \u03C4<sub>c</sub> dominates with 51% importance because its saturation creates natural class boundaries \u2014 it effectively says \u201cthis earthquake feels weak/moderate/strong\u201d without needing to know the exact magnitude.</p><p><b>Stage 2 (regression):</b> CVAD dominates with 89.5% importance because it scales monotonically and never saturates. CVAD (Cumulative Velocity Amplitude Displacement) is the integral of absolute velocity, providing continuous ground motion amplitude information across the entire dynamic range.</p><p style="margin-top:12px"><b>Significance:</b> This is the first systematic exploitation of intensity measure saturation properties in EEWS design \u2014 a new paradigm where feature physics drives architecture.</p>',
+    body_id:'<p>Kami menemukan bahwa XGBoost secara alami menetapkan fitur yang berbeda secara fundamental untuk tugas yang berbeda berdasarkan sifat fisiknya.</p><p><b>Stage 1 (klasifikasi):</b> \u03C4<sub>c</sub> mendominasi dengan 51% importance karena saturasinya menciptakan batas kelas alami \u2014 secara efektif mengatakan \u201cgempa ini terasa lemah/sedang/kuat\u201d tanpa perlu mengetahui magnitudo tepat.</p><p><b>Stage 2 (regresi):</b> CVAD mendominasi dengan 89.5% importance karena skalanya monotonik dan tidak pernah saturasi. CVAD (Cumulative Velocity Amplitude Displacement) adalah integral dari kecepatan absolut, memberikan informasi amplitudo ground motion kontinu di seluruh rentang dinamis.</p><p style="margin-top:12px"><b>Signifikansi:</b> Ini adalah eksploitasi sistematis pertama dari sifat saturasi intensity measure dalam desain EEWS \u2014 paradigma baru di mana fisika fitur mendorong arsitektur.</p>'
+  },
+  {
+    title_en:'Golden Time Constraint',
+    title_id:'Batasan Golden Time',
+    body_en:'<p>The golden time is the S-P travel time difference: the window between P-wave arrival (first detectable signal) and S-wave arrival (when destructive shaking begins).</p><p style="font-family:monospace;background:#f8f9fa;padding:8px 12px;border-radius:6px;margin:10px 0">golden_time = D \u00D7 (1/V<sub>s</sub> - 1/V<sub>p</sub>) = D \u00D7 0.1319 s/km</p><p>At the dataset\u2019s median distance (384 km), golden time is ~51 seconds \u2014 plenty of time for any PTW. But for near-field events on active crustal faults:</p><ul><li>D=15 km \u2192 golden time = 2.0 s (barely enough for PTW=2s)</li><li>D=10 km \u2192 golden time = 1.3 s (too short for Stage 1)</li></ul><p style="margin-top:12px">The IDA-PTW framework respects this: 99.9% of traces use PTW=3-4s, and the golden time constraint ensures no warning is issued after the S-wave has already arrived (which would be meaningless).</p>',
+    body_id:'<p>Golden time adalah selisih waktu tempuh S-P: jendela antara kedatangan gelombang-P (sinyal pertama yang terdeteksi) dan kedatangan gelombang-S (saat guncangan destruktif dimulai).</p><p style="font-family:monospace;background:#f8f9fa;padding:8px 12px;border-radius:6px;margin:10px 0">golden_time = D \u00D7 (1/V<sub>s</sub> - 1/V<sub>p</sub>) = D \u00D7 0.1319 s/km</p><p>Pada jarak median dataset (384 km), golden time ~51 detik \u2014 waktu yang cukup untuk PTW apapun. Tapi untuk event near-field di sesar kerak aktif:</p><ul><li>D=15 km \u2192 golden time = 2.0 s (nyaris cukup untuk PTW=2s)</li><li>D=10 km \u2192 golden time = 1.3 s (terlalu pendek untuk Stage 1)</li></ul><p style="margin-top:12px">Framework IDA-PTW menghormati ini: 99.9% trace menggunakan PTW=3-4s, dan batasan golden time memastikan peringatan tidak dikirim setelah gelombang-S sudah tiba (yang tidak bermakna).</p>'
+  },
+  {
+    title_en:'Real-World Indonesian Scenario',
+    title_id:'Skenario Nyata Indonesia',
+    body_en:'<p>Indonesia sits at the junction of three major tectonic plates with over 250 active faults. This creates scenarios where moderate earthquakes produce disproportionate damage due to:</p><ol><li><b>Soft-soil amplification</b> \u2014 alluvial basins beneath cities like Jakarta, Bandung, Yogyakarta can amplify ground motion by 5-10\u00D7</li><li><b>Shallow crustal faults near cities</b> \u2014 Lembang Fault is only 8 km from Bandung (9 million residents), Opak Fault directly beneath Yogyakarta</li><li><b>Basin edge effects</b> \u2014 seismic waves get trapped and amplified at sediment-bedrock boundaries</li></ol><p style="margin-top:12px">A magnitude-based system would classify M5.0 as \u201cmoderate\u201d everywhere. But IDA-PTW responds to what the sensor actually measures \u2014 if ground shaking at a soft-soil site exceeds 62 Gal (Damaging threshold), the system correctly escalates regardless of the modest magnitude. This is exactly what happened in the 2006 M6.3 Yogyakarta earthquake and the 2022 M5.6 Cianjur earthquake.</p>',
+    body_id:'<p>Indonesia terletak di persimpangan tiga lempeng tektonik utama dengan lebih dari 250 sesar aktif. Ini menciptakan skenario di mana gempa moderat menghasilkan kerusakan tidak proporsional karena:</p><ol><li><b>Amplifikasi tanah lunak</b> \u2014 cekungan aluvial di bawah kota seperti Jakarta, Bandung, Yogyakarta dapat mengamplifikasi ground motion 5-10\u00D7</li><li><b>Sesar kerak dangkal dekat kota</b> \u2014 Sesar Lembang hanya 8 km dari Bandung (9 juta penduduk), Sesar Opak tepat di bawah Yogyakarta</li><li><b>Efek tepi cekungan</b> \u2014 gelombang seismik terperangkap dan teramplifikasi di batas sedimen-batuan dasar</li></ol><p style="margin-top:12px">Sistem berbasis magnitudo akan mengklasifikasi M5.0 sebagai \u201cmoderat\u201d di mana-mana. Tapi IDA-PTW merespons apa yang benar-benar diukur sensor \u2014 jika guncangan di tapak tanah lunak melebihi 62 Gal (ambang Damaging), sistem dengan benar meningkatkan eskalasi tanpa memandang magnitudo yang sederhana. Ini persis yang terjadi pada gempa M6.3 Yogyakarta 2006 dan gempa M5.6 Cianjur 2022.</p>'
+  }
+];
+
+function showNarrDetail(idx){
+  var d=narrDetailData[idx];
+  var t=lang==='id'?d.title_id:d.title_en;
+  var b=lang==='id'?d.body_id:d.body_en;
+  document.getElementById('narrPopupContent').innerHTML='<h2 style="color:var(--blue);font-size:17px;margin-bottom:12px">'+t+'</h2>'+b;
+  document.getElementById('narrPopup').classList.add('show');
+}
+
+// ── Result Detail Popups ──
+var resultDetailData = [
+  {
+    title_en:'Fixed 2s Strategy',
+    title_id:'Strategi Fixed 2s',
+    body_en:'<p><b>What it is:</b> All traces use a fixed P-wave time window (PTW) of exactly 2 seconds, regardless of earthquake characteristics.</p><p><b>Rationale:</b> The shortest possible observation window. Provides the fastest warning but captures the least seismic information.</p><p><b>Performance:</b> R\u00B2 = 0.7309, virtually identical to Fixed 3s baseline (\u0394R\u00B2 = -0.0002). The minimal difference between 2s and 3s PTW shows that the first 2 seconds of P-wave data already capture most of the predictive signal.</p><p><b>Limitation:</b> No adaptive routing \u2014 dangerous events receive the same short window as non-threatening ones.</p>',
+    body_id:'<p><b>Apa ini:</b> Semua trace menggunakan jendela waktu gelombang-P (PTW) tetap 2 detik, tanpa memperhitungkan karakteristik gempa.</p><p><b>Alasan:</b> Jendela observasi terpendek yang mungkin. Memberikan peringatan tercepat tapi menangkap informasi seismik paling sedikit.</p><p><b>Performa:</b> R\u00B2 = 0.7309, hampir identik dengan baseline Fixed 3s (\u0394R\u00B2 = -0.0002). Perbedaan minimal antara PTW 2s dan 3s menunjukkan 2 detik pertama data P-wave sudah menangkap sebagian besar sinyal prediktif.</p><p><b>Keterbatasan:</b> Tanpa routing adaptif \u2014 event berbahaya menerima jendela pendek yang sama dengan yang tidak mengancam.</p>'
+  },
+  {
+    title_en:'Fixed 3s Strategy (Baseline)',
+    title_id:'Strategi Fixed 3s (Baseline)',
+    body_en:'<p><b>What it is:</b> All traces use a fixed PTW of 3 seconds. This serves as the <b>primary baseline</b> for comparison because 3s is the most common PTW in EEWS literature.</p><p><b>Why baseline:</b> 3 seconds provides a good balance between information content and warning speed. Most EEWS systems (e.g., ElarmS, PRESTo) use 3-4s windows.</p><p><b>Performance:</b> R\u00B2 = 0.7311. IDA Operational (R\u00B2 = 0.7309) matches this baseline with only \u0394R\u00B2 = -0.0002 difference while gaining 55\u00D7 better Damaging recall.</p>',
+    body_id:'<p><b>Apa ini:</b> Semua trace menggunakan PTW tetap 3 detik. Ini berfungsi sebagai <b>baseline utama</b> perbandingan karena 3s adalah PTW paling umum dalam literatur EEWS.</p><p><b>Mengapa baseline:</b> 3 detik memberikan keseimbangan yang baik antara konten informasi dan kecepatan peringatan. Sebagian besar sistem EEWS (misal ElarmS, PRESTo) menggunakan jendela 3-4s.</p><p><b>Performa:</b> R\u00B2 = 0.7311. IDA Operasional (R\u00B2 = 0.7309) sesuai baseline ini dengan perbedaan hanya \u0394R\u00B2 = -0.0002 sambil mendapat recall Damaging 55\u00D7 lebih baik.</p>'
+  },
+  {
+    title_en:'Fixed 4s Strategy',
+    title_id:'Strategi Fixed 4s',
+    body_en:'<p><b>What it is:</b> All traces use a fixed PTW of 4 seconds.</p><p><b>Performance:</b> R\u00B2 = 0.7352 (\u0394R\u00B2 = +0.0041 vs baseline). Marginal improvement from the extra second of data.</p><p><b>Trade-off:</b> The 1-second delay reduces warning time by ~1 second for all events. At the dataset median distance of 384 km this is negligible, but for near-field events (D < 30 km) every second counts.</p>',
+    body_id:'<p><b>Apa ini:</b> Semua trace menggunakan PTW tetap 4 detik.</p><p><b>Performa:</b> R\u00B2 = 0.7352 (\u0394R\u00B2 = +0.0041 vs baseline). Peningkatan marginal dari tambahan satu detik data.</p><p><b>Trade-off:</b> Penundaan 1 detik mengurangi waktu peringatan ~1 detik untuk semua event. Pada median jarak dataset 384 km ini dapat diabaikan, tapi untuk event near-field (D < 30 km) setiap detik sangat penting.</p>'
+  },
+  {
+    title_en:'Fixed 6s Strategy',
+    title_id:'Strategi Fixed 6s',
+    body_en:'<p><b>What it is:</b> All traces use a fixed PTW of 6 seconds.</p><p><b>Performance:</b> R\u00B2 = 0.7372 (\u0394R\u00B2 = +0.0061 vs baseline). Moderate improvement but at significant warning time cost.</p><p><b>Problem:</b> At distances D < 46 km, the S-wave arrives before 6s of P-wave data is available (golden time < 6s + 3s warning = 9s budget). This means near-field events \u2014 the most dangerous \u2014 cannot receive warnings.</p>',
+    body_id:'<p><b>Apa ini:</b> Semua trace menggunakan PTW tetap 6 detik.</p><p><b>Performa:</b> R\u00B2 = 0.7372 (\u0394R\u00B2 = +0.0061 vs baseline). Peningkatan moderat tapi dengan biaya waktu peringatan signifikan.</p><p><b>Masalah:</b> Pada jarak D < 46 km, gelombang-S tiba sebelum 6s data gelombang-P tersedia (golden time < 6s + 3s peringatan = 9s anggaran). Artinya event near-field \u2014 yang paling berbahaya \u2014 tidak bisa menerima peringatan.</p>'
+  },
+  {
+    title_en:'Fixed 8s Strategy',
+    title_id:'Strategi Fixed 8s',
+    body_en:'<p><b>What it is:</b> All traces use the maximum PTW of 8 seconds. This represents the theoretical accuracy ceiling for fixed-window approaches.</p><p><b>Performance:</b> R\u00B2 = 0.7444 (\u0394R\u00B2 = +0.0133 vs baseline). Best accuracy among all strategies.</p><p><b>Why not use it:</b> At distances D < 61 km, golden time < 11s (8s + 3s warning), making warnings impossible. This violates the fundamental purpose of EEWS. Fixed-8s also has Damaging recall of only 1.3% because it treats all events identically regardless of intensity.</p><p><b>Conclusion:</b> The 1.3% R\u00B2 advantage over IDA is not worth the catastrophic loss of warning capability for near-field events.</p>',
+    body_id:'<p><b>Apa ini:</b> Semua trace menggunakan PTW maksimum 8 detik. Ini merepresentasikan ceiling akurasi teoretis untuk pendekatan fixed-window.</p><p><b>Performa:</b> R\u00B2 = 0.7444 (\u0394R\u00B2 = +0.0133 vs baseline). Akurasi terbaik di antara semua strategi.</p><p><b>Mengapa tidak digunakan:</b> Pada jarak D < 61 km, golden time < 11s (8s + 3s peringatan), membuat peringatan mustahil. Ini melanggar tujuan fundamental EEWS. Fixed-8s juga hanya memiliki recall Damaging 1.3% karena memperlakukan semua event secara identik tanpa memperhitungkan intensitas.</p><p><b>Kesimpulan:</b> Keunggulan R\u00B2 1.3% dibanding IDA tidak sebanding dengan hilangnya kemampuan peringatan yang fatal untuk event near-field.</p>'
+  },
+  {
+    title_en:'IDA + Ground Truth Distance',
+    title_id:'IDA + Jarak Ground Truth',
+    body_en:'<p><b>What it is:</b> IDA routing using <b>perfect catalog distance</b> from BMKG earthquake database (oracle scenario). This represents the theoretical ceiling of the IDA framework.</p><p><b>Performance:</b> R\u00B2 = 0.7311, identical to Fixed 3s baseline.</p><p><b>Significance:</b> This proves that the IDA routing concept itself introduces zero accuracy loss \u2014 any difference between IDA Operational and this oracle comes from distance estimation errors, which are negligible (\u0394R\u00B2 = 0.0002).</p>',
+    body_id:'<p><b>Apa ini:</b> Routing IDA menggunakan <b>jarak katalog sempurna</b> dari database gempa BMKG (skenario oracle). Ini merepresentasikan ceiling teoretis dari framework IDA.</p><p><b>Performa:</b> R\u00B2 = 0.7311, identik dengan baseline Fixed 3s.</p><p><b>Signifikansi:</b> Ini membuktikan bahwa konsep routing IDA itu sendiri tidak menimbulkan kehilangan akurasi \u2014 perbedaan apapun antara IDA Operational dan oracle ini berasal dari error estimasi jarak, yang dapat diabaikan (\u0394R\u00B2 = 0.0002).</p>'
+  },
+  {
+    title_en:'IDA Operational (Recommended)',
+    title_id:'IDA Operasional (Direkomendasikan)',
+    body_en:'<p><b>What it is:</b> The fully autonomous IDA-PTW pipeline using predicted intensity (Stage 1) and predicted distance (Stage 1.5) for PTW routing. This is the <b>production-ready configuration</b>.</p><p><b>Performance:</b> R\u00B2 = 0.7309 (\u0394R\u00B2 = -0.0002 vs baseline). Virtually identical accuracy to Fixed 3s while gaining:</p><ul><li><b>72.3% Damaging Recall</b> (vs 1.3% for Source-Aware) \u2014 55\u00D7 improvement</li><li><b>>99% Golden Time Compliance</b> \u2014 warnings are physically feasible</li><li><b>Fully Autonomous</b> \u2014 no catalog magnitude, no network dependency</li></ul><p style="margin-top:12px"><b>Why recommended:</b> Delivers baseline-equivalent accuracy with dramatically superior safety guarantees. The \u0394R\u00B2 of -0.0002 is statistically and practically negligible.</p>',
+    body_id:'<p><b>Apa ini:</b> Pipeline IDA-PTW sepenuhnya otonom menggunakan intensitas prediksi (Stage 1) dan jarak prediksi (Stage 1.5) untuk routing PTW. Ini adalah <b>konfigurasi siap-produksi</b>.</p><p><b>Performa:</b> R\u00B2 = 0.7309 (\u0394R\u00B2 = -0.0002 vs baseline). Akurasi hampir identik dengan Fixed 3s sambil mendapat:</p><ul><li><b>72.3% Recall Damaging</b> (vs 1.3% untuk Source-Aware) \u2014 peningkatan 55\u00D7</li><li><b>>99% Kepatuhan Golden Time</b> \u2014 peringatan secara fisik layak</li><li><b>Sepenuhnya Otonom</b> \u2014 tanpa magnitudo katalog, tanpa ketergantungan jaringan</li></ul><p style="margin-top:12px"><b>Mengapa direkomendasikan:</b> Memberikan akurasi setara baseline dengan jaminan keselamatan yang jauh lebih unggul. \u0394R\u00B2 sebesar -0.0002 secara statistik dan praktis dapat diabaikan.</p>'
+  }
+];
+
+function showResultDetail(idx){
+  var d=resultDetailData[idx];
+  var t=lang==='id'?d.title_id:d.title_en;
+  var b=lang==='id'?d.body_id:d.body_en;
+  document.getElementById('resultPopupContent').innerHTML='<h2 style="color:var(--blue);font-size:17px;margin-bottom:12px">'+t+'</h2>'+b;
+  document.getElementById('resultPopup').classList.add('show');
+}
+
+// Close popups on Escape
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.getElementById('narrPopup').classList.remove('show');
+    document.getElementById('resultPopup').classList.remove('show');
+  }
+});
+
 </script>
 </body>
 </html>
