@@ -338,7 +338,7 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
             <div>⚡</div>
             <div data-en="PRELIMINARY WARNING" data-id="PERINGATAN AWAL">PRELIMINARY<br>WARNING</div>
           </div>
-          <div style="font-size:9px;color:#888;margin-top:3px" data-en="D &lt; 38 km rescue zone" data-id="Zona rescue D &lt; 38 km">D &lt; 38 km</div>
+          <div style="font-size:9px;color:#888;margin-top:3px" data-en="High intensity at sensor" data-id="Intensitas tinggi di sensor">High intensity</div>
           <div style="display:flex;flex-direction:column;gap:2px;margin-top:3px;align-items:center">
             <span style="font-size:9px;background:#e8f5e9;color:#2e7d32;padding:1px 6px;border-radius:4px" data-en="🧑 38→11 km" data-id="🧑 38→11 km">🧑 38→11 km</span>
             <span style="font-size:9px;background:#e3f2fd;color:#1565c0;padding:1px 6px;border-radius:4px" data-en="⚙️ 38→4 km" data-id="⚙️ 38→4 km">⚙️ 38→4 km</span>
@@ -350,7 +350,7 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
           <div style="background:#f5f5f5;color:#999;padding:6px 12px;border-radius:8px;font-size:11px;font-weight:600;margin-top:2px;border:1px solid #e0e0e0">
             <div data-en="Wait for Stage 1" data-id="Tunggu Stage 1">Wait for<br>Stage 1</div>
           </div>
-          <div style="font-size:9px;color:#aaa;margin-top:3px" data-en="Not near-field" data-id="Bukan near-field">D &gt; 38 km</div>
+          <div style="font-size:9px;color:#aaa;margin-top:3px" data-en="Low intensity" data-id="Intensitas rendah">PGA &lt; 62 Gal</div>
         </div>
       </div>
     </div>
@@ -401,14 +401,14 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
   <!-- Mengapa Stage 0 diperlukan -->
   <div style="background:#fff5f5;border-left:4px solid #ef5350;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:14px">
-    <div style="font-weight:700;color:#c62828;font-size:12px;margin-bottom:4px" data-en="🔴 The Problem: Near-Field Blind Zone" data-id="🔴 Masalah: Zona Buta Near-Field">🔴 The Problem</div>
-    <p style="font-size:12px;margin:0;color:#555" data-en="The main pipeline (Stage 1 → Stage 2) requires a <b>5-second time budget</b> (2 s processing + 3 s minimum warning). At epicentral distance D &lt; 38 km, the S-wave arrives before this budget expires &mdash; <b>no warning can be issued</b>. This is critical for Indonesia's active crustal faults near urban centers: Lembang Fault (Bandung, 9M pop.), Opak Fault (Yogyakarta, 3.7M pop.), Sumatran Fault (multi-city)." data-id="Pipeline utama (Stage 1 → Stage 2) membutuhkan <b>anggaran waktu 5 detik</b> (2 s pemrosesan + 3 s peringatan minimum). Pada jarak episentral D &lt; 38 km, gelombang S tiba sebelum anggaran ini habis &mdash; <b>peringatan tidak bisa dikirim</b>. Ini kritis untuk sesar kerak aktif Indonesia dekat pusat kota: Sesar Lembang (Bandung, 9 jt pop.), Sesar Opak (Yogyakarta, 3,7 jt pop.), Sesar Sumatera (multi-kota)."></p>
+    <div style="font-weight:700;color:#c62828;font-size:12px;margin-bottom:4px" data-en="🔴 The Problem: Time Budget vs High-Intensity Events" data-id="🔴 Masalah: Anggaran Waktu vs Event Intensitas Tinggi">🔴 The Problem</div>
+    <p style="font-size:12px;margin:0;color:#555" data-en="When sensor intensity is high (PGA &ge; 62 Gal), the earthquake is typically close &mdash; and close means short golden time. The main pipeline needs a <b>5-second time budget</b> (2 s processing + 3 s minimum warning), but high-intensity events at D &lt; 38 km have golden time &lt; 5 s &mdash; <b>no warning can be issued</b>. This is critical for Indonesia's active crustal faults near urban centers: Lembang Fault (Bandung, 9M pop.), Opak Fault (Yogyakarta, 3.7M pop.), Sumatran Fault (multi-city)." data-id="Ketika intensitas di sensor tinggi (PGA &ge; 62 Gal), gempa biasanya dekat &mdash; dan dekat berarti golden time pendek. Pipeline utama membutuhkan <b>anggaran waktu 5 detik</b> (2 s pemrosesan + 3 s peringatan minimum), tetapi event intensitas tinggi pada D &lt; 38 km memiliki golden time &lt; 5 s &mdash; <b>peringatan tidak bisa dikirim</b>. Ini kritis untuk sesar kerak aktif Indonesia dekat pusat kota: Sesar Lembang (Bandung, 9 jt pop.), Sesar Opak (Yogyakarta, 3,7 jt pop.), Sesar Sumatera (multi-kota)."></p>
   </div>
 
   <!-- Bagaimana Stage 0 bekerja -->
   <div style="background:#e8f5e9;border-left:4px solid #4caf50;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:14px">
     <div style="font-weight:700;color:#2e7d32;font-size:12px;margin-bottom:6px" data-en="✅ The Solution: 0.5-Second Parallel Classifier" data-id="✅ Solusi: Klasifikasi Paralel 0.5 Detik">✅ The Solution</div>
-    <p style="font-size:12px;margin:0 0 10px;color:#555" data-en="Stage 0 runs <b>in parallel</b> with Stage 1, using only <b>0.5 seconds</b> of P-wave data. It answers a single binary question: <i>&quot;Is this earthquake potentially damaging?&quot;</i> If YES, a <b>preliminary warning</b> is issued immediately &mdash; 1.5 seconds before Stage 1 even finishes processing." data-id="Stage 0 berjalan <b>secara paralel</b> dengan Stage 1, menggunakan hanya <b>0.5 detik</b> data gelombang P. Ia menjawab satu pertanyaan biner: <i>&quot;Apakah gempa ini berpotensi merusak?&quot;</i> Jika YA, <b>peringatan awal</b> langsung dikirimkan &mdash; 1.5 detik sebelum Stage 1 selesai memproses."></p>
+    <p style="font-size:12px;margin:0 0 10px;color:#555" data-en="Stage 0 runs <b>in parallel</b> with Stage 1, using only <b>0.5 seconds</b> of P-wave data. It answers a single binary question: <i>&quot;Is sensor intensity high enough to warrant immediate action?&quot;</i> If YES, a <b>preliminary warning</b> is issued immediately &mdash; 1.5 seconds before Stage 1 even finishes processing." data-id="Stage 0 berjalan <b>secara paralel</b> dengan Stage 1, menggunakan hanya <b>0.5 detik</b> data gelombang P. Ia menjawab satu pertanyaan biner: <i>&quot;Apakah intensitas di sensor cukup tinggi untuk tindakan segera?&quot;</i> Jika YA, <b>peringatan awal</b> langsung dikirimkan &mdash; 1.5 detik sebelum Stage 1 selesai memproses."></p>
     <!-- Flow diagram -->
     <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px">
       <span style="background:#fff;padding:4px 10px;border-radius:12px;border:1px solid #c8e6c9">P-arrival (t=0)</span>
@@ -591,7 +591,7 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
     <!-- Stage 0 parallel path addition -->
     <div style="background:#fff3e0;border:1.5px dashed #ff9800;border-radius:8px;padding:10px 12px;margin-top:12px;margin-bottom:10px">
-      <div style="font-size:11px;font-weight:700;color:#e65100;margin-bottom:6px" data-en="⚡ + Stage 0 Parallel Path (Near-Field Protection)" data-id="⚡ + Jalur Paralel Stage 0 (Proteksi Near-Field)">⚡ + Stage 0 Parallel</div>
+      <div style="font-size:11px;font-weight:700;color:#e65100;margin-bottom:6px" data-en="⚡ + Stage 0 Parallel Path (High-Intensity Rapid Response)" data-id="⚡ + Jalur Paralel Stage 0 (Respons Cepat Intensitas Tinggi)">⚡ + Stage 0 Parallel</div>
       <div style="display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:10px;margin-bottom:6px">
         <span style="background:#fff;padding:3px 8px;border-radius:10px;border:1px solid #c8e6c9">P-arrival (t=0)</span>
         <span style="color:#999">&rarr;</span>
@@ -601,7 +601,7 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
         <span style="color:#aaa;font-size:9px;padding:0 3px">||</span>
         <span style="background:#e8f5e9;padding:3px 8px;border-radius:10px;border:1px solid #a5d6a7;font-size:9px" data-en="Stage 1 (2.0s) confirms" data-id="Stage 1 (2.0s) konfirmasi">Stage 1 (2.0s) &check;/&cross;</span>
       </div>
-      <div style="font-size:10px;color:#795548" data-en="For D &lt; 38 km (blind zone): Stage 0 issues warning in 0.5 s, reducing blind zone from 38 km to <b>11 km</b> (human) / <b>4 km</b> (infrastructure)." data-id="Untuk D &lt; 38 km (zona buta): Stage 0 mengirim peringatan dalam 0.5 s, mengurangi zona buta dari 38 km ke <b>11 km</b> (manusia) / <b>4 km</b> (infrastruktur)."></div>
+      <div style="font-size:10px;color:#795548" data-en="When the sensor detects high intensity (PGA &ge; 62 Gal), Stage 0 issues warning in 0.5 s &mdash; before Stage 1 even finishes. This reduces the blind zone from 38 km to <b>11 km</b> (human) / <b>4 km</b> (infrastructure)." data-id="Ketika sensor mendeteksi intensitas tinggi (PGA &ge; 62 Gal), Stage 0 mengirim peringatan dalam 0.5 s &mdash; sebelum Stage 1 selesai. Ini mengurangi zona buta dari 38 km ke <b>11 km</b> (manusia) / <b>4 km</b> (infrastruktur)."></div>
     </div>
 
     <div style="background:#c8e6c9;border-radius:6px;padding:8px 12px;margin-top:10px;font-size:12px;text-align:center">
@@ -641,9 +641,9 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
 </section>
 
-<!-- ═══ STAGE 0: NEAR-FIELD BLIND ZONE MITIGATION ═══ -->
+<!-- ═══ STAGE 0: HIGH-INTENSITY RAPID RESPONSE ═══ -->
 <section id="stage0">
-<h2 data-en="Stage 0: Near-Field Blind Zone Mitigation" data-id="Stage 0: Mitigasi Zona Buta Near-Field">Stage 0: Near-Field</h2>
+<h2 data-en="Stage 0: High-Intensity Rapid Response" data-id="Stage 0: Respons Cepat Intensitas Tinggi">Stage 0: High-Intensity Rapid Response</h2>
 
 <div style="background:#fff3e0;border:2px solid #ff9800;border-radius:10px;padding:20px;margin-bottom:20px">
   <div style="font-weight:700;font-size:14px;color:#e65100;margin-bottom:10px" data-en="⚠️ Physical Blind Zone Disclaimer" data-id="⚠️ Disclaimer Zona Buta Fisika">⚠️ Blind Zone Disclaimer</div>
@@ -651,8 +651,8 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
   <p style="font-size:12px;color:#666;font-style:italic">golden_time = D &times; (1/V<sub>s</sub> &minus; 1/V<sub>p</sub>) = D &times; 0.1319 s/km &nbsp;|&nbsp; V<sub>p</sub> = 6.5 km/s, V<sub>s</sub> = 3.5 km/s</p>
 </div>
 
-<h3 style="margin-bottom:12px" data-en="The Problem: Current Stage 1 Blind Zone = 38 km" data-id="Masalah: Zona Buta Stage 1 Saat Ini = 38 km">Problem: 38 km Blind Zone</h3>
-<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="The current pipeline requires 2 s (Stage 1 processing) + 3 s (minimum warning) = 5 s time budget. At D &lt; 38 km, the golden time is shorter than this budget &mdash; no warning can be issued in time. This affects Indonesia's active crustal faults near urban centers." data-id="Pipeline saat ini membutuhkan 2 s (pemrosesan Stage 1) + 3 s (peringatan minimum) = 5 s anggaran waktu. Pada D &lt; 38 km, golden time lebih pendek dari anggaran ini &mdash; peringatan tidak bisa dikirim tepat waktu. Ini mempengaruhi sesar kerak aktif Indonesia dekat pusat perkotaan."></p>
+<h3 style="margin-bottom:12px" data-en="The Problem: 5-Second Delay for High-Intensity Events" data-id="Masalah: Delay 5 Detik untuk Event Intensitas Tinggi">Problem: 5s Delay for High-Intensity Events</h3>
+<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="When sensor intensity is high, the earthquake source is typically close. At D &lt; 38 km, golden time &lt; 5 s &mdash; the main pipeline (2 s processing + 3 s minimum warning = 5 s budget) cannot issue warning before S-wave arrival. Stage 0 solves this by detecting high intensity in just 0.5 s." data-id="Ketika intensitas di sensor tinggi, sumber gempa biasanya dekat. Pada D &lt; 38 km, golden time &lt; 5 s &mdash; pipeline utama (2 s pemrosesan + 3 s peringatan minimum = anggaran 5 s) tidak bisa mengirim peringatan sebelum gelombang S tiba. Stage 0 memecahkan ini dengan mendeteksi intensitas tinggi dalam hanya 0.5 s."></p>
 
 <h3 style="margin-bottom:12px" data-en="Solution: Ultra-Rapid P-wave Discriminator (URPD)" data-id="Solusi: Ultra-Rapid P-wave Discriminator (URPD)">Solution: Stage 0 URPD</h3>
 
@@ -682,7 +682,53 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
     <span style="color:#999">||</span>
     <span style="background:#e8f5e9;padding:4px 10px;border-radius:12px" data-en="Stage 1 (2.0s) confirms/cancels" data-id="Stage 1 (2.0s) konfirmasi/batalkan">Stage 1 (2.0s) confirms/cancels</span>
   </div>
-  <p style="font-size:12px;color:#666;margin:0" data-en="GBM classifier with 7 P-wave features (spectral centroid 60.6%, spectral ratio H/L 20.0%, peak acceleration 11.8%) runs in parallel with Stage 1. If triggered, a preliminary warning is issued immediately for infrastructure shutdown. Stage 1 subsequently confirms or cancels." data-id="Klasifikasi GBM dengan 7 fitur gelombang-P (spectral centroid 60.6%, spectral ratio H/L 20.0%, peak acceleration 11.8%) berjalan paralel dengan Stage 1. Jika terpicu, peringatan awal dikirim segera untuk shutdown infrastruktur. Stage 1 kemudian mengonfirmasi atau membatalkan."></p>
+  <p style="font-size:12px;color:#666;margin:0" data-en="GBM classifier analyzes 7 spectral features of the P-wave to determine if <b>sensor intensity</b> (Sa(T&asymp;0) = PGA) will exceed the damaging threshold (62 Gal). Trained on 222 high-intensity traces spanning PGA 62&ndash;5,259 Gal (MMI V&ndash;XII), from 70 distinct events. Runs in parallel with Stage 1; if triggered, a preliminary warning is issued immediately. Stage 1 subsequently confirms or cancels." data-id="Klasifikasi GBM menganalisis 7 fitur spektral gelombang-P untuk menentukan apakah <b>intensitas di sensor</b> (Sa(T&asymp;0) = PGA) akan melampaui ambang batas merusak (62 Gal). Dilatih pada 222 trace intensitas tinggi mencakup PGA 62&ndash;5.259 Gal (MMI V&ndash;XII), dari 70 event berbeda. Berjalan paralel dengan Stage 1; jika terpicu, peringatan awal dikirim segera. Stage 1 kemudian mengonfirmasi atau membatalkan."></p>
+</div>
+
+<div style="background:#e8eaf6;border:1px solid #9fa8da;border-radius:8px;padding:16px;margin-bottom:16px">
+  <div style="font-weight:700;margin-bottom:8px;color:#283593" data-en="📊 Training Data: Sensor Intensity Coverage" data-id="📊 Data Latih: Cakupan Intensitas di Sensor">📊 Sensor Intensity Coverage</div>
+  <p style="font-size:12px;color:#555;margin-bottom:10px" data-en="Stage 0 was trained on observed intensity at the sensor (PGA), not on source magnitude. The training data covers the full destructive intensity range:" data-id="Stage 0 dilatih berdasarkan intensitas yang diamati di sensor (PGA), bukan pada magnitudo sumber. Data latih mencakup seluruh rentang intensitas destruktif:"></p>
+  <table style="width:100%;font-size:11px;border-collapse:collapse">
+    <tr style="background:#283593;color:#fff">
+      <th style="padding:6px 8px;text-align:left" data-en="Sensor Intensity" data-id="Intensitas di Sensor">Sensor Intensity</th>
+      <th style="padding:6px 8px">PGA</th>
+      <th style="padding:6px 8px">MMI</th>
+      <th style="padding:6px 8px" data-en="Traces" data-id="Trace">Traces</th>
+      <th style="padding:6px 8px" data-en="Events" data-id="Event">Events</th>
+    </tr>
+    <tr style="background:#fff8e1">
+      <td style="padding:5px 8px;font-weight:600" data-en="Damaging" data-id="Merusak">Damaging</td>
+      <td style="padding:5px 8px;text-align:center">&ge; 62 Gal</td>
+      <td style="padding:5px 8px;text-align:center">V+</td>
+      <td style="padding:5px 8px;text-align:center;font-weight:700">222</td>
+      <td style="padding:5px 8px;text-align:center">70</td>
+    </tr>
+    <tr>
+      <td style="padding:5px 8px;font-weight:600" data-en="Destructive" data-id="Destruktif">Destructive</td>
+      <td style="padding:5px 8px;text-align:center">&ge; 200 Gal</td>
+      <td style="padding:5px 8px;text-align:center">VII+</td>
+      <td style="padding:5px 8px;text-align:center;font-weight:700">159</td>
+      <td style="padding:5px 8px;text-align:center">51</td>
+    </tr>
+    <tr style="background:#ffebee">
+      <td style="padding:5px 8px;font-weight:600" data-en="Severe" data-id="Parah">Severe</td>
+      <td style="padding:5px 8px;text-align:center">&ge; 500 Gal</td>
+      <td style="padding:5px 8px;text-align:center">VIII+</td>
+      <td style="padding:5px 8px;text-align:center;font-weight:700">61</td>
+      <td style="padding:5px 8px;text-align:center">27</td>
+    </tr>
+    <tr style="background:#ffcdd2">
+      <td style="padding:5px 8px;font-weight:700" data-en="Extreme" data-id="Ekstrem">Extreme</td>
+      <td style="padding:5px 8px;text-align:center">&ge; 1000 Gal</td>
+      <td style="padding:5px 8px;text-align:center">IX+</td>
+      <td style="padding:5px 8px;text-align:center;font-weight:700">32</td>
+      <td style="padding:5px 8px;text-align:center">20</td>
+    </tr>
+  </table>
+  <div style="background:#e8f5e9;border-radius:6px;padding:8px 12px;margin-top:10px;font-size:11px">
+    <b style="color:#2e7d32" data-en="Key:" data-id="Kunci:">Key:</b>
+    <span data-en="PGA max in training = <b>5,259 Gal</b> (MMI ~XII). The model has seen the full range of destructive intensity regardless of whether it was caused by M4.0 at 2 km or M6.5 at 30 km &mdash; consistent with the IDA philosophy of responding to <b>what the sensor measures</b>, not source parameters." data-id="PGA maks di data latih = <b>5.259 Gal</b> (MMI ~XII). Model telah melihat seluruh rentang intensitas destruktif terlepas apakah itu disebabkan oleh M4.0 di 2 km atau M6.5 di 30 km &mdash; konsisten dengan filosofi IDA yang merespons <b>apa yang diukur sensor</b>, bukan parameter sumber."></span>
+  </div>
 </div>
 
 <h3 style="margin-bottom:12px" data-en="Calibrated Performance (37,562 BMKG traces)" data-id="Performa Terkalibrasi (37.562 trace BMKG)">Calibrated Performance</h3>
@@ -739,12 +785,12 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 
 <div style="background:#e8f5e9;border:1px solid #a5d6a7;border-radius:8px;padding:14px;margin-top:16px;font-size:12px">
   <b style="color:#2e7d32" data-en="Key Insight:" data-id="Insight Utama:">Key Insight:</b>
-  <span data-en="Stage 0 distinguishes two warning recipients: <b>humans</b> (need ≥1.0 s for protective action) and <b>automated infrastructure</b> (gas shutoff ~100 ms, train brake ~200 ms, elevator stop ~500 ms). Even at D = 5–10 km where human warning is impossible, sub-second alerts can still trigger gas pipeline shutoff and train emergency braking — potentially preventing secondary disasters (fires, derailments) after the earthquake." data-id="Stage 0 membedakan dua penerima peringatan: <b>manusia</b> (butuh ≥1.0 s untuk aksi protektif) dan <b>infrastruktur otomatis</b> (gas shutoff ~100 ms, rem kereta ~200 ms, lift berhenti ~500 ms). Bahkan pada D = 5–10 km di mana peringatan untuk manusia mustahil, alert sub-detik tetap bisa memicu penutupan pipa gas dan pengereman darurat kereta — berpotensi mencegah bencana sekunder (kebakaran, anjloknya kereta) setelah gempa."></span>
+  <span data-en="Stage 0 distinguishes two warning recipients: <b>humans</b> (need ≥1.0 s for protective action) and <b>automated infrastructure</b> (gas shutoff ~100 ms, train brake ~200 ms, elevator stop ~500 ms). Even at D = 5–10 km where human warning is impossible, sub-second alerts can still trigger gas pipeline shutoff and train emergency braking — potentially preventing secondary disasters (fires, derailments) after the earthquake. Critically, Stage 0 operates on <b>sensor intensity</b> (PGA &ge; 62 Gal), not source parameters. The distance zones above are consequences of physics (golden time), not inputs to Stage 0. The model doesn't know the distance — it only knows what the sensor measures." data-id="Stage 0 membedakan dua penerima peringatan: <b>manusia</b> (butuh ≥1.0 s untuk aksi protektif) dan <b>infrastruktur otomatis</b> (gas shutoff ~100 ms, rem kereta ~200 ms, lift berhenti ~500 ms). Bahkan pada D = 5–10 km di mana peringatan untuk manusia mustahil, alert sub-detik tetap bisa memicu penutupan pipa gas dan pengereman darurat kereta — berpotensi mencegah bencana sekunder (kebakaran, anjloknya kereta) setelah gempa. Yang penting, Stage 0 beroperasi berdasarkan <b>intensitas di sensor</b> (PGA &ge; 62 Gal), bukan parameter sumber. Zona jarak di atas adalah konsekuensi fisika (golden time), bukan input ke Stage 0. Model tidak mengetahui jarak — ia hanya mengetahui apa yang diukur sensor."></span>
 </div>
 
 <!-- ═══ REAL EARTHQUAKE VALIDATION ═══ -->
 <h3 style="margin-top:24px;margin-bottom:12px" data-en="Real Earthquake Validation (3 Major West Java Events)" data-id="Validasi Gempa Nyata (3 Gempa Besar Jawa Barat)">Real Earthquake Validation</h3>
-<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="Stage 0 GBM classifier validated on independent BMKG strong-motion recordings from three recent destructive earthquakes. 0.5 s of P-wave data extracted from each station's vertical component." data-id="Klasifikasi GBM Stage 0 divalidasi pada rekaman strong-motion BMKG independen dari tiga gempa destruktif terkini. 0.5 s data gelombang P diekstrak dari komponen vertikal setiap stasiun."></p>
+<p style="font-size:13px;color:#666;margin-bottom:16px" data-en="Stage 0 validated on independent BMKG recordings. The key question is not 'was the earthquake large?' but 'did the sensor measure high intensity?' &mdash; consistent with the IDA paradigm. 0.5 s of P-wave data extracted from each station's vertical component." data-id="Stage 0 divalidasi pada rekaman BMKG independen. Pertanyaan kuncinya bukan 'apakah gempanya besar?' melainkan 'apakah sensor mengukur intensitas tinggi?' &mdash; konsisten dengan paradigma IDA. 0.5 s data gelombang P diekstrak dari komponen vertikal setiap stasiun."></p>
 
 <!-- Summary comparison table -->
 <table style="width:100%;font-size:12px;border-collapse:collapse;margin-bottom:16px">
@@ -883,7 +929,7 @@ footer{max-width:960px;margin:0 auto;padding:20px 24px;text-align:center;font-si
 <div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border:2px solid #4caf50;border-radius:10px;padding:16px;margin-top:12px">
   <div style="font-weight:700;font-size:13px;color:#1b5e20;margin-bottom:8px" data-en="✅ Validation Conclusion" data-id="✅ Kesimpulan Validasi">✅ Validation Conclusion</div>
   <div style="font-size:12px;color:#333">
-    <p style="margin:0 0 6px" data-en="Stage 0 achieved <b>100% detection</b> on all 23 near-field stations across both shallow crustal earthquakes (Cianjur + Sumedang) in Balanced mode. These 23 stations would have received <b>zero warning</b> from Stage 1 alone." data-id="Stage 0 mencapai <b>deteksi 100%</b> pada seluruh 23 stasiun near-field di kedua gempa kerak dangkal (Cianjur + Sumedang) dalam mode Balanced. Ke-23 stasiun ini tidak akan mendapat <b>peringatan apapun</b> dari Stage 1 saja."></p>
+    <p style="margin:0 0 6px" data-en="Stage 0 achieved <b>100% detection</b> on all 23 stations where sensor intensity exceeded the damaging threshold (PGA &ge; 62 Gal) across both shallow crustal earthquakes (Cianjur + Sumedang) in Balanced mode. These 23 stations would have received <b>zero warning</b> from Stage 1 alone." data-id="Stage 0 mencapai <b>deteksi 100%</b> pada seluruh 23 stasiun di mana intensitas sensor melampaui ambang batas merusak (PGA &ge; 62 Gal) di kedua gempa kerak dangkal (Cianjur + Sumedang) dalam mode Balanced. Ke-23 stasiun ini tidak akan mendapat <b>peringatan apapun</b> dari Stage 1 saja."></p>
     <p style="margin:0 0 6px" data-en="The Garut M6.2 deep subduction event confirms Stage 0 is <b>non-disruptive</b> for distant events — the main pipeline already provides 15-20 s of warning time." data-id="Gempa subduksi dalam M6.2 Garut mengonfirmasi Stage 0 bersifat <b>non-disruptif</b> untuk gempa jauh — pipeline utama sudah menyediakan 15-20 s waktu peringatan."></p>
     <p style="margin:0;font-weight:600" data-en="Stage 0 is most critical precisely where it matters most: shallow crustal earthquakes near urban centers (Lembang, Opak, Sumatran Fault scenarios)." data-id="Stage 0 paling kritis tepat di mana ia paling dibutuhkan: gempa kerak dangkal dekat pusat perkotaan (skenario Sesar Lembang, Opak, Sumatera)."></p>
   </div>
